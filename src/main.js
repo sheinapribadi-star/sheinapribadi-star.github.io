@@ -1,5 +1,8 @@
 import './fonts.css';
 import './style.css';
+import './show.css';
+import { initTheater, hangGarlands } from './theater.js';
+import { initPopcorn, initSlushy } from './snack.js';
 
 const root = document.documentElement;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -24,58 +27,16 @@ lights.addEventListener('click', () => {
 });
 renderLights();
 
-/* ---------- tear-the-ticket intro ---------- */
-const intro = $('.intro');
-const site = $('.site');
-if (root.classList.contains('intro-on')) {
-  const stub = $('.intro__stub', intro);
-  site.inert = true;
-  requestAnimationFrame(() => stub.focus({ preventScroll: true }));
-  let done = false;
-  const enter = () => {
-    if (done) return; done = true;
-    try { sessionStorage.setItem('ticket', 'torn'); } catch (e) {}
-    intro.classList.add('is-torn');
-    const finish = () => {
-      root.classList.remove('intro-on');
-      site.inert = false;
-      intro.remove();
-      $('#hero-title').focus({ preventScroll: true });
-    };
-    setTimeout(finish, reduce.matches ? 320 : 1150);
-  };
-  // drag the stub to tear it; a plain click/Enter/Space tears it too
-  let start = null, moved = false;
-  stub.addEventListener('pointerdown', (e) => { start = { x: e.clientX, y: e.clientY }; moved = false; stub.setPointerCapture(e.pointerId); intro.classList.add('is-dragging'); });
-  stub.addEventListener('pointermove', (e) => {
-    if (!start) return;
-    const dx = Math.max(0, e.clientX - start.x), dy = Math.max(0, e.clientY - start.y);
-    if (dx + dy > 6) moved = true;
-    stub.style.setProperty('--dx', dx * .6 + 'px');
-    stub.style.setProperty('--dy', dy * .6 + 'px');
-    stub.style.setProperty('--rot', Math.min(28, (dx + dy) / 6) + 'deg');
-    if (dx + dy > 120) { start = null; intro.classList.remove('is-dragging'); enter(); }
+/* ---------- the show: theater seats, snack bar, and (if motion is welcome) the scroll film ---------- */
+const theater = initTheater();
+hangGarlands();
+initPopcorn();
+initSlushy();
+if (root.classList.contains('cine')) {
+  const skip = $('.cinema__skip');
+  import('./cine.js').then(({ initCine }) => initCine(theater)).catch(() => {
+    root.classList.remove('cine'); if (skip) skip.hidden = true;
   });
-  const release = () => {
-    if (!start) return;
-    start = null; intro.classList.remove('is-dragging');
-    if (!moved) return; // click handler will tear
-    stub.style.setProperty('--dx', '0px'); stub.style.setProperty('--dy', '0px'); stub.style.setProperty('--rot', '0deg');
-  };
-  stub.addEventListener('pointerup', release);
-  stub.addEventListener('pointercancel', release);
-  stub.addEventListener('click', () => { if (!moved || done) enter(); else moved = false; });
-  $('.intro__skip', intro).addEventListener('click', enter);
-  intro.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') enter();
-    if (e.key === 'Tab') { // keep focus inside the ticket
-      const f = [stub, $('.intro__skip', intro)];
-      const i = f.indexOf(document.activeElement);
-      e.preventDefault(); f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
-    }
-  });
-} else if (intro) {
-  intro.remove();
 }
 
 /* ---------- chasing marquee bulbs ---------- */
@@ -156,3 +117,27 @@ $$('.copy').forEach((b) => b.addEventListener('click', async () => {
   catch (e) { status.textContent = 'couldn’t copy. The address is right there, though!'; }
   setTimeout(() => { b.textContent = 'copy'; }, 2200);
 }));
+
+/* ---------- box office: count real numbers up as they scroll in ---------- */
+const stats = $('.stats');
+if (stats) {
+  const counts = $$('.count', stats);
+  const fmt = (n) => Math.round(n).toLocaleString('en-US');
+  if (!reduce.matches) counts.forEach((el) => { el.textContent = '0'; });
+  const run = () => {
+    stats.classList.add('is-in');
+    if (reduce.matches) return;
+    counts.forEach((el, i) => {
+      const to = Number(el.dataset.to), t0 = performance.now() + i * 90, dur = 1400 + Math.min(900, to / 4);
+      const tick = (now) => {
+        const k = Math.min(1, Math.max(0, (now - t0) / dur));
+        const e = 1 - Math.pow(1 - k, 4);
+        el.textContent = fmt(to * e);
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      el.textContent = '0';
+      requestAnimationFrame(tick);
+    });
+  };
+  new IntersectionObserver((entries, io) => { if (entries[0].isIntersecting) { io.disconnect(); run(); } }, { threshold: .35 }).observe(stats);
+}
