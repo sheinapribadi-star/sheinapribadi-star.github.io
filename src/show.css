@@ -880,3 +880,163 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
 .booth .poster:hover .poster__card { transform: none; }
 .booth .poster.is-flipped .poster__card { transform: rotateY(180deg); }
 .booth .ticket:hover { z-index: 2; }
+
+
+/* ============ casting: photo clipped onto the sheet ============ */
+.actor {
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2rem); align-items: start;
+}
+.actor__dossier {
+  position: relative; display: block;
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 6px;
+  box-shadow: 7px 7px 0 var(--rose);
+  padding: 1.3rem 1.3rem 1.4rem;
+  background-image: repeating-linear-gradient(transparent 0 30px, rgba(184,41,63,.1) 30px 31px);
+  transform: rotate(-.5deg);
+  overflow: visible;
+}
+.actor__photo {
+  float: left; width: min(42%, 210px); margin: .15rem 1.1rem .6rem -.15rem;
+  position: relative; background: transparent; transform: rotate(-3.5deg);
+  filter: drop-shadow(3px 4px 0 rgba(59,38,38,.25));
+}
+.actor__photo img {
+  width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 18%;
+  display: block; border: 3px solid #fff; outline: 1px solid rgba(59,38,38,.35);
+  border-radius: 2px; box-shadow: none; min-height: 0;
+}
+.actor__photo figcaption { display: none; }
+.clip {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  width: 28px; height: 34px; z-index: 3;
+  background:
+    linear-gradient(#c0c6cc, #9aa3ab) 50% 0 / 18px 10px no-repeat,
+    linear-gradient(transparent 8px, #dfe3e6 8px) 50% 6px / 22px 22px no-repeat;
+  border-radius: 4px 4px 8px 8px;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.15), 0 2px 0 rgba(0,0,0,.12);
+}
+.clip::before {
+  content: ""; position: absolute; left: 5px; right: 5px; top: 12px; height: 14px;
+  border: 2px solid #7d868e; border-top: 0; border-radius: 0 0 6px 6px;
+  background: transparent;
+}
+.tape {
+  position: absolute; top: -8px; right: 10%; width: 52px; height: 16px; z-index: 2;
+  background: rgba(255, 232, 170, .82); border: 1px solid rgba(180,140,60,.35);
+  transform: rotate(8deg); box-shadow: 0 1px 0 rgba(0,0,0,.08);
+  mix-blend-mode: multiply;
+}
+.actor__sheet {
+  position: relative; margin: 0; padding: 0; background: transparent; border: 0;
+  box-shadow: none; transform: none; background-image: none; overflow: visible;
+}
+.actor__sheet .cast__stamp { top: auto; bottom: -.2rem; right: -.1rem; }
+.actor__hello { margin: 0 0 .25rem; font: 400 clamp(1.55rem, 3vw, 2rem)/1.05 var(--display); }
+.actor__hello span { display: inline-block; margin-left: .35rem; font: 700 .72rem/1 var(--mono); letter-spacing: .06em; color: var(--muted); vertical-align: middle; }
+.actor__from { margin: 0 0 .85rem; font-size: .95rem; color: var(--muted); line-height: 1.4; }
+.actor__chips { list-style: none; margin: .75rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; clear: both; }
+.actor__chips li {
+  font: 700 .78rem/1.2 var(--body); padding: .35rem .65rem; border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--ink) 22%, transparent); background: var(--cream);
+}
+.actor__chips small { color: var(--cherry); margin-left: .2rem; font-weight: 600; }
+.actor__sheet .cast__src { clear: both; margin-top: .8rem; padding-right: 5rem; }
+@media (max-width: 960px) { .actor { grid-template-columns: 1fr; } .actor__dossier { transform: none; } }
+@media (max-width: 520px) {
+  .actor__photo { float: none; width: min(70%, 200px); margin: 0 auto 1rem; display: block; }
+  .actor__hello { text-align: center; } .actor__from { text-align: center; }
+}
+
+/* ============ schooling clipboard (B&W take-one) ============ */
+.pair--studio { align-items: stretch; gap: 1.4rem; }
+.clipboard {
+  position: relative; background: #3a3a3a; border-radius: 10px; padding: 1.6rem .85rem .85rem;
+  box-shadow: 6px 6px 0 #1a1a1a; color: #111;
+}
+.clipboard__clip {
+  position: absolute; top: .35rem; left: 50%; transform: translateX(-50%);
+  width: 54%; max-width: 160px; height: 28px; background: linear-gradient(#c8c8c8, #8e8e8e);
+  border-radius: 4px; box-shadow: inset 0 1px 0 #eee, 0 2px 0 #222;
+}
+.clipboard__clip span {
+  position: absolute; left: 50%; top: 6px; transform: translateX(-50%);
+  width: 28px; height: 14px; border-radius: 3px; background: #555;
+  box-shadow: inset 0 0 0 2px #777;
+}
+.clipboard__board {
+  position: relative; background: #f4f1ea;
+  background-image: repeating-linear-gradient(#f4f1ea 0 27px, #d7d2c8 27px 28px);
+  border: 1px solid #222; min-height: 280px; padding: 1rem 1rem 1.2rem;
+  font-family: var(--mono);
+}
+.clipboard__slug {
+  margin: 0 0 .35rem; font: 700 .68rem/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: #444;
+}
+.clipboard__title {
+  margin: 0 0 .15rem; font: 400 1.7rem/1 var(--display); color: #111; letter-spacing: .02em;
+}
+.clipboard__meta { margin: 0 0 .9rem; font-size: .78rem; color: #555; letter-spacing: .04em; text-transform: uppercase; }
+.clipboard__rows { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.clipboard__rows li {
+  display: grid; grid-template-columns: 3.6rem 1fr; grid-template-rows: auto auto;
+  gap: .1rem .7rem; padding: .55rem .2rem; border-top: 1.5px solid #222;
+}
+.clipboard__sc { grid-row: 1 / 3; align-self: center; font-weight: 800; font-size: .78rem; letter-spacing: .06em; }
+.clipboard__who { font-weight: 800; font-size: .95rem; color: #111; }
+.clipboard__what { grid-column: 2; font-size: .86rem; color: #333; }
+.clipboard__when { grid-column: 2; font-size: .78rem; color: #666; letter-spacing: .04em; }
+.clipboard__stamp {
+  position: absolute; right: .7rem; bottom: .7rem; margin: 0;
+  padding: .2rem .55rem; border: 2.5px solid #b82626; color: #b82626;
+  font: 800 .85rem/1 var(--mono); letter-spacing: .12em; transform: rotate(-8deg); opacity: .85;
+}
+
+/* ============ Rotten Tomatoes-style reviews ============ */
+.rt {
+  background: #1b1b1b; color: #f3f3f3; border: 2.5px solid var(--ink); border-radius: 18px;
+  padding: 1.2rem 1.25rem 1.3rem; box-shadow: 6px 6px 0 var(--butter);
+}
+.rt__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem 1rem; margin-bottom: .7rem; }
+.rt__title { margin: 0; font: 400 1.7rem/1 var(--display); color: #fff; }
+.rt__score { display: inline-flex; align-items: center; gap: .45rem; margin: 0; }
+.rt__pct { font: 800 1.8rem/1 var(--body); color: #fff; letter-spacing: -.02em; }
+.rt__count { font: 700 .78rem/1 var(--mono); color: #bdbdbd; letter-spacing: .06em; text-transform: uppercase; }
+.rt__tom, .rt__icon {
+  display: inline-block; width: 1.35rem; height: 1.35rem; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff7a5c, #fa320a 55%, #c41800);
+  box-shadow: inset -2px -2px 0 rgba(0,0,0,.18);
+  position: relative; flex: none;
+}
+.rt__tom { width: 1.7rem; height: 1.7rem; }
+.rt__tom::after, .rt__icon--fresh::after {
+  content: ""; position: absolute; top: -3px; left: 42%; width: 7px; height: 8px;
+  background: #3d8f2e; border-radius: 40% 0 60% 40%; transform: rotate(-25deg);
+}
+.rt__lead {
+  margin: .85rem 0 .35rem; font: 800 .72rem/1 var(--mono); letter-spacing: .14em;
+  text-transform: uppercase; color: #fa320a;
+}
+.rt__consensus { margin: 0 0 .7rem; font-size: 1.02rem; line-height: 1.45; color: #e8e8e8; }
+.rt__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.rt__item { display: grid; grid-template-columns: 1.4rem 1fr; gap: .65rem; align-items: start; }
+.rt__item blockquote { margin: 0; }
+.rt__item p { margin: 0; font: 600 1.05rem/1.35 var(--hand); color: #fff; }
+.rt__item cite { display: block; margin-top: .2rem; font: 700 .82rem/1.3 var(--body); font-style: normal; color: #bdbdbd; }
+.rt__item cite a { color: #ffd0c4; text-decoration: underline; text-underline-offset: .12em; }
+.rt__item--tag p { font: 700 .9rem/1.35 var(--body); color: #ddd; }
+.rt__bys { list-style: none; margin: .4rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+.rt__bys a {
+  display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .7rem;
+  border-radius: 999px; border: 1.5px solid rgba(255,255,255,.22); color: #fff;
+  font-weight: 800; font-size: .88rem; text-decoration: none; background: rgba(255,255,255,.04);
+}
+.rt__bys a:hover { border-color: #fa320a; background: rgba(250,50,10,.12); }
+.rt__bys .rt__icon { width: 1rem; height: 1rem; }
+@media (max-width: 760px) {
+  .pair--studio { grid-template-columns: 1fr; }
+}
+
+/* neutralize old ticket-booth overrides so strip posters look right again */
+.booth { display: contents; }

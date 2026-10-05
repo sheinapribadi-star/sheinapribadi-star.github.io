@@ -103,6 +103,15 @@ $$('.poster').forEach((poster) => {
   back.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
 });
 
+/* ---------- repertory film strip controls ---------- */
+const stripTrack = $('.strip__track');
+if (stripTrack) {
+  $$('.strip__btn').forEach((b) => b.addEventListener('click', () => {
+    const step = ($('.poster', stripTrack).offsetWidth + 26) * (innerWidth < 640 ? 1 : 2);
+    stripTrack.scrollBy({ left: step * Number(b.dataset.dir), behavior: reduce.matches ? 'auto' : 'smooth' });
+  }));
+}
+
 /* ---------- career film-roll controls ---------- */
 const filmrollTrack = $('.filmroll__track');
 if (filmrollTrack) {

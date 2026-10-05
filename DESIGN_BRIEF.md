@@ -130,3 +130,9 @@ responsive from 360px up.
 - Repertory = flip ticket booth (colors + symbols kept).
 - New headshot + warmer casting dossier.
 - Awards restored to pre-Laurels design (proud card + wreath awards + schooling/reviews).
+
+## v4.5
+- Repertory reel restored (logo film strip + flip).
+- Casting photo clipped/taped onto the sheet (no Headshot label).
+- Reviews: Rotten Tomatoes-style tomatoes + critic blurbs.
+- Schooling: B&W take-one clipboard / shooting schedule.
