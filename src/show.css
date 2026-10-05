@@ -1125,3 +1125,87 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
 
 /* hide old take-one schooling if leftover */
 .take--school { display: none !important; }
+
+
+/* ============ coming-attractions poster wall (not a film strip) ============ */
+#repertory .wall.strip {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255,214,110,.18), transparent 45%),
+    radial-gradient(ellipse at 80% 100%, rgba(246,193,196,.16), transparent 40%),
+    linear-gradient(180deg, #5a3438 0%, #3B2626 40%, #2a1a1c 100%);
+  border-block: 3px solid var(--ink);
+  padding: 1.1rem 0 1.4rem;
+  box-shadow: inset 0 20px 40px rgba(0,0,0,.25);
+}
+#repertory .wall.strip::before,
+#repertory .wall.strip::after {
+  /* kill sprocket holes — lobby ledge instead */
+  height: 14px;
+  background: repeating-linear-gradient(90deg, #FFD66E 0 18px, #3B2626 18px 22px);
+  opacity: 1;
+  top: auto;
+}
+#repertory .wall.strip::before {
+  top: 0; bottom: auto;
+  background: linear-gradient(#2a1a1c, transparent);
+  height: 28px;
+}
+#repertory .wall.strip::after {
+  bottom: 0; top: auto;
+  height: 18px;
+  background:
+    linear-gradient(#1a1012, #1a1012) center / 100% 6px no-repeat,
+    repeating-linear-gradient(90deg, #FFD66E 0 14px, #B8293F 14px 28px);
+}
+.wall__marquee {
+  display: flex; gap: 1rem; overflow: hidden; white-space: nowrap;
+  margin: 0 0 .6rem; padding: .35rem max(1.25rem, calc((100vw - var(--wide)) / 2));
+  font: 800 .72rem/1 var(--mono); letter-spacing: .16em; text-transform: uppercase;
+  color: #FFD66E; opacity: .9;
+}
+.wall__marquee span { flex: none; }
+.wall__track.strip__track {
+  padding-top: 12px; padding-bottom: 18px;
+  gap: 1.35rem;
+}
+#repertory .poster {
+  flex: 0 0 250px; height: 390px;
+}
+#repertory .poster__card {
+  box-shadow:
+    0 1px 0 rgba(255,245,228,.25),
+    8px 14px 0 rgba(0,0,0,.35),
+    0 18px 28px rgba(0,0,0,.35);
+}
+#repertory .poster__face {
+  border-radius: 4px 4px 6px 6px;
+  border-width: 3px;
+}
+#repertory .poster__front {
+  /* coming-soon stamp vibe */
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.18), transparent 28%);
+}
+#repertory .poster__front::after {
+  content: "COMING SOON";
+  position: absolute; left: 50%; bottom: 3.4rem; transform: translateX(-50%) rotate(-6deg);
+  font: 800 .62rem/1 var(--mono); letter-spacing: .14em;
+  color: var(--cherry); background: #FFF5E4; border: 2px solid var(--ink);
+  padding: .28rem .55rem; border-radius: 3px; box-shadow: 2px 2px 0 var(--ink);
+  pointer-events: none;
+}
+#repertory .poster.is-flipped .poster__front::after { opacity: 0; }
+#repertory .poster__top span:first-child {
+  background: #3B2626; color: #FFF5E4; padding: .15rem .45rem; border-radius: 999px;
+}
+#repertory .poster__doodle { margin-top: 1.2rem; }
+#repertory .poster__hint {
+  background: #FFF5E4;
+}
+.wall__controls.strip__controls {
+  top: -72px;
+}
+@media (max-width: 720px) {
+  #repertory .poster { flex: 0 0 220px; height: 350px; }
+  #repertory .poster__front::after { bottom: 3.1rem; }
+}

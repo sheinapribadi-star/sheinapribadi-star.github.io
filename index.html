@@ -63,7 +63,7 @@
     <ul>
       <li><a href="#box-office">Box office</a></li>
       <li><a href="#now-showing">Features</a></li>
-      <li><a href="#repertory">Reel</a></li>
+      <li><a href="#repertory">Posters</a></li>
       <li><a href="#filmography">Career</a></li>
       <li><a href="#awards">Awards</a></li>
       <li><a href="#casting">Cast</a></li>
@@ -429,20 +429,20 @@
     </article>
   </section>
 
-  <!-- ============ REPERTORY FILM STRIP ============ -->
-  <!-- ============ REPERTORY FILM STRIP ============ -->
+  <!-- ============ COMING ATTRACTIONS POSTER WALL ============ -->
   <section id="repertory" class="section section--bleed" aria-labelledby="rep-title">
     <header class="head">
-      <p class="head__kicker">Screen two</p>
-      <h2 id="rep-title" class="title title--big">The repertory reel</h2>
-      <p class="head__note">logo posters &mdash; flip for the short take; seats above play the stills</p>
+      <p class="head__kicker">Coming attractions</p>
+      <h2 id="rep-title" class="title title--big">Poster wall</h2>
+      <p class="head__note">upcoming titles on the lobby wall &mdash; flip a poster; seats above play the stills</p>
     </header>
-    <div class="strip">
-      <div class="strip__controls">
-        <button class="strip__btn" type="button" data-dir="-1" aria-label="Scroll the reel back"><span aria-hidden="true">&larr;</span></button>
-        <button class="strip__btn" type="button" data-dir="1" aria-label="Scroll the reel forward"><span aria-hidden="true">&rarr;</span></button>
+    <div class="strip wall">
+      <div class="strip__controls wall__controls">
+        <button class="strip__btn" type="button" data-dir="-1" aria-label="Scroll the poster wall back"><span aria-hidden="true">&larr;</span></button>
+        <button class="strip__btn" type="button" data-dir="1" aria-label="Scroll the poster wall forward"><span aria-hidden="true">&rarr;</span></button>
       </div>
-      <ol class="strip__track" tabindex="0" aria-label="Repertory posters, scroll sideways">
+      <p class="wall__marquee" aria-hidden="true"><span>NOW PLAYING IN THE LOBBY</span><span>&middot;</span><span>FLIP FOR DETAILS</span><span>&middot;</span><span>COMING SOON</span><span>&middot;</span><span>NOW PLAYING IN THE LOBBY</span><span>&middot;</span><span>FLIP FOR DETAILS</span><span>&middot;</span></p>
+      <ol class="strip__track wall__track" tabindex="0" aria-label="Coming-attraction posters, scroll sideways">
       <li class="poster" data-tint="sky" data-still="/img/projects/berkeleytime.webp" data-still-pos="top center" data-still-srcset="/img/projects/berkeleytime-640.webp 640w, /img/projects/berkeleytime.webp 1200w">
         <div class="poster__card">
           <div class="poster__face poster__front" id="p03-front">
