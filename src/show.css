@@ -774,43 +774,8 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
   display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.1rem 1rem;
 }
-.ticket {
-  position: relative; width: 100%; height: 320px; perspective: 1200px;
-  list-style: none;
-}
-.ticket .poster__card {
-  border-radius: 12px;
-  box-shadow: 5px 5px 0 color-mix(in srgb, var(--ink) 70%, transparent);
-}
-.ticket .poster__face {
-  border: 2.5px solid var(--ink); border-radius: 12px;
-  padding: .85rem .85rem 1rem;
-  /* ticket stub edge */
-  background-image:
-    radial-gradient(circle at 0 50%, transparent 7px, var(--tint) 7.5px);
-  background-position: left center; background-size: 14px 100%; background-repeat: no-repeat;
-  padding-left: 1.15rem;
-}
-.ticket .poster__front {
-  background-color: var(--tint);
-  background-image:
-    radial-gradient(circle at 0 50%, var(--cream) 7px, transparent 7.5px),
-    linear-gradient(90deg, color-mix(in srgb, var(--ink) 12%, transparent) 0 10px, transparent 10px);
-}
-.ticket .poster__back {
-  background-color: var(--paper);
-  background-image:
-    radial-gradient(circle at 0 50%, var(--cream) 7px, transparent 7.5px),
-    linear-gradient(90deg, color-mix(in srgb, var(--ink) 10%, transparent) 0 10px, transparent 10px);
-}
-.ticket .poster__doodle { width: 78px; height: 78px; margin: .7rem auto .5rem; }
-.ticket .poster__title { font-size: 1.65rem; }
-.ticket .poster__title--long { font-size: 1.35rem; }
+/* neutralized broken .ticket booth rule */
 
-.ticket .poster__face { position: relative; }
-.ticket:nth-child(odd) { transform: rotate(-.6deg); }
-.ticket:nth-child(even) { transform: rotate(.7deg); }
-.ticket:hover { transform: rotate(0) translateY(-3px); z-index: 2; }
 @media (max-width: 520px) {
   .booth__grid { grid-template-columns: 1fr 1fr; gap: .7rem; }
   .ticket { height: 280px; }
@@ -898,7 +863,7 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
   overflow: visible;
 }
 .actor__photo {
-  float: left; width: min(42%, 210px); margin: .15rem 1.1rem .6rem -.15rem;
+  float: left; width: min(46%, 230px); margin: .15rem 1.1rem .6rem -.15rem;
   position: relative; background: transparent; transform: rotate(-3.5deg);
   filter: drop-shadow(3px 4px 0 rgba(59,38,38,.25));
 }
@@ -1040,3 +1005,76 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
 
 /* neutralize old ticket-booth overrides so strip posters look right again */
 .booth { display: contents; }
+
+/* career film-roll hover */
+.cell {
+  transition: transform .28s cubic-bezier(.3,1.4,.5,1), box-shadow .28s ease, border-color .2s ease, background .2s ease, filter .2s ease;
+}
+.cell:hover, .cell:focus-within {
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--butter);
+  box-shadow: 0 0 0 1px rgba(255,214,110,.35), 0 12px 28px rgba(0,0,0,.45), 0 0 24px rgba(255,214,110,.22);
+  background: #3a292a;
+  filter: brightness(1.08);
+  z-index: 2;
+}
+.cell:hover .cell__year { text-shadow: 0 0 22px rgba(255,214,110,.7); color: #ffe08a; }
+@media (prefers-reduced-motion: reduce) {
+  .cell, .cell:hover { transition: none; transform: none; }
+}
+
+.actor__photo img { object-position: center 35%; aspect-ratio: 4 / 5; min-height: 260px; }
+.actor__chips .chip--lang {
+  background: #2E2021; color: #FFF5E4; border-color: #2E2021;
+}
+.actor__chips .chip--lang small { color: var(--butter); }
+.actor__dossier::after { content: ""; display: table; clear: both; }
+
+.take {
+  position: relative; background: var(--paper); color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 6px;
+  padding: 1.3rem 1.35rem 1.4rem; box-shadow: 6px 6px 0 var(--sky);
+  background-image: repeating-linear-gradient(transparent 0 30px, rgba(184,41,63,.1) 30px 31px);
+  transform: rotate(.4deg);
+}
+.take__clip { position: absolute; top: -10px; left: 1.1rem; margin: 0; }
+.clip--sm {
+  position: relative; display: inline-block; width: 22px; height: 28px; top: auto; left: auto; transform: none;
+  background: linear-gradient(#c0c6cc, #9aa3ab) 50% 0 / 14px 8px no-repeat,
+              linear-gradient(transparent 6px, #dfe3e6 6px) 50% 5px / 18px 18px no-repeat;
+  border-radius: 3px 3px 7px 7px; box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
+}
+.clip--sm::before {
+  content: ""; position: absolute; left: 4px; right: 4px; top: 10px; height: 11px;
+  border: 2px solid #7d868e; border-top: 0; border-radius: 0 0 5px 5px;
+}
+.take__slug { margin: .2rem 0 .35rem; font: 700 .7rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.take__title { margin: 0 0 .2rem; font: 400 1.7rem/1.05 var(--display); }
+.take__meta { margin: 0 0 1rem; font-size: .9rem; color: var(--muted); }
+.take__list { list-style: none; margin: 0; padding: 0; }
+.take__list li { padding: .65rem 0; border-top: 1.5px dashed color-mix(in srgb, var(--ink) 28%, transparent); display: flex; flex-direction: column; gap: .15rem; }
+.take__list strong { font-weight: 900; font-size: 1.02rem; }
+.take__list span { color: var(--muted); font-size: .92rem; }
+
+/* director thought cards */
+.note--thought { position: relative; }
+.note__take { position: absolute; top: -0.55rem; left: 1.1rem; margin: 0; display: flex; align-items: center; gap: .45rem;
+  font: 700 .68rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); background: var(--paper); padding: 0 .35rem; }
+.note__hi em { font-style: normal; color: var(--cherry); font-family: var(--display); font-size: 1.15em; }
+.soon--align .soon__kicker { margin: 0 0 .35rem; font: 700 .7rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--cherry); }
+.soon--align p { font-size: 1rem; line-height: 1.5; margin: 0 0 .75rem; }
+.soon__fact { background: color-mix(in srgb, var(--butter) 35%, var(--paper)); border: 2px dashed var(--ink); border-radius: 12px; padding: .8rem .9rem; }
+.soon__fact b { color: var(--cherry); }
+/* hide old clipboard if any leftover */
+.clipboard { display: none; }
+
+/* feature ticket CTAs — restore previous admit-one layout (override any stray rules) */
+.feature .ticket, .tickets > .ticket {
+  --n: 8px; display: inline-flex; width: auto; height: auto; perspective: none;
+  text-decoration: none; background: var(--cherry); color: var(--cherry-ink); border-radius: 8px; font-weight: 900; line-height: 1;
+  list-style: none; transform: none;
+  -webkit-mask: radial-gradient(circle var(--n) at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle var(--n) at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle var(--n) at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle var(--n) at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+}
+.feature .ticket:hover, .tickets > .ticket:hover { transform: translateY(-3px) rotate(-2deg); }
+.booth { display: none !important; }
