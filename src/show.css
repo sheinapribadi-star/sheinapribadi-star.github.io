@@ -1217,7 +1217,7 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
 /* title + doodle sit as one tight block; meta/flip stay at the foot */
 #repertory .poster__doodle {
   width: 108px; height: 108px;
-  margin: 1.35rem auto .35rem;
+  margin: 1.35rem auto .65rem;
   flex: 0 0 auto;
   filter: drop-shadow(0 2px 0 rgba(59,38,38,.12));
 }
