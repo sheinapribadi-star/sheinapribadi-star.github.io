@@ -1069,23 +1069,31 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
 .clipboard { display: none; }
 
 
-/* feature tickets: admit-one + behind-the-scenes = same sky blue */
+/* feature tickets: admit one = cherry red; behind the scenes = sky blue */
 .feature .ticket, .tickets > .ticket,
 .feature .ticket--alt, .tickets > .ticket--alt {
   --n: 8px; display: inline-flex; width: auto; height: auto; perspective: none;
-  text-decoration: none; background: var(--sky); color: var(--ink); border-radius: 8px; font-weight: 900; line-height: 1;
+  text-decoration: none; border-radius: 8px; font-weight: 900; line-height: 1;
   list-style: none; transform: none; border: 2px solid var(--ink);
   -webkit-mask: radial-gradient(circle var(--n) at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle var(--n) at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
           mask: radial-gradient(circle var(--n) at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle var(--n) at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
 }
-.feature .ticket:hover, .tickets > .ticket:hover,
+.feature .ticket, .tickets > .ticket {
+  background: var(--cherry); color: var(--cherry-ink);
+}
+.feature .ticket:hover, .tickets > .ticket:hover {
+  transform: translateY(-3px) rotate(-2deg); background: #9a2033; color: var(--cherry-ink);
+}
+.feature .ticket--alt, .tickets > .ticket--alt {
+  background: var(--sky); color: var(--ink);
+}
 .feature .ticket--alt:hover, .tickets > .ticket--alt:hover {
   transform: translateY(-3px) rotate(-2deg); background: #a9d4f2; color: var(--ink);
 }
 .feature[data-tint="sky"] .ticket--alt,
-.feature[data-tint="rose"] .ticket--alt { background: var(--sky); }
+.feature[data-tint="rose"] .ticket--alt { background: var(--sky); color: var(--ink); }
 .feature[data-tint="sky"] .ticket--alt:hover,
-.feature[data-tint="rose"] .ticket--alt:hover { background: #a9d4f2; }
+.feature[data-tint="rose"] .ticket--alt:hover { background: #a9d4f2; color: var(--ink); }
 
 /* film clapperboard schooling */
 .clapper {
