@@ -92,13 +92,13 @@
           <svg class="opening__reel" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="7"/><circle cx="50" cy="24" r="11"/><circle cx="72.5" cy="63" r="11"/><circle cx="27.5" cy="63" r="11"/></svg>
           <i class="opening__flash"></i><i class="opening__scan"></i>
         </div>
-        <div class="term" aria-hidden="true"><p class="term__head"><i></i><i></i><i></i>projector.log</p><p class="term__line">$ projector --load sheina_pribadi.reel</p><p class="term__line">reel 01 loaded &middot; 35mm &middot; 24 fps</p><p class="term__line">countdown 3 &middot; 2 &middot; 1 &middot; roll</p><p class="term__line">title card: sheina&rsquo;s picture house</p><p class="term__line">cast: 1 lead &middot; sheina pribadi</p><p class="term__line">location: UC Berkeley &middot; Haas + CDSS &middot; 2024&ndash;2028</p><p class="term__line">roles found: 8 &middot; rolling credits</p><p class="term__line">features: 4 premieres + 8 repertory</p><p class="term__line">cookies set: 0 &middot; third-party requests: 0</p><p class="term__line">house lights down &middot; pulling focus&hellip;</p><p class="term__cursor">_</p></div>
+        <div class="term" aria-hidden="true"><p class="term__head"><i></i><i></i><i></i>projector.log</p><p class="term__line">$ projector --load sheina_pribadi.reel</p><p class="term__line">reel 01 loaded &middot; 35mm &middot; 24 fps</p><p class="term__line">countdown 3 &middot; 2 &middot; 1 &middot; roll</p><p class="term__line">title card: sheina&rsquo;s picture house</p><p class="term__line">cast: 1 lead &middot; sheina pribadi</p><p class="term__line">location: UC Berkeley &middot; Haas + CDSS &middot; 2024&ndash;2028</p><p class="term__line">roles found: 8 &middot; rolling credits</p><p class="term__line">premiering: useby + reelwith</p><p class="term__line">features: 4 premieres + 8 repertory</p><p class="term__line">cookies set: 0 &middot; third-party requests: 0</p><p class="term__line">house lights down &middot; pulling focus&hellip;</p><p class="term__cursor">_</p></div>
         <div class="frame frame--ticket">
           <div class="tk">
             <div class="tk__main">
               <p class="tk__house">Sheina&rsquo;s Picture House</p>
               <p class="tk__admit">Admit One</p>
-              <p class="tk__desc">Tonight: four premieres, a little repertory, and popcorn on the house.</p>
+              <p class="tk__desc">Tonight: UseBy &amp; ReelWith lead four premieres, plus a little repertory and popcorn on the house.</p>
               <p class="tk__seat"><span>Row S</span><span>Seat 1</span><span>Fall 2026</span></p>
             </div>
             <button class="tk__stub" type="button">
@@ -181,7 +181,7 @@
           <div class="screen" id="screen">
             <div class="screen__film" aria-hidden="true"><p class="cr-small">and introducing</p><p class="cr-big">you, in the good seats</p></div>
             <div class="screen__idle">
-              <p class="screen__term" aria-hidden="true">&gt; projector ready &middot; 12 reels loaded &middot; awaiting seat<span class="blink">_</span></p>
+              <p class="screen__term" aria-hidden="true">&gt; projector ready &middot; 12 reels loaded &middot; A1 UseBy + A2 ReelWith premiering &middot; awaiting seat<span class="blink">_</span></p>
               <p class="screen__kicker">Screen one &middot; now seating</p>
               <h2 id="theater-title" class="screen__title" tabindex="-1">Pick a seat, any seat.</h2>
               <p class="screen__lede">Every seat in the house is playing something I made. Choose one and it rolls up here.</p>
@@ -231,7 +231,7 @@
     <header class="snack__head">
       <p class="snack__kicker">Intermission</p>
       <h2 id="snack-title" class="snack__title">The snack bar</h2>
-      <p class="snack__note">Everything here is touchable. Go on, poke the popcorn.</p>
+      <p class="snack__note">Everything here is touchable. Go on, poke the popcorn. Real food goes in <a href="#useby">UseBy</a>; movie nights go in <a href="#reelwith">ReelWith</a>.</p>
     </header>
     <div class="snack__stage">
       <canvas class="snack__canvas" aria-hidden="true"></canvas>
@@ -360,7 +360,7 @@
       <dl>
         <div><dt>working on</dt><dd><a href="https://berkeleytime.com/">Berkeleytime</a>, as a product manager and data analyst. I started out as one of its 20K+ users.</dd></div>
         <div><dt>studying</dt><dd>Data Science + Business at Haas, class of 2028.</dd></div>
-        <div><dt>building</dt><dd>small AI/ML tools on the side, and showing them here.</dd></div>
+        <div><dt>building</dt><dd><a href="https://sheinapribadi-star.github.io/useby/">UseBy</a> and <a href="https://sheinapribadi-star.github.io/reelwith/">ReelWith</a>, plus more small AI/ML tools on the side, and showing them here.</dd></div>
         <div><dt>reading</dt><dd>everything I can on AI alignment and algorithmic safety: how systems miss the meaning while hitting the metric.</dd></div>
       </dl>
     </aside>
@@ -376,6 +376,8 @@
     <div class="led">
       <p class="led__bar" aria-hidden="true"><span class="led__dot"></span>live from the projection booth<span class="led__clock">REEL 01</span></p>
       <ul class="stats">
+<li class="stat"><p class="stat__n"><span class="count" data-to="3">3</span> <small>shelves</small></p><p class="stat__l">in the <a href="#useby">UseBy</a> fridge, sorted by days left</p><p class="stat__src">web app, 2026</p></li>
+<li class="stat"><p class="stat__n"><span class="count" data-to="2">2</span> <small>cams</small></p><p class="stat__l">per movie night in <a href="#reelwith">ReelWith</a>: the room + you</p><p class="stat__src">web app, 2026</p></li>
 <li class="stat"><p class="stat__n"><span class="count" data-to="2000">2,000</span>+</p><p class="stat__l">new Perplexity users in one day</p><p class="stat__src">campus launch, 2025</p></li>
 <li class="stat"><p class="stat__n"><span class="count" data-to="20">20</span>K+</p><p class="stat__l"><a href="https://berkeleytime.com/">Berkeleytime</a> users, and I started as one</p><p class="stat__src">now its PM + data analyst</p></li>
 <li class="stat"><p class="stat__n"><span class="count" data-to="15">15</span> <small>min</small></p><p class="stat__l">procurement cycle at Cloudflare, down from weeks</p><p class="stat__src">agentic platform, 2026</p></li>
@@ -384,8 +386,10 @@
 <li class="stat"><p class="stat__n">Top <span class="count" data-to="3">3</span></p><p class="stat__l">top 3 of 500+ applicants, $50K competition</p><p class="stat__src">BU, for UC Berkeley</p></li>
 <li class="stat"><p class="stat__n">Top <span class="count" data-to="100">100</span></p><i class="stat__bar" aria-hidden="true" style="--p:.993"><b></b></i><p class="stat__l">top 100 of 14,000 at Global RISE</p><p class="stat__src">ACE, 2023 &middot; top 0.7%</p></li>
 <li class="stat"><p class="stat__n"><span class="count" data-to="25">25</span> <small>cities</small></p><p class="stat__l">with live PM2.5 in Air Quality Explorer</p><p class="stat__src">web app, 2026</p></li>
+<li class="stat"><p class="stat__n"><span class="count" data-to="3">3</span> <small>vibes</small></p><p class="stat__l">liked / mid / dislike, then a head-to-head ladder in <a href="#reelwith">ReelWith</a></p><p class="stat__src">web app, 2026</p></li>
+<li class="stat"><p class="stat__n"><span class="count" data-to="10">10</span> <small>items</small></p><p class="stat__l">stocked in one tap with the <a href="#useby">UseBy</a> sample fridge</p><p class="stat__src">web app, 2026</p></li>
       </ul>
-      <div class="ticker" aria-hidden="true"><p class="ticker__track"><span>93 active MatchUp users &middot; 42 bookings &middot; 80% coach adoption &middot; 6 courts &amp; 5 coaches &middot; $1,600+ raised in one cooking event &middot; 50+ cooking boxes sold in a day &middot; 1st of 50+ teams at EGAL &middot; $1,500 Iris Project Seed Prize &middot; 2m x 2m ACE prototype house &middot; 8 roles &middot; 12 projects &middot; 0 cookies on this site &middot; </span><span>93 active MatchUp users &middot; 42 bookings &middot; 80% coach adoption &middot; 6 courts &amp; 5 coaches &middot; $1,600+ raised in one cooking event &middot; 50+ cooking boxes sold in a day &middot; 1st of 50+ teams at EGAL &middot; $1,500 Iris Project Seed Prize &middot; 2m x 2m ACE prototype house &middot; 8 roles &middot; 12 projects &middot; 0 cookies on this site &middot; </span></p></div>
+      <div class="ticker" aria-hidden="true"><p class="ticker__track"><span>UseBy + ReelWith now premiering &middot; 93 active MatchUp users &middot; 42 bookings &middot; 80% coach adoption &middot; 6 courts &amp; 5 coaches &middot; $1,600+ raised in one cooking event &middot; 50+ cooking boxes sold in a day &middot; 1st of 50+ teams at EGAL &middot; $1,500 Iris Project Seed Prize &middot; 2m x 2m ACE prototype house &middot; 8 roles &middot; 12 projects &middot; 0 cookies on this site &middot; </span><span>UseBy + ReelWith now premiering &middot; 93 active MatchUp users &middot; 42 bookings &middot; 80% coach adoption &middot; 6 courts &amp; 5 coaches &middot; $1,600+ raised in one cooking event &middot; 50+ cooking boxes sold in a day &middot; 1st of 50+ teams at EGAL &middot; $1,500 Iris Project Seed Prize &middot; 2m x 2m ACE prototype house &middot; 8 roles &middot; 12 projects &middot; 0 cookies on this site &middot; </span></p></div>
     </div>
   </section>
 
@@ -498,7 +502,7 @@
         <div class="poster__card">
           <div class="poster__face poster__front" id="useby-front">
             <div class="poster__art" aria-hidden="true">
-              <img class="poster__still" src="/img/useby.webp" srcset="/img/useby-640.webp 640w, /img/useby.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" />
+              <img class="poster__still" style="object-position:30% center" src="/img/useby.webp" srcset="/img/useby-640.webp 640w, /img/useby.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" />
               <span class="poster__glow"></span>
               <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-fridge"/></svg></span>
             </div>
@@ -808,6 +812,13 @@
           <p class="cell__role">PM &amp; Data Analyst</p>
           <p class="cell__line">20K+ users. I started as one.</p>
         </li>
+
+        <li class="cell cell--live">
+          <p class="cell__date"><span class="cell__year">2026</span><span class="cell__range">Fall premieres</span></p>
+          <h3 class="cell__who"><a href="#useby">UseBy</a> + <a href="#reelwith">ReelWith</a></h3>
+          <p class="cell__role">Builder &middot; side projects</p>
+          <p class="cell__line">Cook what expires first; rank movie nights.</p>
+        </li>
       </ol>
       <div class="filmroll__sprocket filmroll__sprocket--bot" aria-hidden="true"></div>
       <p class="filmroll__cue" aria-hidden="true"><span>then</span><span class="filmroll__cue-line"></span><span>now</span></p>
@@ -954,7 +965,7 @@
           <p class="rt__score" title="Certified Fresh (press coverage)"><span class="rt__tom" aria-hidden="true"></span><span class="rt__pct">100%</span><span class="rt__count">8 notices</span></p>
         </div>
         <p class="rt__lead">Critics Consensus</p>
-        <p class="rt__consensus">A founder who builds in public, from ACE bricks to campus AI launches, with press that keeps showing up.</p>
+        <p class="rt__consensus">A founder who builds in public, from ACE bricks to campus AI launches to UseBy and ReelWith, with press that keeps showing up.</p>
         <ul class="rt__list">
           <li class="rt__item">
             <span class="rt__icon rt__icon--fresh" aria-hidden="true"></span>
@@ -1000,6 +1011,7 @@
           <p class="cast__stamp" aria-hidden="true">Cast!</p>
           <p class="actor__hello">Sheina Pribadi <span>she / her</span></p>
           <p class="actor__from">Jakarta &rarr; Berkeley &middot; Data Science + Haas, class of 2028</p>
+          <p class="actor__from actor__now">Now playing in <a href="#useby">UseBy</a> &amp; <a href="#reelwith">ReelWith</a></p>
           <p id="cast-arch-k" class="cast__k">archetype</p>
           <blockquote class="cast__arch"><p>&ldquo;A trusted and tactful trouble-shooter.&rdquo;</p></blockquote>
           <p class="cast__desc">Warm, value-driven, and at her best on work that meets a deep ideal.</p>
@@ -1054,7 +1066,7 @@
       <div class="stand__awning" aria-hidden="true"></div>
       <div class="stand__board">
         <h2 id="stand-title" class="stand__title">Concession stand</h2>
-        <p class="stand__lede">I&rsquo;m always happy to talk about AI, product, air quality, or what you&rsquo;re building.</p>
+        <p class="stand__lede">I&rsquo;m always happy to talk about AI, product, air quality, UseBy, ReelWith, or what you&rsquo;re building.</p>
         <ul class="menu">
           <li>
             <span class="menu__item">A friendly email</span><span class="menu__dots" aria-hidden="true"></span><span class="menu__price">free</span>
@@ -1063,6 +1075,10 @@
           <li>
             <span class="menu__item">A peek at the code</span><span class="menu__dots" aria-hidden="true"></span><span class="menu__price">free</span>
             <span class="menu__detail"><a href="https://github.com/sheinapribadi-star">github.com/sheinapribadi-star</a></span>
+          </li>
+          <li>
+            <span class="menu__item">A test screening</span><span class="menu__dots" aria-hidden="true"></span><span class="menu__price">free</span>
+            <span class="menu__detail"><a href="https://sheinapribadi-star.github.io/useby/">UseBy</a> &middot; <a href="https://sheinapribadi-star.github.io/reelwith/">ReelWith</a></span>
           </li>
           <li>
             <span class="menu__item">LinkedIn</span><span class="menu__dots" aria-hidden="true"></span><span class="menu__price">free</span>
@@ -1083,6 +1099,7 @@
   <p class="credits__title">The end</p>
   <dl class="roll">
     <div><dt>Written, built &amp; directed by</dt><dd>Sheina Pribadi</dd></div>
+    <div><dt>Now showing</dt><dd><a href="#useby">UseBy</a> &amp; <a href="#reelwith">ReelWith</a></dd></div>
     <div><dt>Shot on location in</dt><dd>Berkeley, CA</dd></div>
     <div><dt>Cookies set in the making of this site</dt><dd>None</dd></div>
   </dl>

@@ -271,8 +271,8 @@ export function initPopcorn() {
 const FLAVORS = {
   cherry: { name: 'Cherry Bomb', html: 'Say hi anytime: <a href="mailto:pribadisheina@gmail.com">pribadisheina@gmail.com</a>' },
   sky: { name: 'Blue Sky', html: 'Peek at the code: <a href="https://github.com/sheinapribadi-star">github.com/sheinapribadi-star</a>' },
-  butter: { name: 'Lemon Butter', html: 'Fun fact: I grew up in Jakarta, and I speak English, Indonesian and a little Mandarin.' },
-  mint: { name: 'Mint Condition', html: 'Fun fact: outside of work I boulder and watch too many movies.' },
+  butter: { name: 'Lemon Butter', html: 'Fun fact: I grew up in Jakarta, and I speak English, Indonesian and a little Mandarin. Leftover lemons? <a href="#useby">UseBy</a> has a recipe.' },
+  mint: { name: 'Mint Condition', html: 'Fun fact: outside of work I boulder and watch too many movies, which is how <a href="#reelwith">ReelWith</a> happened.' },
 };
 const LAYER = 19, CAP = 4;
 

@@ -1462,3 +1462,4 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
   .leadcard__role { font-size: 1.5rem; }
   .leadcard__bullets li { font-size: .9rem; }
 }
+.actor__from.actor__now { margin-top: -.5rem; } .actor__now a { color: inherit; font-weight: 700; }
