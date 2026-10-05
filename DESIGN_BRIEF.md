@@ -110,4 +110,9 @@ responsive from 360px up.
 - **Screen readouts:** the idle screen shows `> projector ready · 9 reels loaded · awaiting seat_`, and each opened seat prints `▶ playing · seat B3 · neurowake.reel`.
 - **Box office:** an LED board of real figures only, counting up when scrolled into view (static HTML shows the final values; no count-up under reduced motion), plus a ticker of more real numbers and a data bar for the Global RISE top 0.7%.
 - **Snack bar receipts** are numbered (`order #001`).
-- **Replaces the Vizzy profile:** full experience bullets (Cloudflare, WorkWhile, Energy Institute, Perplexity, Deloitte, Venture Strategy Solutions, URAP), all 7 projects and links, both degrees, honors, press, the proudest-moment card (BU $50K Top 3), the Readwise card, and a `sheina --specs` terminal card with skills, languages, interests and pronouns. Phone, GPA and personality-test results are deliberately left out.
+- **Replaces the Vizzy profile:** full experience bullets (Cloudflare, WorkWhile, Energy Institute, Perplexity, Deloitte, Venture Strategy Solutions, URAP), all 7 projects and links, both degrees, honors, press, the proudest-moment card (BU $50K Top 3), the Readwise card, and a `sheina --specs` terminal card with skills, languages, interests and pronouns. Phone and GPA are deliberately left out; personality results appear in the casting sheet at her request.
+
+## v4.2 (ship)
+- **Casting sheet** (`#casting`): her Clarity 4D character profile staged as a casting file (archetype "A trusted and tactful trouble-shooter", a "Cast!" stamp) next to a `screen_test.log` terminal with a radar chart and four trait bars (96 / 61 / 54 / 50%) that fill on scroll. Tap a trait to spotlight it in the readout. Real numbers only.
+- Deloitte copy: M&A deals in Indonesia, no USD-size claims. Berkeleytime links to berkeleytime.com wherever it is named, and it has its own Filmography entry (Aug 2026 – now).
+- Perf: scanlines moved under the content (no full-screen overlay); grain layer shrunk and composited.

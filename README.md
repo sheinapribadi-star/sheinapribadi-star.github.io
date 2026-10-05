@@ -23,3 +23,5 @@ Add `?nointro` to the URL to get the static (no scroll film) layout while develo
 
 ### v4.1 (techy pass)
 Terminal readout (`projector.log`), scanlines, glitch tweens and velocity-reactive dust in `src/cine.js` / `src/show.css`; box office count-up in `src/main.js`; all Vizzy profile content is now on the page. Screenshots: `node scripts/screenshots.mjs` (needs `npm run build && npm run preview`).
+
+Live at https://sheinapribadi-star.github.io/ (GitHub Pages via `.github/workflows/pages.yml` on push to `main`).

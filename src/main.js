@@ -141,3 +141,46 @@ if (stats) {
   };
   new IntersectionObserver((entries, io) => { if (entries[0].isIntersecting) { io.disconnect(); run(); } }, { threshold: .35 }).observe(stats);
 }
+
+/* ---------- casting sheet: bars fill + radar grows on scroll; tap a trait to read it ---------- */
+const cast = $('.cast');
+if (cast) {
+  const read = { n: $('.cast__readn', cast), v: $('.cast__readv span', cast), d: $('.cast__readd', cast), box: $('.cast__readv', cast) };
+  const traits = $$('.trait', cast);
+  const DESC = {
+    if: 'Empathetic, modest, supportive and value-driven',
+    et: 'Decisive, proactive, forthright and objective',
+    ef: 'Expressive, enthusiastic, engaging and outgoing',
+    it: 'Introspective, factual, meticulous and analytical',
+  };
+  let raf = 0;
+  const countTo = (to, from = 0) => {
+    cancelAnimationFrame(raf);
+    if (reduce.matches) { read.v.textContent = to; return; }
+    const t0 = performance.now();
+    const step = (now) => {
+      const k = Math.min(1, (now - t0) / 700), e = 1 - Math.pow(1 - k, 3);
+      read.v.textContent = Math.round(from + (to - from) * e);
+      read.box.style.setProperty('--gx', k < 1 ? `${(Math.random() * 6 - 3).toFixed(1)}px` : '0px');
+      if (k < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+  };
+  const pick = (btn, animate = true) => {
+    traits.forEach((t) => t.setAttribute('aria-pressed', String(t === btn)));
+    $$('.radar__dot', cast).forEach((d) => d.classList.toggle('is-on', d.dataset.k === btn.dataset.k));
+    read.n.textContent = $('.trait__name', btn).textContent;
+    read.d.textContent = DESC[btn.dataset.k];
+    const to = Number($('.tcount', btn).dataset.to);
+    if (animate) countTo(to, Number(read.v.textContent) || 0); else read.v.textContent = to;
+  };
+  traits.forEach((t) => t.addEventListener('click', () => pick(t)));
+  pick(traits[0], false);
+  if (!reduce.matches) read.v.textContent = '0';
+  new IntersectionObserver((entries, io) => {
+    if (!entries[0].isIntersecting) return;
+    io.disconnect();
+    cast.classList.add('is-in');
+    countTo(96);
+  }, { threshold: .3 }).observe(cast);
+}

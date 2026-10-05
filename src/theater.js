@@ -30,6 +30,7 @@ function readProject(id) {
     title: $('.poster__title', poster).firstChild.textContent.trim(),
     sub: $('.poster__subtitle', poster)?.textContent || '',
     desc: $('.poster__desc', back).textContent,
+    href: $('.poster__backtitle a', back)?.href,
     doodle: $('.poster__front use', poster).getAttribute('href'),
     tint: TINTS[poster.dataset.tint] || TINTS.sky,
     links: $$('.poster__links a', back).map((a) => ({ href: a.href, text: a.firstChild.textContent.trim() })),
@@ -56,7 +57,11 @@ function render(p, seatNo) {
     </div>
     <button class="np__close" type="button" aria-label="Clear the screen">&times;</button>`;
   $('.np__kicker', wrap).textContent = p.kicker;
-  $('.np__title', wrap).textContent = p.title;
+  if (p.href) {
+    const t = document.createElement('a');
+    t.href = p.href; t.textContent = p.title;
+    $('.np__title', wrap).append(t);
+  } else $('.np__title', wrap).textContent = p.title;
   if (p.sub) $('.np__sub', wrap).textContent = p.sub;
   $('.np__desc', wrap).textContent = p.desc;
   const links = $('.np__links', wrap);
