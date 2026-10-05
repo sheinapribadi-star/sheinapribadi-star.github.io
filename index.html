@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="en" data-lights="up">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sheina&rsquo;s Picture House &middot; Sheina Pribadi</title>
+  <meta name="description" content="Sheina Pribadi: UC Berkeley Data Science + Haas Business student working where AI, product and strategy meet. Now showing: Air Quality Explorer and Cookie Lens." />
+  <meta name="theme-color" content="#FFF5E4" />
+  <meta property="og:title" content="Sheina&rsquo;s Picture House" />
+  <meta property="og:description" content="Things I've built, launched and figured out, now showing at a cozy little cinema." />
+  <meta property="og:image" content="/img/aqe-city-1200.webp" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script>
+    // before first paint: house lights (localStorage only, no cookies) + whether the cinematic intro may run
+    (function () {
+      var d = document.documentElement, s = null;
+      try { s = localStorage.getItem('lights'); } catch (e) {}
+      if (s !== 'up' && s !== 'down') s = matchMedia('(prefers-color-scheme: dark)').matches ? 'down' : 'up';
+      d.dataset.lights = s;
+      d.classList.add('js');
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !/[?&]nointro/.test(location.search)) d.classList.add('cine');
+    })();
+  </script>
+  <script type="module" crossorigin src="/assets/index-CPqO83Ax.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BUdlCdOD.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs><filter id="wobble" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="7" /><feDisplacementMap in="SourceGraphic" scale="2.4" /></filter></defs>
+  <symbol id="d-sparkle" viewBox="0 0 64 64"><path d="M32 6c2 14 6 20 20 26-14 2-18 8-20 26-2-16-8-22-22-26 14-4 20-10 22-26z"/></symbol><symbol id="d-clock" viewBox="0 0 64 64"><path d="M32 10c12.5-.4 22.3 9.6 22 22.4-.3 12-10 21.8-22.3 21.6C19.6 53.8 9.8 44 10 31.6 10.2 19.6 20 10.4 32 10z"/><path d="M32 19v14l9 6"/></symbol><symbol id="d-racket" viewBox="0 0 64 64"><path d="M23 8c10-3.5 23 3 23.5 15.5.4 11.5-7.6 20.4-17 20.5-9 .1-15-8.6-14.4-18.6C15.6 16.5 17.4 10 23 8z"/><path d="M27.5 43.5 21 56.5M17 53.5l7.5 4M24 18l12 14M21 26l10 11M31 15l10 11"/><path d="M50.5 45.5c2.6 0 4.5 2 4.5 4.4 0 2.6-2 4.6-4.6 4.5-2.4 0-4.4-2-4.4-4.5 0-2.4 2-4.5 4.5-4.4z"/></symbol><symbol id="d-moon" viewBox="0 0 64 64"><path d="M36 12c-11.5 2.5-19 13-17.6 24.5C20 48 30.8 55.6 42.6 54c4.6-.6 8.6-2.6 11.4-5.6-13.5 1.6-24.6-8.4-24-21.4.3-6.4 2.6-11.6 6-15z"/><path d="M43 12h8.5L43 21h9M50 26.5h5.5L50 32h5.6"/></symbol><symbol id="d-bricks" viewBox="0 0 64 64"><path d="M8.5 44.5 55.5 44l.4 12-47.6.4zM8 32.4l47.6-.4.3 12.4M14 20.4 50 20l.3 12.2M32 44.5V56M20 32.4V44M44 32v12.3M32 20.4V32"/></symbol><symbol id="d-sprout" viewBox="0 0 64 64"><path d="M32 56.5c-.4-8.6-.4-17.4 0-26"/><path d="M31.6 35C29.4 25 21.4 19.6 11.6 21c2 10.4 10.4 14.4 20 14z"/><path d="M32.2 30.4c2.4-12.4 10.6-18.2 22.2-16.4-2.2 12.2-12.2 16.6-22.2 16.4z"/><path d="M17 56.6c9.4-.6 19-.6 30 0"/></symbol><symbol id="d-pencil" viewBox="0 0 64 64"><path d="m14 50 4.4-12.2L46 10.4l8 7.8-27.8 27.6z"/><path d="m18.6 38 7.6 8M40 16.4l7.8 7.8M14 50l-2.6 4.4 4.6-2.4"/></symbol><symbol id="d-paper" viewBox="0 0 64 64"><path d="M12.4 14.4 46 14v38.4c0 2.4 1.6 3.6 4 3.6H16.4c-2.4 0-4.2-1.6-4.2-4.2z"/><path d="M46 24h6.4l-.2 28.4c0 2-1.2 3.6-3 3.6M18 22.6h22M18 30.4h22M18 38.4h14M18 46.2h14"/></symbol><symbol id="d-chat" viewBox="0 0 64 64"><path d="M12 14.5h40c2.4 0 4 1.6 4 4v22c0 2.4-1.6 4-4 4H30l-10 9.5V44.5H12c-2.4 0-4-1.6-4-4v-22c0-2.4 1.6-4 4-4z"/><path d="M20 26h24M20 34h16"/></symbol><symbol id="d-heart" viewBox="0 0 64 64"><path d="M32 52C18 42 9 33.6 10.2 23.4 11.2 15 21.6 11 28 17c1.6 1.4 3 3.4 4 5.4 1-2 2.4-4 4-5.4 6.4-6 16.8-2 17.8 6.4C55 33.6 46 42 32 52z"/></symbol><symbol id="d-arrow" viewBox="0 0 64 64"><path d="M6 34c9-13 24-15 30-3.6 4.2 8-6.4 14.6-9.6 7.4-3.6-8 8.6-17.2 24.4-12"/><path d="m45.6 19.6 6.6 6.4-8.4 2.6"/></symbol><symbol id="d-scissors" viewBox="0 0 64 64"><path d="M16 14.5c4-.2 7 2.8 6.8 6.6-.2 3.6-3.2 6.4-6.8 6.2-3.6-.2-6.2-3-6-6.6.2-3.4 2.6-6 6-6.2zM16 36.7c3.8-.2 6.8 2.6 6.8 6.4-.2 3.8-3.2 6.6-6.8 6.4-3.6-.2-6.2-3-6-6.6.2-3.4 2.8-6 6-6.2z"/><path d="M21.6 25.4 54 46M21.8 38.6 54 18"/></symbol><symbol id="d-bulb" viewBox="0 0 64 64"><path d="M32 10c-9 0-15.6 6.8-15.4 15.4.2 6.6 4.6 10 7 14 1.4 2.4 1.6 4.6 1.6 6.6h13.6c0-2 .2-4.2 1.6-6.6 2.4-4 6.8-7.4 7-14C47.6 16.8 41 10 32 10z"/><path d="M26 52h12M27.6 57.6h8.8"/></symbol><symbol id="d-bucket" viewBox="0 0 64 64"><path class="bk-pop" d="M13 27c-5-5-1-12.6 5.6-10.6 0-7 9.4-9.6 12.6-3.4 3-6.4 12.4-5.6 13 1.4 6.4-2 10.6 4.6 6.6 10" /><path class="bk-pop" d="M22 16c1.6-2.4 4-3 6.4-2M40 14.6c2-.8 4 0 5 1.6"/><path class="bk-tub" d="m12 27 40-.4-5.6 32.6-28.6.2z"/><path d="m22 27 2.4 32M32 26.8v32.6M42 26.6l-2.6 32.6"/></symbol><symbol id="d-kernel" viewBox="0 0 44 36"><path d="M12 16c-5-5 1-12 7-8.4 2-6 10.6-6.2 12 0 6-2.2 10.4 4 6.4 9 4.4 4.4-.4 11.4-6.6 9.4-2 5.4-10.6 5.4-12.4-.6-6.4 2-11-4.4-6.4-9.4z"/><path d="M18 18c1-1.6 3-2 4.6-1"/></symbol><symbol id="seat" viewBox="0 0 100 92"><rect class="st-arm" x="1" y="40" width="15" height="50" rx="7"/><rect class="st-arm" x="84" y="40" width="15" height="50" rx="7"/><path class="st-back" d="M13 88V26C13 11 22 4 36 4h28c14 0 23 7 23 22v62z"/><path class="st-stitch" d="M24 80V29c0-9 6-14 15-14h22c9 0 15 5 15 14v51"/><rect class="st-cush" x="13" y="80" width="74" height="10" rx="4"/></symbol><symbol id="laurel" viewBox="-4 -4 56 112"><path d="M33.6 101.0 L30.9 97.3 L28.3 93.6 L25.8 89.8 L23.3 86.1 L21.0 82.4 L18.8 78.7 L16.8 75.0 L14.9 71.2 L13.2 67.5 L11.6 63.8 L10.2 60.1 L9.0 56.4 L8.0 52.6 L7.2 48.9 L6.6 45.2 L6.2 41.5 L6.0 37.7 L6.0 34.0 L6.3 30.3 L6.7 26.6 L7.3 22.9 L8.2 19.1 L9.2 15.4 L10.4 11.7" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+<path d="M0 0Q5.7 -2.8 12.8 0Q5.7 2.8 0 0Z" transform="translate(30.2 96.3) rotate(-159)" fill="currentColor"/>
+<path d="M0 0Q5.7 -2.8 12.8 0Q5.7 2.8 0 0Z" transform="translate(30.2 96.3) rotate(-91)" fill="currentColor"/>
+<path d="M0 0Q5.6 -2.7 12.3 0Q5.6 2.7 0 0Z" transform="translate(24.0 87.1) rotate(-157)" fill="currentColor"/>
+<path d="M0 0Q5.6 -2.7 12.3 0Q5.6 2.7 0 0Z" transform="translate(24.0 87.1) rotate(-89)" fill="currentColor"/>
+<path d="M0 0Q5.4 -2.6 11.9 0Q5.4 2.6 0 0Z" transform="translate(18.4 77.9) rotate(-153)" fill="currentColor"/>
+<path d="M0 0Q5.4 -2.6 11.9 0Q5.4 2.6 0 0Z" transform="translate(18.4 77.9) rotate(-85)" fill="currentColor"/>
+<path d="M0 0Q5.2 -2.5 11.5 0Q5.2 2.5 0 0Z" transform="translate(13.7 68.7) rotate(-148)" fill="currentColor"/>
+<path d="M0 0Q5.2 -2.5 11.5 0Q5.2 2.5 0 0Z" transform="translate(13.7 68.7) rotate(-80)" fill="currentColor"/>
+<path d="M0 0Q5.0 -2.4 11.0 0Q5.0 2.4 0 0Z" transform="translate(10.0 59.5) rotate(-142)" fill="currentColor"/>
+<path d="M0 0Q5.0 -2.4 11.0 0Q5.0 2.4 0 0Z" transform="translate(10.0 59.5) rotate(-74)" fill="currentColor"/>
+<path d="M0 0Q4.8 -2.3 10.6 0Q4.8 2.3 0 0Z" transform="translate(7.5 50.3) rotate(-136)" fill="currentColor"/>
+<path d="M0 0Q4.8 -2.3 10.6 0Q4.8 2.3 0 0Z" transform="translate(7.5 50.3) rotate(-68)" fill="currentColor"/>
+<path d="M0 0Q4.6 -2.2 10.1 0Q4.6 2.2 0 0Z" transform="translate(6.2 41.2) rotate(-128)" fill="currentColor"/>
+<path d="M0 0Q4.6 -2.2 10.1 0Q4.6 2.2 0 0Z" transform="translate(6.2 41.2) rotate(-60)" fill="currentColor"/>
+<path d="M0 0Q4.4 -2.1 9.7 0Q4.4 2.1 0 0Z" transform="translate(6.1 32.0) rotate(-120)" fill="currentColor"/>
+<path d="M0 0Q4.4 -2.1 9.7 0Q4.4 2.1 0 0Z" transform="translate(6.1 32.0) rotate(-52)" fill="currentColor"/>
+<path d="M0 0Q4.2 -2.0 9.3 0Q4.2 2.0 0 0Z" transform="translate(7.3 22.8) rotate(-112)" fill="currentColor"/>
+<path d="M0 0Q4.2 -2.0 9.3 0Q4.2 2.0 0 0Z" transform="translate(7.3 22.8) rotate(-44)" fill="currentColor"/>
+<path d="M0 0Q4.0 -1.9 8.8 0Q4.0 1.9 0 0Z" transform="translate(9.8 13.6) rotate(-105)" fill="currentColor"/>
+<path d="M0 0Q4.0 -1.9 8.8 0Q4.0 1.9 0 0Z" transform="translate(9.8 13.6) rotate(-37)" fill="currentColor"/>
+<path d="M0 0Q4.0 -2.0 9.0 0Q4.0 2.0 0 0Z" transform="translate(10.4 11.7) rotate(-70)" fill="currentColor"/>
+</symbol>
+</svg>
+
+<div class="site">
+<a class="skip" href="#lobby">Skip to the quick read</a>
+
+<header class="topbar">
+  <a class="logo" href="#top" aria-label="Sheina's Picture House, back to the top">
+    <svg class="doodle logo__bulb" aria-hidden="true" focusable="false"><use href="#d-bulb"/></svg>
+    <span class="logo__name">Sheina&rsquo;s Picture House</span>
+  </a>
+  <nav aria-label="Program">
+    <ul>
+      <li><a href="#box-office">Box office</a></li>
+      <li><a href="#now-showing">Features</a></li>
+      <li><a href="#repertory">Posters</a></li>
+      <li><a href="#filmography">Career</a></li>
+      <li><a href="#leadership">Lead</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#casting">Cast</a></li>
+      <li><a href="#concessions">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="lights" type="button" role="switch" aria-checked="false">
+    <span class="lights__chain" aria-hidden="true"><span class="lights__pull"></span></span>
+    <span class="lights__text"><span class="lights__house">house </span>lights <b class="lights__state">up</b></span>
+    <span class="sr">(dark mode)</span>
+  </button>
+</header>
+
+<main id="top">
+  <!-- ============ THE SHOW: opening credits -> theater ============ -->
+  <section class="cinema" id="show" aria-label="Opening credits and the theater">
+    <button class="cinema__skip" type="button" hidden>Skip intro <span aria-hidden="true">&rarr;</span></button>
+    <div class="stage">
+      <!-- opening credits (scroll-driven) -->
+      <div class="opening" role="group" aria-label="Opening credits">
+        <div class="opening__bg" aria-hidden="true"></div>
+        <div class="opening__fx" aria-hidden="true">
+          <i class="opening__beam"></i><i class="opening__grain"></i><i class="opening__scratch"></i><i class="opening__scratch opening__scratch--2"></i>
+          <i class="opening__sprockets opening__sprockets--l"></i><i class="opening__sprockets opening__sprockets--r"></i>
+          <svg class="opening__reel" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="7"/><circle cx="50" cy="24" r="11"/><circle cx="72.5" cy="63" r="11"/><circle cx="27.5" cy="63" r="11"/></svg>
+          <i class="opening__flash"></i><i class="opening__scan"></i>
+        </div>
+        <div class="term" aria-hidden="true"><p class="term__head"><i></i><i></i><i></i>projector.log</p><p class="term__line">$ projector --load sheina_pribadi.reel</p><p class="term__line">reel 01 loaded &middot; 35mm &middot; 24 fps</p><p class="term__line">countdown 3 &middot; 2 &middot; 1 &middot; roll</p><p class="term__line">title card: sheina&rsquo;s picture house</p><p class="term__line">cast: 1 lead &middot; sheina pribadi</p><p class="term__line">location: UC Berkeley &middot; Haas + CDSS &middot; 2024&ndash;2028</p><p class="term__line">roles found: 8 &middot; rolling credits</p><p class="term__line">features: 2 premieres + 8 repertory</p><p class="term__line">cookies set: 0 &middot; third-party requests: 0</p><p class="term__line">house lights down &middot; pulling focus&hellip;</p><p class="term__cursor">_</p></div>
+        <div class="frame frame--ticket">
+          <div class="tk">
+            <div class="tk__main">
+              <p class="tk__house">Sheina&rsquo;s Picture House</p>
+              <p class="tk__admit">Admit One</p>
+              <p class="tk__desc">Tonight: a double feature, a little repertory, and popcorn on the house.</p>
+              <p class="tk__seat"><span>Row S</span><span>Seat 1</span><span>Fall 2026</span></p>
+            </div>
+            <button class="tk__stub" type="button">
+              <svg class="doodle tk__scissors" aria-hidden="true" focusable="false"><use href="#d-scissors"/></svg>
+              <span class="tk__tear">Tear to enter</span>
+              <span class="tk__or">or just scroll</span>
+            </button>
+          </div>
+          <p class="opening__cue" aria-hidden="true"><span>scroll to roll the film</span><svg class="doodle" focusable="false"><use href="#d-arrow"/></svg></p>
+        </div>
+        <div class="frame frame--leader" aria-hidden="true">
+          <div class="leader">
+            <i class="leader__sweep"></i>
+            <svg class="leader__rings" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="74"/><path d="M100 0v200M0 100h200"/></svg>
+            <span class="leader__num" data-n="3">3</span><span class="leader__num" data-n="2">2</span><span class="leader__num" data-n="1">1</span>
+          </div>
+        </div>
+        <div class="frame frame--presents">
+          <p class="cr-house">Sheina&rsquo;s Picture House</p>
+          <p class="cr-small">proudly presents</p>
+        </div>
+        <div class="frame frame--name">
+          <div class="cr-doodles" aria-hidden="true"><svg class="doodle cr-doodle cr-doodle--1" aria-hidden="true" focusable="false"><use href="#d-sparkle"/></svg><svg class="doodle cr-doodle cr-doodle--2" aria-hidden="true" focusable="false"><use href="#d-heart"/></svg><svg class="doodle cr-doodle cr-doodle--3" aria-hidden="true" focusable="false"><use href="#d-sparkle"/></svg><svg class="doodle cr-doodle cr-doodle--4" aria-hidden="true" focusable="false"><use href="#d-kernel"/></svg><svg class="doodle cr-doodle cr-doodle--5" aria-hidden="true" focusable="false"><use href="#d-sparkle"/></svg><svg class="doodle cr-doodle cr-doodle--6" aria-hidden="true" focusable="false"><use href="#d-heart"/></svg><svg class="doodle cr-doodle cr-doodle--7" aria-hidden="true" focusable="false"><use href="#d-sparkle"/></svg><svg class="doodle cr-doodle cr-doodle--8" aria-hidden="true" focusable="false"><use href="#d-kernel"/></svg></div>
+          <p class="cr-small">a picture starring</p>
+          <p class="cr-name" aria-label="Sheina Pribadi"><span class="cr-word">Sheina</span> <span class="cr-word">Pribadi</span></p>
+          <p class="cr-sub">where AI, product &amp; strategy meet</p>
+        </div>
+        <div class="frame frame--school">
+          <p class="cr-small">filmed on location at</p>
+          <p class="cr-big">UC Berkeley</p>
+          <p class="cr-sub"><span>Data Science + Business (Haas)</span> <span>class of 2028</span></p>
+          <p class="cr-mono" aria-hidden="true">37.8719&deg; N &middot; 122.2585&deg; W</p>
+        </div>
+        <div class="frame frame--roles">
+          <p class="cr-small">in the roles of</p>
+          <div class="cr-window">
+            <dl class="cr-roles">
+              <div><dt>AI &amp; Data Center Operations and Strategy Intern</dt><dd>Cloudflare</dd></div>
+              <div><dt>Project Manager</dt><dd>WorkWhile</dd></div>
+              <div><dt>Research Associate</dt><dd>Energy Institute at Haas</dd></div>
+              <div><dt>Campus Strategist</dt><dd>Perplexity</dd></div>
+              <div><dt>M&amp;A Intern</dt><dd>Deloitte</dd></div>
+              <div><dt>Product Manager &amp; Data Analyst</dt><dd><a href="https://berkeleytime.com/">Berkeleytime</a></dd></div>
+              <div><dt>Undergraduate Researcher</dt><dd>URAP, UC Berkeley</dd></div>
+              <div><dt>Founder</dt><dd>ACE</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="frame frame--featuring">
+          <p class="cr-small">featuring</p>
+          <ul class="cr-feat">
+            <li data-t="sky" class="is-big">Air Quality Explorer</li>
+            <li data-t="rose" class="is-big">Cookie Lens</li>
+            <li data-t="butter"><a href="https://berkeleytime.com/">Berkeleytime</a></li>
+            <li data-t="mint">MatchUp</li>
+            <li data-t="rose">NeuroWake</li>
+            <li data-t="sky">Forbes + Earth.org</li>
+            <li data-t="butter">Design Sprints</li>
+            <li data-t="mint">ACE</li>
+            <li data-t="rose">YUM Farm Project</li>
+            <li data-t="sky">Feedback Tool</li>
+          </ul>
+        </div>
+        <div class="frame frame--you">
+          <p class="cr-small">and introducing</p>
+          <p class="cr-big">you, in the good seats</p>
+        </div>
+      </div>
+      <!-- the theater (the camera zooms out to this) -->
+      <div class="theater" id="theater">
+        <div class="theater__garland" aria-hidden="true"><svg class="garland__wire" viewBox="0 0 1000 60" preserveAspectRatio="none"><path d="M0 8 Q125 52 250 18 T500 18 T750 18 T1000 8"/></svg><div class="garland__bulbs"></div></div>
+        <div class="theater__sconce theater__sconce--l" aria-hidden="true"></div>
+        <div class="theater__sconce theater__sconce--r" aria-hidden="true"></div>
+        <div class="proscenium">
+          <div class="curtain curtain--l" aria-hidden="true"></div>
+          <div class="curtain curtain--r" aria-hidden="true"></div>
+          <div class="valance" aria-hidden="true"></div>
+          <div class="screen" id="screen">
+            <div class="screen__film" aria-hidden="true"><p class="cr-small">and introducing</p><p class="cr-big">you, in the good seats</p></div>
+            <div class="screen__idle">
+              <p class="screen__term" aria-hidden="true">&gt; projector ready &middot; 10 reels loaded &middot; awaiting seat<span class="blink">_</span></p>
+              <p class="screen__kicker">Screen one &middot; now seating</p>
+              <h2 id="theater-title" class="screen__title" tabindex="-1">Pick a seat, any seat.</h2>
+              <p class="screen__lede">Every seat in the house is playing something I made. Choose one and it rolls up here.</p>
+              <p class="screen__hint" aria-hidden="true"><svg class="doodle" aria-hidden="true" focusable="false"><use href="#d-arrow"/></svg>the good seats are down there</p>
+            </div>
+            <div class="screen__play" role="region" aria-live="polite" aria-label="Now playing on the big screen"></div>
+            <i class="screen__flicker" aria-hidden="true"></i>
+          </div>
+          <div class="stage-lip" aria-hidden="true"></div>
+        </div>
+        <i class="theater__beam" aria-hidden="true"></i>
+        <div class="rows" role="group" aria-label="Seats. Each one plays a project on the big screen">
+          <div class="row row--c">
+            <span class="seat seat--deco" aria-hidden="true"><svg viewBox="0 0 100 92"><use href="#seat"/></svg><svg class="doodle seat__prop seat__prop--heart" viewBox="0 0 64 64" focusable="false"><use href="#d-heart"/></svg></span>
+            <button class="seat" type="button" data-play="p07" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">C1</span><span class="seat__tag">Design Sprints<small>2024</small></span><span class="sr">Seat C1: play Design Sprints on the big screen</span></button>
+            <button class="seat" type="button" data-play="p08" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">C2</span><span class="seat__tag">ACE<small>2022</small></span><span class="sr">Seat C2: play ACE on the big screen</span></button>
+            <button class="seat" type="button" data-play="p09" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">C3</span><span class="seat__tag">YUM Farm Project<small>2021&ndash;25</small></span><span class="sr">Seat C3: play YUM Farm Project on the big screen</span></button>
+            <button class="seat" type="button" data-play="p10" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">C4</span><span class="seat__tag">Feedback Tool<small>2026</small></span><span class="sr">Seat C4: play Feedback Tool on the big screen</span></button>
+          </div>
+          <div class="row row--b">
+            <span class="seat seat--deco seat--edge" aria-hidden="true"><svg viewBox="0 0 100 92"><use href="#seat"/></svg><svg class="doodle seat__prop" viewBox="0 0 64 64" focusable="false"><use href="#d-bucket"/></svg></span>
+            <button class="seat" type="button" data-play="p03" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">B1</span><span class="seat__tag">Berkeleytime<small>2026</small></span><span class="sr">Seat B1: play Berkeleytime on the big screen</span></button>
+            <button class="seat" type="button" data-play="p04" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">B2</span><span class="seat__tag">MatchUp<small>2025</small></span><span class="sr">Seat B2: play MatchUp on the big screen</span></button>
+            <button class="seat" type="button" data-play="p05" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">B3</span><span class="seat__tag">NeuroWake<small>2025</small></span><span class="sr">Seat B3: play NeuroWake on the big screen</span></button>
+            <button class="seat" type="button" data-play="p06" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">B4</span><span class="seat__tag">Forbes + Earth.org<small>2025</small></span><span class="sr">Seat B4: play Forbes + Earth.org on the big screen</span></button>
+            <span class="seat seat--deco seat--edge" aria-hidden="true"><svg viewBox="0 0 100 92"><use href="#seat"/></svg></span>
+          </div>
+          <div class="row row--a">
+            <span class="seat seat--deco seat--edge" aria-hidden="true"><svg viewBox="0 0 100 92"><use href="#seat"/></svg></span>
+            <span class="seat seat--deco" aria-hidden="true"><svg viewBox="0 0 100 92"><use href="#seat"/></svg></span>
+            <button class="seat seat--premiere" type="button" data-play="aqe" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">A1</span><span class="seat__tag">Air Quality Explorer<small>premiere &middot; 2026</small></span><span class="sr">Seat A1: play Air Quality Explorer on the big screen</span></button>
+            <button class="seat seat--premiere" type="button" data-play="cookie-lens" aria-pressed="false" aria-controls="screen"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#seat"/></svg><span class="seat__no" aria-hidden="true">A2</span><span class="seat__tag">Cookie Lens<small>premiere &middot; 2026</small></span><span class="sr">Seat A2: play Cookie Lens on the big screen</span></button>
+            <span class="seat seat--deco" aria-hidden="true"><svg viewBox="0 0 100 92"><use href="#seat"/></svg></span>
+            <span class="seat seat--deco seat--edge" aria-hidden="true"><svg viewBox="0 0 100 92"><use href="#seat"/></svg></span>
+          </div>
+        </div>
+        <p class="theater__aisle" aria-hidden="true"><span>aisle</span></p>
+      </div>
+
+      <canvas class="dust" aria-hidden="true"></canvas>
+    </div>
+  </section>
+
+  <!-- ============ THE SNACK BAR (interactive concessions) ============ -->
+  <section class="snack" id="snack-bar" aria-labelledby="snack-title">
+    <div class="snack__lights" aria-hidden="true"><svg class="garland__wire" viewBox="0 0 1000 60" preserveAspectRatio="none"><path d="M0 6 Q250 50 500 14 T1000 6"/></svg><div class="garland__bulbs"></div></div>
+    <header class="snack__head">
+      <p class="snack__kicker">Intermission</p>
+      <h2 id="snack-title" class="snack__title">The snack bar</h2>
+      <p class="snack__note">Everything here is touchable. Go on, poke the popcorn.</p>
+    </header>
+    <div class="snack__stage">
+      <canvas class="snack__canvas" aria-hidden="true"></canvas>
+
+      <div class="unit unit--pop">
+        <div class="pm" data-collide="pm">
+          <div class="pm__roof"><span class="pm__sign">Popcorn</span><span class="pm__bulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+          <div class="pm__glass">
+            <i class="pm__shine" aria-hidden="true"></i>
+            <svg class="pm__kettle" viewBox="0 0 120 90" aria-hidden="true"><path class="kt-rod" d="M60 0v16"/><path class="kt-pot" d="M22 30h76l-6 34c-1 8-8 14-16 14H44c-8 0-15-6-16-14z"/><path class="kt-lid" d="M18 30c4-10 22-15 42-15s38 5 42 15z"/><path class="kt-band" d="M27 46h66"/><path class="kt-arm" d="M98 34l14-6"/></svg>
+            <i class="pm__mouth" aria-hidden="true"></i>
+            <div class="pm__door" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="pm__base">
+            <button class="pm__pop" type="button" aria-describedby="pm-count"><span>Pop!</span><small>press &amp; hold</small></button>
+            <button class="pm__hatch" type="button" aria-pressed="false">Open the hatch</button>
+          </div>
+          <button class="pm__crank" type="button" aria-label="Turn the crank to pop more popcorn"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="22"/><path d="M30 30 L30 8"/><circle cx="30" cy="30" r="5"/><circle class="crank-knob" cx="30" cy="8" r="6"/></svg></button>
+        </div>
+        <div class="bucket" data-collide="bucket" aria-hidden="true">
+          <svg viewBox="0 0 100 110" preserveAspectRatio="none"><path class="bk-body" d="M4 4h92l-12 102H16z"/><path class="bk-str" d="M24 4l6 102M50 4v102M76 4l-6 102"/><path class="bk-rim" d="M2 4h96"/></svg>
+          <span class="bucket__label">yours</span>
+        </div>
+        <p id="pm-count" class="pm__count" role="status">The kettle&rsquo;s hot. Press <b>Pop!</b> or turn the crank.</p>
+        <div class="counter" data-collide="top" aria-hidden="true"></div>
+      </div>
+
+      <div class="unit unit--slush">
+        <div class="sl" data-collide="box">
+          <div class="sl__top"><span class="sl__sign">Slushies</span><svg class="doodle sl__flake" aria-hidden="true" focusable="false" viewBox="0 0 64 64"><path d="M32 8v48M11 20l42 24M11 44l42-24M26 12l6 6 6-6M26 52l6-6 6 6"/></svg></div>
+          <div class="sl__bowls" aria-hidden="true">
+            <div class="bowl" data-f="cherry"><div class="bowl__liquid"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0z"/></svg></div><i class="bowl__auger"></i></div>
+            <div class="bowl" data-f="sky"><div class="bowl__liquid"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0z"/></svg></div><i class="bowl__auger"></i></div>
+            <div class="bowl" data-f="butter"><div class="bowl__liquid"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0z"/></svg></div><i class="bowl__auger"></i></div>
+            <div class="bowl" data-f="mint"><div class="bowl__liquid"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0z"/></svg></div><i class="bowl__auger"></i></div>
+          </div>
+          <div class="sl__taps" role="group" aria-label="Pick a slushy flavor">
+            <button class="tap" type="button" data-f="cherry"><i class="tap__lever" aria-hidden="true"></i><span class="tap__name">Cherry Bomb</span></button>
+            <button class="tap" type="button" data-f="sky"><i class="tap__lever" aria-hidden="true"></i><span class="tap__name">Blue Sky</span></button>
+            <button class="tap" type="button" data-f="butter"><i class="tap__lever" aria-hidden="true"></i><span class="tap__name">Lemon Butter</span></button>
+            <button class="tap" type="button" data-f="mint"><i class="tap__lever" aria-hidden="true"></i><span class="tap__name">Mint Condition</span></button>
+          </div>
+          <div class="sl__tray">
+            <i class="sl__stream" aria-hidden="true"></i>
+            <div class="cup" aria-hidden="true">
+              <i class="cup__straw"></i><i class="cup__lid"></i>
+              <div class="cup__body"><div class="cup__fill"></div><i class="ice ice--1"></i><i class="ice ice--2"></i><i class="ice ice--3"></i></div>
+            </div>
+            <i class="sl__grill" aria-hidden="true"></i>
+          </div>
+          <div class="sl__slot" aria-hidden="true"></div>
+          <div class="receipt" role="status">
+            <p class="receipt__title">Pick a flavor</p>
+            <p class="receipt__body">Each one comes with a little something on the receipt.</p>
+          </div>
+          <button class="sl__drink" type="button" aria-label="Drink up and start over" hidden>Drink up!</button>
+        </div>
+        <div class="counter" data-collide="top" aria-hidden="true"></div>
+      </div>
+    </div>
+    <p class="snack__exit"><a href="#lobby">Lights up! The quick read starts here <span aria-hidden="true">&darr;</span></a></p>
+  </section>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="lobby" aria-labelledby="hero-title">
+    <svg class="doodle hero__spark hero__spark--1" aria-hidden="true" focusable="false"><use href="#d-sparkle"/></svg>
+    <svg class="doodle hero__spark hero__spark--2" aria-hidden="true" focusable="false"><use href="#d-sparkle"/></svg>
+    <svg class="doodle hero__spark hero__spark--3" aria-hidden="true" focusable="false"><use href="#d-sparkle"/></svg>
+    <svg class="doodle hero__heart" aria-hidden="true" focusable="false"><use href="#d-heart"/></svg>
+
+    <div class="sign">
+      <div class="sign__bulbs" aria-hidden="true"></div>
+      <p class="sign__top">Now presenting</p>
+      <h1 id="hero-title" class="sign__name" tabindex="-1">Sheina Pribadi</h1>
+      <p class="sign__role">where AI, product &amp; strategy meet</p>
+    </div>
+    <div class="sign__legs" aria-hidden="true"><span></span><span></span></div>
+
+    <p class="hero__edu">Data Science + Business (Haas) @ UC Berkeley</p>
+    <p class="hero__tagline">I build things, launch things, and occasionally figure out problems that do not have obvious solutions yet.</p>
+
+    <div class="board" role="group" aria-labelledby="board-title">
+      <p id="board-title" class="board__title">Tonight&rsquo;s double feature</p>
+      <p class="board__rows">
+        <a href="#aqe">Air Quality Explorer</a>
+        <span class="board__amp" aria-hidden="true">&amp;</span>
+        <a href="#cookie-lens">Cookie Lens</a>
+      </p>
+    </div>
+
+    <div class="popcorn">
+      <button class="popcorn__btn" type="button" aria-describedby="popcorn-count">
+        <svg class="doodle popcorn__bucket" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <path class="bk-pop" d="M13 27c-5-5-1-12.6 5.6-10.6 0-7 9.4-9.6 12.6-3.4 3-6.4 12.4-5.6 13 1.4 6.4-2 10.6 4.6 6.6 10z"/>
+          <path class="bk-line" d="M22 16c1.6-2.4 4-3 6.4-2M40 14.6c2-.8 4 0 5 1.6"/>
+          <path class="bk-tub" d="m12 27 40-.4-5.6 32.6-28.6.2z"/>
+          <path class="bk-stripe" d="m21 28 2.6 30M32 28v30.4M43 27.6l-2.8 30.6"/>
+          <path class="bk-line" d="m12 27 40-.4-5.6 32.6-28.6.2z"/>
+        </svg>
+        <span class="sr">Pop some popcorn</span>
+      </button>
+      <p class="popcorn__note" aria-hidden="true"><svg class="doodle popcorn__arrow" aria-hidden="true" focusable="false"><use href="#d-arrow"/></svg>psst, click me</p>
+      <p id="popcorn-count" class="popcorn__count" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTOR'S NOTE ============ -->
+  <section id="note" class="section note-wrap" aria-labelledby="note-title">
+    <article class="card note">
+      <h2 id="note-title" class="title">A note from the director</h2>
+      <p class="note__hi">Hi, I&rsquo;m Sheina.</p>
+      <p>I&rsquo;m a junior at UC Berkeley studying Data Science and Business at Haas, and my work sits at the intersection of AI, product, and strategy.</p>
+      <p>This past summer that meant building an agentic procurement platform at Cloudflare. Before that it meant consulting for Series B through F companies on AI product decisions, launching Perplexity on campus (2,000 signups in 24 hours), and supporting M&amp;A deals in Indonesia at Deloitte (market sizing, buyer segmentation, due diligence and financial models). In high school I founded a cement company that rebuilt earthquake-damaged infrastructure and ended up on CNN. I&rsquo;m still not entirely sure how that happened.</p>
+      <p>What connects all of it is a tendency to show up at the messy early stage of hard problems, figure out what is actually going on, and build something that makes it better. I care about working on things that are genuinely difficult, with people who take the work seriously.</p>
+      <p>Lately I&rsquo;ve been doing more of the building myself as I move toward AI/ML. This little picture house is where I keep what I make along the way. The first two started with things that bugged me: the air I grew up breathing, and how many cookies follow me around the internet.</p>
+      <p class="note__sign">Warmly,<span>Sheina</span></p>
+      <p class="note__ps">P.S. If you also boulder or have a movie I need to watch, tell me. Both require more patience than people expect.</p>
+    </article>
+
+    <aside class="card soon" aria-labelledby="soon-title">
+      <h2 id="soon-title" class="soon__title">Currently in production</h2>
+      <dl>
+        <div><dt>working on</dt><dd><a href="https://berkeleytime.com/">Berkeleytime</a>, as a product manager and data analyst. I started out as one of its 20K+ users.</dd></div>
+        <div><dt>studying</dt><dd>Data Science + Business at Haas, class of 2028.</dd></div>
+        <div><dt>building</dt><dd>small AI/ML tools on the side, and showing them here.</dd></div>
+        <div><dt>reading</dt><dd>everything I can on AI alignment and algorithmic safety: how systems miss the meaning while hitting the metric.</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <!-- ============ BOX OFFICE (real numbers) ============ -->
+  <section id="box-office" class="section boxoffice" aria-labelledby="bo-title">
+    <header class="head">
+      <p class="head__kicker">Box office</p>
+      <h2 id="bo-title" class="title title--big">The numbers so far</h2>
+      <p class="head__note">real figures only, counted up as they scroll in</p>
+    </header>
+    <div class="led">
+      <p class="led__bar" aria-hidden="true"><span class="led__dot"></span>live from the projection booth<span class="led__clock">REEL 01</span></p>
+      <ul class="stats">
+<li class="stat"><p class="stat__n"><span class="count" data-to="2000">2,000</span>+</p><p class="stat__l">new Perplexity users in one day</p><p class="stat__src">campus launch, 2025</p></li>
+<li class="stat"><p class="stat__n"><span class="count" data-to="20">20</span>K+</p><p class="stat__l"><a href="https://berkeleytime.com/">Berkeleytime</a> users, and I started as one</p><p class="stat__src">now its PM + data analyst</p></li>
+<li class="stat"><p class="stat__n"><span class="count" data-to="15">15</span> <small>min</small></p><p class="stat__l">procurement cycle at Cloudflare, down from weeks</p><p class="stat__src">agentic platform, 2026</p></li>
+<li class="stat"><p class="stat__n"><span class="count" data-to="150">150</span> <small>cities</small></p><p class="stat__l">five years of infrastructure data, analyzed</p><p class="stat__src">Cloudflare, 2026</p></li>
+<li class="stat"><p class="stat__n"><span class="count" data-to="3000">3,000</span>+</p><p class="stat__l">survey responses in the Frontline Worker Report</p><p class="stat__src">WorkWhile, 2025 report</p></li>
+<li class="stat"><p class="stat__n">Top <span class="count" data-to="3">3</span></p><p class="stat__l">top 3 of 500+ applicants, $50K competition</p><p class="stat__src">BU, for UC Berkeley</p></li>
+<li class="stat"><p class="stat__n">Top <span class="count" data-to="100">100</span></p><i class="stat__bar" aria-hidden="true" style="--p:.993"><b></b></i><p class="stat__l">top 100 of 14,000 at Global RISE</p><p class="stat__src">ACE, 2023 &middot; top 0.7%</p></li>
+<li class="stat"><p class="stat__n"><span class="count" data-to="25">25</span> <small>cities</small></p><p class="stat__l">with live PM2.5 in Air Quality Explorer</p><p class="stat__src">web app, 2026</p></li>
+      </ul>
+      <div class="ticker" aria-hidden="true"><p class="ticker__track"><span>93 active MatchUp users &middot; 42 bookings &middot; 80% coach adoption &middot; 6 courts &amp; 5 coaches &middot; $1,600+ raised in one cooking event &middot; 50+ cooking boxes sold in a day &middot; 1st of 50+ teams at EGAL &middot; $1,500 Iris Project Seed Prize &middot; 2m x 2m ACE prototype house &middot; 8 roles &middot; 10 projects &middot; 0 cookies on this site &middot; </span><span>93 active MatchUp users &middot; 42 bookings &middot; 80% coach adoption &middot; 6 courts &amp; 5 coaches &middot; $1,600+ raised in one cooking event &middot; 50+ cooking boxes sold in a day &middot; 1st of 50+ teams at EGAL &middot; $1,500 Iris Project Seed Prize &middot; 2m x 2m ACE prototype house &middot; 8 roles &middot; 10 projects &middot; 0 cookies on this site &middot; </span></p></div>
+    </div>
+  </section>
+
+  <!-- ============ NOW SHOWING ============ -->
+  <section id="now-showing" class="section" aria-labelledby="now-title">
+    <header class="head">
+      <p class="head__kicker">Screen one</p>
+      <h2 id="now-title" class="title title--big">Now showing</h2>
+      <p class="head__note">two brand-new features, fresh out of the oven</p>
+    </header>
+
+    <article id="aqe" class="feature" data-tint="sky">
+      <figure class="feature__screen">
+        <a href="https://sheinapribadi-star.github.io/air-quality-explorer/" tabindex="-1" aria-hidden="true">
+          <img src="/img/aqe-map-640.webp" srcset="/img/aqe-map-640.webp 640w, /img/aqe-map-1200.webp 1200w" sizes="(min-width: 960px) 600px, 92vw" width="1200" height="833" alt="" loading="lazy" decoding="async" />
+        </a>
+        <figcaption>the air in Berkeley, live</figcaption>
+      </figure>
+      <div class="feature__body">
+        <p class="feature__kicker"><span>Feature No. 1</span><span class="chip chip--live">Live data</span></p>
+        <h3 class="feature__title">Air Quality Explorer</h3>
+        <ul class="chips" aria-label="Details"><li>web app</li><li>2026</li><li>data viz</li><li>forecasting</li><li>maps</li></ul>
+        <p>Live PM2.5 for 25 cities, mostly around the Bay plus big U.S. cities and Jakarta. Click a city for a week of history, a five-day forecast, a plain-English health note, and a small model that picks the cleanest hour to head outside. It grew out of my PM2.5 research at the Energy Institute at Haas.</p>
+        <p class="fineprint"><b>A note on the print:</b> data from a global air-quality model, so it shows regional air, not street-level sensors.</p>
+        <p class="tickets">
+          <a class="ticket" href="https://sheinapribadi-star.github.io/air-quality-explorer/"><span class="ticket__stub">admit one</span><span class="ticket__main">Open the live site <span aria-hidden="true">&#8599;</span></span></a>
+          <a class="ticket ticket--alt" href="https://github.com/sheinapribadi-star/air-quality-explorer"><span class="ticket__stub">behind the scenes</span><span class="ticket__main">Code <span aria-hidden="true">&#8599;</span></span></a>
+        </p>
+      </div>
+    </article>
+
+    <article id="cookie-lens" class="feature feature--flip" data-tint="rose">
+      <figure class="feature__screen feature__screen--duo">
+        <a href="https://github.com/sheinapribadi-star/cookie-lens" tabindex="-1" aria-hidden="true">
+          <img src="/img/cookie-dash-640.webp" srcset="/img/cookie-dash-640.webp 640w, /img/cookie-dash-1200.webp 1200w" sizes="(min-width: 960px) 600px, 92vw" width="1200" height="844" alt="" loading="lazy" decoding="async" />
+          <img class="feature__inset" src="/img/cookie-popup-368.webp" width="368" height="600" alt="" loading="lazy" decoding="async" />
+        </a>
+        <figcaption>who&rsquo;s following me</figcaption>
+      </figure>
+      <div class="feature__body">
+        <p class="feature__kicker"><span>Feature No. 2</span><span class="chip chip--live">v1.0.0</span></p>
+        <h3 class="feature__title">Cookie Lens</h3>
+        <ul class="chips" aria-label="Details"><li>chrome extension</li><li>2026</li><li>privacy</li><li>interface design</li></ul>
+        <p>A Chrome extension that shows every cookie on the page you&rsquo;re on and labels the trackers with a plain reason, like &ldquo;set by pubmatic.com, a known ad tracker, lasts 3 months.&rdquo; Delete them one at a time or all at once, and open the dashboard to see which companies follow you across the most sites.</p>
+        <p class="fineprint"><b>A note on the print:</b> ratings come from an open cookie database and Disconnect&rsquo;s tracker list. Nothing leaves your browser.</p>
+        <p class="tickets">
+          <a class="ticket" href="https://github.com/sheinapribadi-star/cookie-lens/releases/tag/v1.0.0"><span class="ticket__stub">admit one</span><span class="ticket__main">Download v1.0.0 <span aria-hidden="true">&#8599;</span></span></a>
+          <a class="ticket ticket--alt" href="https://github.com/sheinapribadi-star/cookie-lens"><span class="ticket__stub">behind the scenes</span><span class="ticket__main">Code <span aria-hidden="true">&#8599;</span></span></a>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ COMING ATTRACTIONS POSTER WALL ============ -->
+  <section id="repertory" class="section section--bleed" aria-labelledby="rep-title">
+    <header class="head">
+      <p class="head__kicker">Coming attractions</p>
+      <h2 id="rep-title" class="title title--big">Poster wall</h2>
+      <p class="head__note">upcoming titles on the lobby wall. Flip a poster; seats above play the stills</p>
+    </header>
+    <div class="strip wall">
+      <div class="strip__controls wall__controls">
+        <button class="strip__btn" type="button" data-dir="-1" aria-label="Scroll the poster wall back"><span aria-hidden="true">&larr;</span></button>
+        <button class="strip__btn" type="button" data-dir="1" aria-label="Scroll the poster wall forward"><span aria-hidden="true">&rarr;</span></button>
+      </div>
+      <ol class="strip__track wall__track" tabindex="0" aria-label="Coming-attraction posters, scroll sideways">
+      <li class="poster" data-tint="sky" data-still="/img/projects/berkeleytime.webp" data-still-pos="72% 35%" data-still-srcset="/img/projects/berkeleytime-640.webp 640w, /img/projects/berkeleytime.webp 1200w">
+        <div class="poster__card">
+          <div class="poster__face poster__front" id="p03-front">
+            <div class="poster__art" aria-hidden="true">
+              <img class="poster__still" src="/img/projects/berkeleytime.webp" srcset="/img/projects/berkeleytime-640.webp 640w, /img/projects/berkeleytime.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" style="object-position:72% 35%" />
+              <span class="poster__glow"></span>
+              <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-clock"/></svg></span>
+            </div>
+            <div class="poster__bill">
+              <p class="poster__year">2026</p>
+              <h3 class="poster__title">Berkeleytime</h3>
+              <p class="poster__meta">Berkeley &middot; product · data</p>
+            </div>
+            <button class="poster__flip" type="button" aria-controls="p03-back" aria-expanded="false"><span class="sr">Flip the Berkeleytime poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+          </div>
+          <div class="poster__face poster__back" id="p03-back" inert>
+            <p class="poster__top"><span>Berkeley &middot; 2026</span></p>
+            <h4 class="poster__backtitle" tabindex="-1"><a href="https://berkeleytime.com/">Berkeleytime</a></h4>
+            <p class="poster__desc">Berkeley’s course explorer. 20K+ users. I started as one, now PM + data analyst.</p>
+            <p class="poster__links"><a href="https://berkeleytime.com/">berkeleytime.com <span aria-hidden="true">&#8599;</span></a></p>
+            <button class="poster__unflip" type="button" aria-controls="p03-front">flip back</button>
+          </div>
+        </div>
+      </li>
+      <li class="poster" data-tint="butter" data-still="/img/projects/matchup.webp" data-still-pos="center 32%" data-still-srcset="/img/projects/matchup-640.webp 640w, /img/projects/matchup.webp 1200w">
+        <div class="poster__card">
+          <div class="poster__face poster__front" id="p04-front">
+            <div class="poster__art" aria-hidden="true">
+              <img class="poster__still" src="/img/projects/matchup.webp" srcset="/img/projects/matchup-640.webp 640w, /img/projects/matchup.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" style="object-position:center 32%" />
+              <span class="poster__glow"></span>
+              <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-racket"/></svg></span>
+            </div>
+            <div class="poster__bill">
+              <p class="poster__year">2025</p>
+              <h3 class="poster__title">MatchUp</h3>
+              <p class="poster__meta">Jakarta &middot; marketplace · built with AI · payments</p>
+            </div>
+            <button class="poster__flip" type="button" aria-controls="p04-back" aria-expanded="false"><span class="sr">Flip the MatchUp poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+          </div>
+          <div class="poster__face poster__back" id="p04-back" inert>
+            <p class="poster__top"><span>Jakarta &middot; 2025</span></p>
+            <h4 class="poster__backtitle" tabindex="-1">MatchUp</h4>
+            <p class="poster__desc">AI-built sports booking marketplace. 6 courts, 5 coaches, 93 users, 80% coach adoption.</p>
+            <p class="poster__links"><a href="https://www.canva.com/design/DAG6ekodf4c/Q0LVSj-Dd5MToNs714F-bQ/edit?utm_content=DAG6ekodf4c&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton">Deck <span aria-hidden="true">&#8599;</span></a></p>
+            <button class="poster__unflip" type="button" aria-controls="p04-front">flip back</button>
+          </div>
+        </div>
+      </li>
+      <li class="poster" data-tint="rose" data-still="/img/projects/neurowake.webp" data-still-pos="center 22%" data-still-srcset="/img/projects/neurowake-640.webp 640w, /img/projects/neurowake.webp 1200w">
+        <div class="poster__card">
+          <div class="poster__face poster__front" id="p05-front">
+            <div class="poster__art" aria-hidden="true">
+              <img class="poster__still" src="/img/projects/neurowake.webp" srcset="/img/projects/neurowake-640.webp 640w, /img/projects/neurowake.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" style="object-position:center 22%" />
+              <span class="poster__glow"></span>
+              <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-moon"/></svg></span>
+            </div>
+            <div class="poster__bill">
+              <p class="poster__year">2025</p>
+              <h3 class="poster__title">NeuroWake</h3>
+              <p class="poster__meta">Berkeley &middot; concept · health · EEG</p>
+            </div>
+            <button class="poster__flip" type="button" aria-controls="p05-back" aria-expanded="false"><span class="sr">Flip the NeuroWake poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+          </div>
+          <div class="poster__face poster__back" id="p05-back" inert>
+            <p class="poster__top"><span>Berkeley &middot; 2025</span></p>
+            <h4 class="poster__backtitle" tabindex="-1">NeuroWake</h4>
+            <p class="poster__desc">Concept EEG headband that wakes you at a better moment. Product vision, research, and roadmap end to end.</p>
+            <p class="poster__links"><a href="https://www.canva.com/design/DAGdzQL2pDw/VgNu-VcLOQ63j4PhYaNu1w/view?utm_content=DAGdzQL2pDw&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=uniquelinks&amp;utlId=hea4235ee6f">Deck <span aria-hidden="true">&#8599;</span></a></p>
+            <button class="poster__unflip" type="button" aria-controls="p05-front">flip back</button>
+          </div>
+        </div>
+      </li>
+      <li class="poster" data-tint="mint" data-still="/img/projects/forbes.webp" data-still-pos="center 28%" data-still-srcset="/img/projects/forbes-640.webp 640w, /img/projects/forbes.webp 1200w">
+        <div class="poster__card">
+          <div class="poster__face poster__front" id="p06-front">
+            <div class="poster__art" aria-hidden="true">
+              <img class="poster__still" src="/img/projects/forbes.webp" srcset="/img/projects/forbes-640.webp 640w, /img/projects/forbes.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" style="object-position:center 28%" />
+              <span class="poster__glow"></span>
+              <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-paper"/></svg></span>
+            </div>
+            <div class="poster__bill">
+              <p class="poster__year">2025</p>
+              <h3 class="poster__title poster__title--long">Forbes + Earth.org</h3>
+              <p class="poster__meta">In print &middot; writing · policy · sustainability</p>
+            </div>
+            <button class="poster__flip" type="button" aria-controls="p06-back" aria-expanded="false"><span class="sr">Flip the Forbes + Earth.org poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+          </div>
+          <div class="poster__face poster__back" id="p06-back" inert>
+            <p class="poster__top"><span>In print &middot; 2025</span></p>
+            <h4 class="poster__backtitle" tabindex="-1">Forbes + Earth.org</h4>
+            <p class="poster__desc">Articles for Forbes and Earth.org as a One Young World Leader (Gates Foundation partner).</p>
+            <p class="poster__links"><a href="https://www.forbes.com/sites/monicasanders/2025/04/03/global-development-after-usaid-closure-whats-next/">Forbes <span aria-hidden="true">&#8599;</span></a><a href="https://earth.org/international-aid-is-not-the-most-effective-way-to-address-food-security/">Earth.org <span aria-hidden="true">&#8599;</span></a></p>
+            <button class="poster__unflip" type="button" aria-controls="p06-front">flip back</button>
+          </div>
+        </div>
+      </li>
+      <li class="poster" data-tint="sky" data-still="/img/projects/design-alt.webp" data-still-pos="center 30%" data-still-srcset="/img/projects/design-alt-640.webp 640w, /img/projects/design-alt.webp 1200w">
+        <div class="poster__card">
+          <div class="poster__face poster__front" id="p07-front">
+            <div class="poster__art" aria-hidden="true">
+              <img class="poster__still" src="/img/projects/design-alt.webp" srcset="/img/projects/design-alt-640.webp 640w, /img/projects/design-alt.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" style="object-position:center 30%" />
+              <span class="poster__glow"></span>
+              <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-pencil"/></svg></span>
+            </div>
+            <div class="poster__bill">
+              <p class="poster__year">2024</p>
+              <h3 class="poster__title poster__title--long">Design Sprints</h3>
+              <p class="poster__meta">Berkeley &middot; UX · prototyping · case comps</p>
+            </div>
+            <button class="poster__flip" type="button" aria-controls="p07-back" aria-expanded="false"><span class="sr">Flip the Design Sprints poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+          </div>
+          <div class="poster__face poster__back" id="p07-back" inert>
+            <p class="poster__top"><span>Berkeley &middot; 2024</span></p>
+            <h4 class="poster__backtitle" tabindex="-1">Design Sprints</h4>
+            <p class="poster__desc">1st of 50+ Berkeley teams at EGAL. Design sprints for companies like Amazon Music.</p>
+            <p class="poster__links"><a href="https://www.canva.com/design/DAG1JjGo7x8/62MC3d8AB73Y_kdppAOOSg/edit?utm_content=DAG1JjGo7x8&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton">EGAL deck <span aria-hidden="true">&#8599;</span></a><a href="https://www.figma.com/slides/9vBShOX4xW3dw4a53iypx7/SP25_DESIGNATHON_TEAM_52?node-id=26-26&amp;t=Y5NNodXvLmUmWlku-1">Designathon (Figma) <span aria-hidden="true">&#8599;</span></a></p>
+            <button class="poster__unflip" type="button" aria-controls="p07-front">flip back</button>
+          </div>
+        </div>
+      </li>
+      <li class="poster" data-tint="butter" data-still="/img/projects/ace-alt.webp" data-still-pos="center 18%" data-still-srcset="/img/projects/ace-alt-640.webp 640w, /img/projects/ace-alt.webp 1200w">
+        <div class="poster__card">
+          <div class="poster__face poster__front" id="p08-front">
+            <div class="poster__art" aria-hidden="true">
+              <img class="poster__still" src="/img/projects/ace-alt.webp" srcset="/img/projects/ace-alt-640.webp 640w, /img/projects/ace-alt.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" style="object-position:center 18%" />
+              <span class="poster__glow"></span>
+              <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-bricks"/></svg></span>
+            </div>
+            <div class="poster__bill">
+              <p class="poster__year">2022</p>
+              <h3 class="poster__title">ACE<span class="poster__subtitle">Alternative Cement for the Environment</span></h3>
+              <p class="poster__meta">Tangerang &middot; materials · climate · founder</p>
+            </div>
+            <button class="poster__flip" type="button" aria-controls="p08-back" aria-expanded="false"><span class="sr">Flip the ACE poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+          </div>
+          <div class="poster__face poster__back" id="p08-back" inert>
+            <p class="poster__top"><span>Tangerang &middot; 2022</span></p>
+            <h4 class="poster__backtitle" tabindex="-1">ACE: Alternative Cement for the Environment</h4>
+            <p class="poster__desc">Eco cement from coal by-products. Rebuilt a sidewalk in Tangerang; Global RISE top 100 of 14,000.</p>
+            <p class="poster__links"><a href="https://www.cnnindonesia.com/ekonomi/20231015121439-625-1011485/siswi-jis-buat-batu-bata-ramah-lingkungan-kurangi-emisi-karbon">CNN Indonesia <span aria-hidden="true">&#8599;</span></a><a href="https://gutzy.asia/2023/10/12/indonesian-high-school-student-innovates-eco-friendly-bricks-to-combat-air-pollution/">Gutzy Asia <span aria-hidden="true">&#8599;</span></a><a href="https://thelensjournal.com/wp-content/uploads/2023/09/The-Lens-Sheina-Pribadi.pdf">Research paper (PDF) <span aria-hidden="true">&#8599;</span></a></p>
+            <button class="poster__unflip" type="button" aria-controls="p08-front">flip back</button>
+          </div>
+        </div>
+      </li>
+      <li class="poster" data-tint="rose" data-still="/img/projects/yum-alt.webp" data-still-pos="center 40%" data-still-srcset="/img/projects/yum-alt-640.webp 640w, /img/projects/yum-alt.webp 1200w">
+        <div class="poster__card">
+          <div class="poster__face poster__front" id="p09-front">
+            <div class="poster__art" aria-hidden="true">
+              <img class="poster__still" src="/img/projects/yum-alt.webp" srcset="/img/projects/yum-alt-640.webp 640w, /img/projects/yum-alt.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" style="object-position:center 40%" />
+              <span class="poster__glow"></span>
+              <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-sprout"/></svg></span>
+            </div>
+            <div class="poster__bill">
+              <p class="poster__year">2021&ndash;25</p>
+              <h3 class="poster__title poster__title--long">YUM Farm Project</h3>
+              <p class="poster__meta">Indonesia &middot; service · food systems · operations</p>
+            </div>
+            <button class="poster__flip" type="button" aria-controls="p09-back" aria-expanded="false"><span class="sr">Flip the YUM Farm Project poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+          </div>
+          <div class="poster__face poster__back" id="p09-back" inert>
+            <p class="poster__top"><span>Indonesia &middot; 2021&ndash;25</span></p>
+            <h4 class="poster__backtitle" tabindex="-1">YUM Farm Project</h4>
+            <p class="poster__desc">Four years with Yayasan Usaha Mulia’s farm: cooking boxes, a celebrity event, restaurant supply, a documentary.</p>
+            <p class="poster__links"><a href="https://yumprojectjis.wixsite.com/yumfarmproject">Project site <span aria-hidden="true">&#8599;</span></a><a href="https://indonesiaexpat.id/education/saving-the-earth-one-meal-at-a-time-with-jakarta-intercultural-schools-yum-farm-project/">Indonesia Expat <span aria-hidden="true">&#8599;</span></a></p>
+            <button class="poster__unflip" type="button" aria-controls="p09-front">flip back</button>
+          </div>
+        </div>
+      </li>
+      <li class="poster" data-tint="sky" data-still="/img/projects/feedback-tool.webp" data-still-pos="center 20%" data-still-srcset="/img/projects/feedback-tool-640.webp 640w, /img/projects/feedback-tool.webp 1200w">
+        <div class="poster__card">
+          <div class="poster__face poster__front" id="p10-front">
+            <div class="poster__art" aria-hidden="true">
+              <img class="poster__still" src="/img/projects/feedback-tool.webp" srcset="/img/projects/feedback-tool-640.webp 640w, /img/projects/feedback-tool.webp 1200w" sizes="240px" alt="" loading="lazy" decoding="async" style="object-position:center 20%" />
+              <span class="poster__glow"></span>
+              <span class="poster__symbol"><svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-chat"/></svg></span>
+            </div>
+            <div class="poster__bill">
+              <p class="poster__year">2026</p>
+              <h3 class="poster__title poster__title--long">Feedback Tool</h3>
+              <p class="poster__meta">Cloudflare Workers &middot; AI · API · dashboard</p>
+            </div>
+            <button class="poster__flip" type="button" aria-controls="p10-back" aria-expanded="false"><span class="sr">Flip the Feedback Tool poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+          </div>
+          <div class="poster__face poster__back" id="p10-back" inert>
+            <p class="poster__top"><span>Workers &middot; 2026</span></p>
+            <h4 class="poster__backtitle" tabindex="-1"><a href="https://github.com/sheinapribadi-star/feedback-tool">Feedback Tool</a></h4>
+            <p class="poster__desc">Cloudflare Workers feedback intelligence dashboard. Multi-source feedback API plus AI summary of themes, sentiment, and urgency.</p>
+            <p class="poster__links"><a href="https://github.com/sheinapribadi-star/feedback-tool">GitHub <span aria-hidden="true">&#8599;</span></a></p>
+            <button class="poster__unflip" type="button" aria-controls="p10-front">flip back</button>
+          </div>
+        </div>
+      </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CAREER REEL (film-roll timeline) ============ -->
+  <section id="filmography" class="section section--bleed" aria-labelledby="film-title">
+    <header class="head">
+      <p class="head__kicker">The showtimes</p>
+      <h2 id="film-title" class="title title--big">Career reel</h2>
+      <p class="head__note">scroll the film. Dates big, roles short</p>
+    </header>
+    <div class="filmroll">
+      <div class="filmroll__controls">
+        <button class="filmroll__btn" type="button" data-dir="-1" aria-label="Scroll the career reel back"><span aria-hidden="true">&larr;</span></button>
+        <button class="filmroll__btn" type="button" data-dir="1" aria-label="Scroll the career reel forward"><span aria-hidden="true">&rarr;</span></button>
+      </div>
+      <div class="filmroll__sprocket filmroll__sprocket--top" aria-hidden="true"></div>
+      <ol class="filmroll__track" tabindex="0" aria-label="Career timeline, scroll sideways">
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">earlier</span><span class="cell__range">before Berkeley</span></p>
+          <h3 class="cell__who">Venture Strategy</h3>
+          <p class="cell__role">Project Manager</p>
+          <p class="cell__line">AI product consulting, Series B&ndash;F.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2024</span><span class="cell__range">Aug &ndash; May &rsquo;25</span></p>
+          <h3 class="cell__who">URAP</h3>
+          <p class="cell__role">Researcher</p>
+          <p class="cell__line">Nanotech sensing with NASA Ames, LBNL, Stanford, UCSF partners.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2025</span><span class="cell__range">Jun &ndash; Aug</span></p>
+          <h3 class="cell__who">Deloitte</h3>
+          <p class="cell__role">M&amp;A Intern &middot; Indonesia</p>
+          <p class="cell__line">Market sizing, diligence, financial models.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2025</span><span class="cell__range">Aug &ndash; Dec</span></p>
+          <h3 class="cell__who">Perplexity</h3>
+          <p class="cell__role">Campus Strategist</p>
+          <p class="cell__line">2,000+ new users in a day.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2025</span><span class="cell__range">Aug &ndash; May &rsquo;26</span></p>
+          <h3 class="cell__who">Energy Institute</h3>
+          <p class="cell__role">Research Associate</p>
+          <p class="cell__line">PM2.5 modeling in R, Python &amp; ML.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2026</span><span class="cell__range">Jan &ndash; now</span></p>
+          <h3 class="cell__who">WorkWhile</h3>
+          <p class="cell__role">Project Manager</p>
+          <p class="cell__line">AI lead-sourcing + Frontline Worker Report.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2026</span><span class="cell__range">Jun &ndash; Aug</span></p>
+          <h3 class="cell__who">Cloudflare</h3>
+          <p class="cell__role">AI &amp; Data Center Ops Intern</p>
+          <p class="cell__line">Agentic procurement: weeks &rarr; 15 min.</p>
+        </li>
+
+        <li class="cell cell--live">
+          <p class="cell__date"><span class="cell__year">2026</span><span class="cell__range">Aug &ndash; now</span></p>
+          <h3 class="cell__who"><a href="https://berkeleytime.com/">Berkeleytime</a></h3>
+          <p class="cell__role">PM &amp; Data Analyst</p>
+          <p class="cell__line">20K+ users. I started as one.</p>
+        </li>
+      </ol>
+      <div class="filmroll__sprocket filmroll__sprocket--bot" aria-hidden="true"></div>
+      <p class="filmroll__cue" aria-hidden="true"><span>then</span><span class="filmroll__cue-line"></span><span>now</span></p>
+    </div>
+  </section>
+
+
+  <!-- ============ LEADERSHIP ============ -->
+  <section id="leadership" class="section lead" aria-labelledby="lead-title">
+    <header class="head">
+      <p class="head__kicker">Ensemble cast</p>
+      <h2 id="lead-title" class="title title--big">Leadership</h2>
+      <p class="head__note">campus roles where I build community, with the stills</p>
+    </header>
+
+    <div class="lead__stack">
+      <article class="leadcard" data-tint="sky">
+        <figure class="leadcard__media">
+          <img src="/img/leadership/calhacks-hack-night.webp" srcset="/img/leadership/calhacks-hack-night-640.webp 640w, /img/leadership/calhacks-hack-night.webp 1400w" sizes="(min-width: 900px) 380px, 92vw" width="1400" height="933" alt="Women’s Hack Night group in front of a Hackathons @ Berkeley screen" loading="lazy" decoding="async" />
+          <figcaption>Women&rsquo;s Hack Night</figcaption>
+        </figure>
+        <div class="leadcard__body">
+          <p class="leadcard__org">CalHacks</p>
+          <h3 class="leadcard__role">Director</h3>
+          <p class="leadcard__tag">World&rsquo;s largest collegiate hackathon</p>
+          <p class="leadcard__stat">3,000+ hackers <span aria-hidden="true">&middot;</span> $200k+ in prizes <span aria-hidden="true">&middot;</span> a decade strong <span aria-hidden="true">&middot;</span> <a href="https://calhacks.io/">calhacks.io</a></p>
+          <ul class="leadcard__bullets">
+            <li>Help bring 3,000+ hackers together for the world&rsquo;s largest collegiate hackathon</li>
+            <li>Event logistics so the floor keeps running</li>
+            <li>Hacker experience end to end through Hacker Experience and Inclusivity (HEI)</li>
+            <li>Inclusivity work, including Women&rsquo;s Hack Night and women&rsquo;s hackathon programming</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="leadcard" data-tint="butter">
+        <div class="leadcard__media leadcard__media--duo">
+          <figure>
+            <img src="/img/leadership/launch-launchathon.webp" srcset="/img/leadership/launch-launchathon-640.webp 640w, /img/leadership/launch-launchathon.webp 1200w" sizes="(min-width: 900px) 190px, 46vw" width="1200" height="1600" alt="On stage at Launchathon in Spieker Forum wearing a Launch Accelerator shirt" loading="lazy" decoding="async" style="object-position:center 18%" />
+            <figcaption>Launchathon</figcaption>
+          </figure>
+          <figure>
+            <img src="/img/leadership/launch-spieker.webp" srcset="/img/leadership/launch-spieker-640.webp 640w, /img/leadership/launch-spieker.webp 1400w" sizes="(min-width: 900px) 190px, 46vw" width="1400" height="933" alt="UC Launch Accelerator community group on stage at Spieker Forum" loading="lazy" decoding="async" style="object-position:center 42%" />
+            <figcaption>Spieker Forum</figcaption>
+          </figure>
+        </div>
+        <div class="leadcard__body">
+          <p class="leadcard__org">UC Launch <span class="leadcard__suborg">Berkeley Haas Entrepreneurship Program</span></p>
+          <h3 class="leadcard__role">VP of Community</h3>
+          <p class="leadcard__tag">Aug 2024 to Present <span aria-hidden="true">&middot;</span> largest UC accelerator</p>
+          <ul class="leadcard__bullets">
+            <li>Grew weekly office hours from 3 to 7 mentors, connecting 200+ students with 50+ founders and investors; cut no-shows 30%</li>
+            <li>Created Launchathon, pairing students with UC Launch startups ($1.1B+ raised); organized 20+ events, lifting attendance 70%</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="leadcard" data-tint="rose">
+        <div class="leadcard__media leadcard__media--duo">
+          <figure>
+            <img src="/img/leadership/seabc-presenting.webp" srcset="/img/leadership/seabc-presenting-640.webp 640w, /img/leadership/seabc-presenting.webp 1070w" sizes="(min-width: 900px) 190px, 46vw" width="1070" height="1336" alt="Presenting SEABC socials timeline at the front of a classroom" loading="lazy" decoding="async" style="object-position:center 12%" />
+            <figcaption>Presenting</figcaption>
+          </figure>
+          <figure>
+            <img src="/img/leadership/seabc-community.webp" srcset="/img/leadership/seabc-community-640.webp 640w, /img/leadership/seabc-community.webp 1072w" sizes="(min-width: 900px) 190px, 46vw" width="1072" height="1408" alt="SEABC members seated in a classroom meeting" loading="lazy" decoding="async" style="object-position:center 30%" />
+            <figcaption>General meeting</figcaption>
+          </figure>
+        </div>
+        <div class="leadcard__body">
+          <p class="leadcard__org">Southeast Asia Business Club</p>
+          <h3 class="leadcard__role">Founder &amp; President</h3>
+          <p class="leadcard__tag">Berkeley <span aria-hidden="true">&middot;</span> built from scratch</p>
+          <ul class="leadcard__bullets">
+            <li>Founded SEABC and built the club from scratch</li>
+            <li>Host weekly General Meetings</li>
+            <li>Make industry and career learning accessible, and remove barriers for people exploring different paths</li>
+            <li>Connect community, including cultural clubs across Berkeley</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ AWARDS ============ -->
+  <section id="awards" class="section" aria-labelledby="awards-title">
+    <header class="head">
+      <p class="head__kicker">On the mantelpiece</p>
+      <h2 id="awards-title" class="title title--big">Awards season</h2>
+      <p class="head__note">honors, schooling &amp; reviews</p>
+    </header>
+    <article class="proud" aria-labelledby="proud-title">
+      <p class="proud__k"><span>Proudest moment</span><span class="proud__mono">top 3 / 25 finalists / 500+ applicants</span></p>
+      <h3 id="proud-title" class="proud__title">Top 3 in the $50K BU Crypto Sustainability Competition</h3>
+      <p>I was especially proud to be named a Top 3 finalist in Boston University&rsquo;s $50K Sustainability Competition, where we were selected as the representative team for UC Berkeley. The prompt focused on crypto-based solutions, which was unexpected, and our team was competing against PhD and MBA students from around the world. Despite this, we advanced to the final round and placed in the top three out of more than 500 applicants and 25 finalist teams. The experience was incredibly intense; we learned and built rapidly within 24 hours, and it was one of the most rewarding learning experiences I&rsquo;ve had.</p>
+    </article>
+    <ul class="awards">
+      <li class="award" data-tint="butter">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Top 3</span><span class="award__n">BU Crypto Sustainability Competition</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">Boston University&rsquo;s $50K competition. Represented UC Berkeley, 500+ applicants.</p>
+      </li>
+      <li class="award" data-tint="rose">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">1st place</span><span class="award__n">EGAL Business Case Competition</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">Out of 50+ UC Berkeley teams.</p>
+      </li>
+      <li class="award" data-tint="sky">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Winner &middot; 2023</span><span class="award__n">Global RISE</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">Top 100 of 14,000.</p>
+      </li>
+      <li class="award" data-tint="mint">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Seed Prize</span><span class="award__n">Iris Project</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">$1,500 for ACE.</p>
+      </li>
+      <li class="award" data-tint="butter">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Youngest finalist</span><span class="award__n">Habitat for Humanity</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">Youth Micro-grant Solutions 2023.</p>
+      </li>
+      <li class="award" data-tint="rose">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Leader</span><span class="award__n">One Young World</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">One Young World Leader.</p>
+      </li>
+    </ul>
+    <div class="pair pair--studio">
+      <aside class="clapper" aria-labelledby="school-title">
+        <div class="clapper__sticks" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="clapper__hinge" aria-hidden="true"></div>
+        <div class="clapper__slate">
+          <p class="clapper__prod">PROD. SHEINA&rsquo;S PICTURE HOUSE</p>
+          <h3 id="school-title" class="clapper__title">Schooling</h3>
+          <dl class="clapper__fields">
+            <div><dt>Scene</dt><dd>01</dd><dt>Take</dt><dd>Haas</dd></div>
+            <div class="clapper__row"><dt>Roll</dt><dd>B.S. Business Administration</dd><dt>Date</dt><dd>2024&ndash;2028</dd></div>
+            <div><dt>Scene</dt><dd>02</dd><dt>Take</dt><dd>CDSS</dd></div>
+            <div class="clapper__row"><dt>Roll</dt><dd>B.A. Data Science</dd><dt>Date</dt><dd>2024&ndash;2028</dd></div>
+          </dl>
+          <p class="clapper__dir">DIR. UC Berkeley &middot; class of 2028</p>
+        </div>
+      </aside>
+
+      <aside class="rt" aria-labelledby="reviews-title">
+        <div class="rt__top">
+          <h3 id="reviews-title" class="rt__title">Reviews</h3>
+          <p class="rt__score" title="Certified Fresh (press coverage)"><span class="rt__tom" aria-hidden="true"></span><span class="rt__pct">100%</span><span class="rt__count">8 notices</span></p>
+        </div>
+        <p class="rt__lead">Critics Consensus</p>
+        <p class="rt__consensus">A founder who builds in public, from ACE bricks to campus AI launches, with press that keeps showing up.</p>
+        <ul class="rt__list">
+          <li class="rt__item">
+            <span class="rt__icon rt__icon--fresh" aria-hidden="true"></span>
+            <blockquote><p>&ldquo;Eco-friendly bricks to cut carbon emissions.&rdquo;</p><cite><a href="https://www.cnnindonesia.com/ekonomi/20231015121439-625-1011485/siswi-jis-buat-batu-bata-ramah-lingkungan-kurangi-emisi-karbon">CNN Indonesia</a></cite></blockquote>
+          </li>
+          <li class="rt__item">
+            <span class="rt__icon rt__icon--fresh" aria-hidden="true"></span>
+            <blockquote><p>&ldquo;Innovates eco-friendly bricks to combat air pollution.&rdquo;</p><cite><a href="https://gutzy.asia/2023/10/12/indonesian-high-school-student-innovates-eco-friendly-bricks-to-combat-air-pollution/">Gutzy Asia</a></cite></blockquote>
+          </li>
+          <li class="rt__item">
+            <span class="rt__icon rt__icon--fresh" aria-hidden="true"></span>
+            <blockquote><p>&ldquo;Saving the earth, one meal at a time.&rdquo;</p><cite><a href="https://indonesiaexpat.id/education/saving-the-earth-one-meal-at-a-time-with-jakarta-intercultural-schools-yum-farm-project/">Indonesia Expat</a></cite></blockquote>
+          </li>
+          <li class="rt__item rt__item--tag">
+            <span class="rt__icon rt__icon--fresh" aria-hidden="true"></span>
+            <p>Also in <b>Kompas</b> &amp; <b>Detik.com</b></p>
+          </li>
+        </ul>
+        <p class="rt__lead">She also wrote for</p>
+        <ul class="rt__bys">
+          <li><a href="https://www.forbes.com/sites/monicasanders/2025/04/03/global-development-after-usaid-closure-whats-next/"><span class="rt__icon rt__icon--fresh" aria-hidden="true"></span>Forbes</a></li>
+          <li><a href="https://earth.org/international-aid-is-not-the-most-effective-way-to-address-food-security/"><span class="rt__icon rt__icon--fresh" aria-hidden="true"></span>Earth.org</a></li>
+          <li><a href="https://thelensjournal.com/wp-content/uploads/2023/09/The-Lens-Sheina-Pribadi.pdf"><span class="rt__icon rt__icon--fresh" aria-hidden="true"></span>The Lens</a></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="casting" class="section" aria-labelledby="cast-title">
+    <header class="head">
+      <p class="head__kicker">Actor file</p>
+      <h2 id="cast-title" class="title title--big">Casting sheet</h2>
+      <p class="head__note">photo clipped to the file, Clarity&nbsp;4D notes attached</p>
+    </header>
+    <div class="actor">
+      <div class="actor__dossier">
+        <figure class="actor__photo">
+          <span class="clip" aria-hidden="true"></span>
+          <span class="tape" aria-hidden="true"></span>
+          <img src="/img/sheina-480.webp" srcset="/img/sheina-480.webp 480w, /img/sheina-800.webp 800w, /img/sheina-1200.webp 1200w" sizes="(min-width: 900px) 260px, 55vw" width="480" height="600" alt="Sheina smiling in a black blazer over a white collared shirt" loading="lazy" decoding="async" />
+        </figure>
+        <article class="actor__sheet" aria-labelledby="cast-arch-k">
+          <p class="cast__stamp" aria-hidden="true">Cast!</p>
+          <p class="actor__hello">Sheina Pribadi <span>she / her</span></p>
+          <p class="actor__from">Jakarta &rarr; Berkeley &middot; Data Science + Haas, class of 2028</p>
+          <p id="cast-arch-k" class="cast__k">archetype</p>
+          <blockquote class="cast__arch"><p>&ldquo;A trusted and tactful trouble-shooter.&rdquo;</p></blockquote>
+          <p class="cast__desc">Warm, value-driven, and at her best on work that meets a deep ideal.</p>
+          <ul class="actor__chips" aria-label="Languages and skills">
+            <li class="chip--lang">English <small>native</small></li>
+            <li class="chip--lang">Indonesian <small>native</small></li>
+            <li class="chip--lang">Mandarin <small>basic</small></li>
+            <li>Python</li>
+            <li>R</li>
+            <li>SQL</li>
+            <li>Excel</li>
+            <li>Data Analysis</li>
+            <li>AI / ML</li>
+            <li>Product Management</li>
+            <li>Business Strategy</li>
+            <li>Financial Modeling</li>
+            <li>Consumer Research</li>
+            <li>Stakeholder Engagement</li>
+          </ul>
+          <p class="cast__src">Clarity&nbsp;4D casting notes</p>
+        </article>
+      </div>
+      <div class="cast__test actor__test" role="group" aria-labelledby="cast-test-title">
+        <p class="specs__bar" aria-hidden="true"><i></i><i></i><i></i><span>screen_test.log</span></p>
+        <h3 id="cast-test-title" class="cast__title">Screen test</h3>
+        <div class="cast__viz">
+          <svg class="radar" viewBox="-30 -14 260 228" role="img" aria-label="Radar chart: Introverted feeling 96%, Extroverted thinking 61%, Extroverted feeling 54%, Introverted thinking 50%">
+            <g class="radar__grid"><polygon points="100,80 120,100 100,120 80,100"/><polygon points="100,60 140,100 100,140 60,100"/><polygon points="100,40 160,100 100,160 40,100"/><polygon points="100,20 180,100 100,180 20,100"/><line x1="100" y1="20" x2="100" y2="180"/><line x1="20" y1="100" x2="180" y2="100"/></g>
+            <g class="radar__shape"><polygon class="radar__poly" points="100.0,23.2 148.8,100.0 100.0,143.2 60.0,100.0"/><circle class="radar__dot" data-k="if" cx="100.0" cy="23.2" r="4"/><circle class="radar__dot" data-k="et" cx="148.8" cy="100.0" r="4"/><circle class="radar__dot" data-k="ef" cx="100.0" cy="143.2" r="4"/><circle class="radar__dot" data-k="it" cx="60.0" cy="100.0" r="4"/></g>
+            <g class="radar__lbl"><text x="100" y="8" text-anchor="middle">I-feeling</text><text x="186" y="104">E-thinking</text><text x="100" y="200" text-anchor="middle">E-feeling</text><text x="14" y="104" text-anchor="end">I-thinking</text></g>
+          </svg>
+          <div class="cast__read" aria-live="polite">
+            <p class="cast__readk">now reading</p>
+            <p class="cast__readn">Introverted feeling</p>
+            <p class="cast__readv"><span>96</span>%</p>
+            <p class="cast__readd">Empathetic, modest, supportive and value-driven</p>
+          </div>
+        </div>
+        <ul class="traits">
+          <li><button class="trait" type="button" data-k="if" data-t="rose" aria-pressed="true" style="--v:0.96"><span class="trait__name">Introverted feeling</span><span class="trait__pct"><span class="tcount" data-to="96">96</span>%</span><span class="trait__bar" aria-hidden="true"><i></i></span><span class="trait__tags">empathetic &middot; modest &middot; supportive &middot; value-driven</span></button></li>
+          <li><button class="trait" type="button" data-k="et" data-t="butter" aria-pressed="false" style="--v:0.61"><span class="trait__name">Extroverted thinking</span><span class="trait__pct"><span class="tcount" data-to="61">61</span>%</span><span class="trait__bar" aria-hidden="true"><i></i></span><span class="trait__tags">decisive &middot; proactive &middot; forthright &middot; objective</span></button></li>
+          <li><button class="trait" type="button" data-k="ef" data-t="sky" aria-pressed="false" style="--v:0.54"><span class="trait__name">Extroverted feeling</span><span class="trait__pct"><span class="tcount" data-to="54">54</span>%</span><span class="trait__bar" aria-hidden="true"><i></i></span><span class="trait__tags">expressive &middot; enthusiastic &middot; engaging &middot; outgoing</span></button></li>
+          <li><button class="trait" type="button" data-k="it" data-t="mint" aria-pressed="false" style="--v:0.5"><span class="trait__name">Introverted thinking</span><span class="trait__pct"><span class="tcount" data-to="50">50</span>%</span><span class="trait__bar" aria-hidden="true"><i></i></span><span class="trait__tags">introspective &middot; factual &middot; meticulous &middot; analytical</span></button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONCESSION STAND ============ -->
+  <section id="concessions" class="section" aria-labelledby="stand-title">
+    <div class="stand">
+      <div class="stand__awning" aria-hidden="true"></div>
+      <div class="stand__board">
+        <h2 id="stand-title" class="stand__title">Concession stand</h2>
+        <p class="stand__lede">I&rsquo;m always happy to talk about AI, product, air quality, or what you&rsquo;re building.</p>
+        <ul class="menu">
+          <li>
+            <span class="menu__item">A friendly email</span><span class="menu__dots" aria-hidden="true"></span><span class="menu__price">free</span>
+            <span class="menu__detail"><a href="mailto:pribadisheina@gmail.com">pribadisheina@gmail.com</a> <button class="copy" type="button" data-copy="pribadisheina@gmail.com">copy</button></span>
+          </li>
+          <li>
+            <span class="menu__item">A peek at the code</span><span class="menu__dots" aria-hidden="true"></span><span class="menu__price">free</span>
+            <span class="menu__detail"><a href="https://github.com/sheinapribadi-star">github.com/sheinapribadi-star</a></span>
+          </li>
+          <li>
+            <span class="menu__item">LinkedIn</span><span class="menu__dots" aria-hidden="true"></span><span class="menu__price">free</span>
+            <span class="menu__detail"><a href="https://www.linkedin.com/in/sheinapribadi">linkedin.com/in/sheinapribadi</a></span>
+          </li>
+          <li>
+            <span class="menu__item">Popcorn</span><span class="menu__dots" aria-hidden="true"></span><span class="menu__price">on the house</span>
+            <span class="menu__detail"><a href="#snack-bar" class="menu__refill">back to the snack bar</a></span>
+          </li>
+        </ul>
+        <p class="copy__status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="credits">
+  <p class="credits__title">The end</p>
+  <dl class="roll">
+    <div><dt>Written, built &amp; directed by</dt><dd>Sheina Pribadi</dd></div>
+    <div><dt>Shot on location in</dt><dd>Berkeley, CA</dd></div>
+    <div><dt>Cookies set in the making of this site</dt><dd>None</dd></div>
+  </dl>
+  <p class="credits__fin">&copy; 2026 Sheina Pribadi &middot; <a href="#top">back to the opening credits &uarr;</a></p>
+</footer>
+</div>
+</body>
+</html>
