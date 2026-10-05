@@ -1,7 +1,7 @@
 // Usage: npm run build && npm run preview & node scripts/screenshots.mjs [baseUrl]
 import { chromium } from 'playwright-core';
 const BASE = process.argv[2] || 'http://localhost:4174/';
-const OUT = new URL('../screenshots/', import.meta.url).pathname;
+const OUT = process.env.OUT || new URL('../screenshots/', import.meta.url).pathname;
 const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || '/usr/bin/google-chrome', args: ['--no-sandbox'] });
 const errors = [], origins = new Set();
 let cookieCount = 0;
@@ -11,6 +11,7 @@ async function open(viewport, { mobile = false, dsf = 2, query = '', scheme = 'l
   p.on('pageerror', (e) => errors.push(e.message));
   p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   p.on('requestfailed', (r) => errors.push('failed ' + r.url()));
+  p.on('response', (r) => r.status() >= 400 && errors.push(`${r.status()} ${r.url()}`));
   p.on('request', (r) => origins.add(new URL(r.url()).origin));
   await p.goto(BASE + query, { waitUntil: 'networkidle' });
   await p.evaluate(() => document.fonts.ready);
@@ -68,6 +69,10 @@ await p.locator('#filmography').screenshot({ path: OUT + 'desktop-experience.png
 await p.locator('#awards').screenshot({ path: OUT + 'desktop-awards.png' });
 await p.locator('#behind').screenshot({ path: OUT + 'desktop-about.png' });
 await p.locator('.specs').screenshot({ path: OUT + 'desktop-tech-specs.png' });
+await p.locator('#casting').scrollIntoViewIfNeeded(); await p.waitForTimeout(2200);
+await p.locator('#casting').screenshot({ path: OUT + 'desktop-casting-sheet.png' });
+await p.locator('.trait').nth(1).click(); await p.waitForTimeout(900);
+await p.locator('.cast__test').screenshot({ path: OUT + 'desktop-casting-trait-picked.png' });
 await p.locator('.proud').screenshot({ path: OUT + 'desktop-proudest-moment.png' });
 await p.locator('#concessions').screenshot({ path: OUT + 'desktop-contact.png' });
 await p.locator('.credits').screenshot({ path: OUT + 'desktop-credits.png' });
@@ -78,6 +83,7 @@ await p.locator('#now-showing').screenshot({ path: OUT + 'dark-projects.png' });
 await p.locator('#concessions').screenshot({ path: OUT + 'dark-contact.png' });
 await p.locator('#box-office').screenshot({ path: OUT + 'dark-box-office.png' });
 await p.locator('#filmography').screenshot({ path: OUT + 'dark-experience.png' });
+await p.locator('#casting').screenshot({ path: OUT + 'dark-casting-sheet.png' });
 cookieCount += (await p.ctx.cookies()).length;
 
 // full pages at 1x (Chrome can't paint captures taller than ~16k device px); static fallback layout
@@ -109,6 +115,10 @@ await tapAll(p);
 await p.screenshot({ path: OUT + 'mobile-slushy-filled.png' });
 await p.evaluate(() => scrollTo(0, document.querySelector('#lobby').offsetTop - 60)); await p.waitForTimeout(600);
 await p.screenshot({ path: OUT + 'mobile-lobby.png' });
+await p.evaluate(() => scrollTo(0, document.querySelector('#casting').offsetTop)); await p.waitForTimeout(2200);
+await p.screenshot({ path: OUT + 'mobile-casting-sheet.png' });
+await p.evaluate(() => scrollTo(0, document.querySelector('.cast__test').getBoundingClientRect().top + scrollY - 60)); await p.waitForTimeout(500);
+await p.screenshot({ path: OUT + 'mobile-casting-test.png' });
 cookieCount += (await p.ctx.cookies()).length;
 
 console.log(errors.length ? 'ERRORS:\n' + errors.join('\n') : 'no console errors');
