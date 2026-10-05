@@ -1158,102 +1158,153 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
 
 
 .wall__track.strip__track {
-  padding-top: 12px; padding-bottom: 18px;
-  gap: 1.35rem;
-}
-#repertory .poster {
-  flex: 0 0 250px; height: 390px;
-}
-#repertory .poster__card {
-  box-shadow:
-    0 1px 0 rgba(255,245,228,.25),
-    8px 14px 0 rgba(0,0,0,.35),
-    0 18px 28px rgba(0,0,0,.35);
-}
-#repertory .poster__face {
-  border-radius: 4px 4px 6px 6px;
-  border-width: 3px;
-}
-#repertory .poster__front {
-  /* coming-soon stamp vibe */
-  background-image:
-    linear-gradient(180deg, rgba(255,255,255,.18), transparent 28%);
-}
-
-
-
-#repertory .poster__hint {
-  background: #FFF5E4;
+  padding-top: 14px; padding-bottom: 20px;
+  gap: 1.45rem;
 }
 .wall__controls.strip__controls {
   top: -72px;
 }
-@media (max-width: 720px) {
-  #repertory .poster { flex: 0 0 220px; height: 350px; }
-  
-}
 
-/* poster wall: real movie-poster vibe, no stamps/numbers/marquee */
+/* poster wall: dramatic movie-poster key art (stills + symbols), tight bill */
 #repertory .poster {
-  flex: 0 0 236px; height: 420px;
+  flex: 0 0 232px; height: 418px;
 }
 #repertory .poster__face {
-  border-radius: 2px;
+  border-radius: 3px;
   border-width: 2px;
-  padding: .9rem .9rem 1rem;
+  padding: 0;
+  overflow: hidden;
 }
 #repertory .poster__front {
-  background-image:
-    linear-gradient(180deg, rgba(255,255,255,.22) 0%, transparent 32%),
-    linear-gradient(0deg, rgba(59,38,38,.22) 0%, transparent 38%);
+  background: #1a1112;
+  color: #FFF5E4;
   justify-content: flex-start;
   gap: 0;
+  background-image: none;
+}
+#repertory .poster__art {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--tint) 55%, #1a1112);
+}
+#repertory .poster__still {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.08);
+  transform: scale(1.04);
+  transition: transform .55s ease;
+}
+#repertory .poster:hover .poster__still { transform: scale(1.1); }
+#repertory .poster__glow {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(26,17,18,.15) 0%, transparent 28%),
+    linear-gradient(0deg, rgba(26,17,18,.92) 0%, rgba(26,17,18,.35) 38%, transparent 62%),
+    radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(26,17,18,.45) 100%),
+    linear-gradient(135deg, color-mix(in srgb, var(--tint) 35%, transparent), transparent 55%);
+  pointer-events: none;
+}
+#repertory .poster__symbol {
+  position: absolute;
+  left: 50%; bottom: 10%;
+  transform: translateX(-50%);
+  width: 68px; height: 68px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--tint) 88%, #fff);
+  border: 2.5px solid #FFF5E4;
+  box-shadow:
+    0 0 0 3px rgba(26,17,18,.55),
+    0 8px 18px rgba(0,0,0,.4);
+  color: #3B2626;
+  z-index: 2;
+}
+#repertory .poster__doodle {
+  width: 44px; height: 44px;
+  margin: 0;
+  stroke-width: 2.6;
+  fill: rgba(255,255,255,.35);
+  filter: none;
+}
+#repertory .poster__bill {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 2.35rem .7rem .05rem; /* clear overlapping symbol badge */
+  text-align: center;
+  background: linear-gradient(180deg, transparent, #1a1112 28%);
+  margin-top: -2.85rem;
+  display: flex; flex-direction: column; align-items: center; gap: .2rem;
 }
 #repertory .poster__year {
-  display: inline-block; margin: 0 auto;
-  font: 800 .78rem/1 var(--mono); letter-spacing: .18em; text-transform: uppercase;
-  color: inherit; opacity: .85;
-}
-/* title + doodle sit as one tight block; meta/flip stay at the foot */
-#repertory .poster__doodle {
-  width: 108px; height: 108px;
-  margin: 1.35rem auto .65rem;
-  flex: 0 0 auto;
-  filter: drop-shadow(0 2px 0 rgba(59,38,38,.12));
+  display: block; margin: 0;
+  order: 0;
+  font: 800 .66rem/1 var(--mono); letter-spacing: .22em; text-transform: uppercase;
+  color: var(--tint); opacity: 1;
+  text-shadow: 0 1px 0 rgba(0,0,0,.5);
 }
 #repertory .poster__title {
-  font-size: 2.05rem; line-height: 1.02;
+  font-size: 1.95rem; line-height: .95;
   margin: 0; padding: 0 .1rem;
+  color: #FFF5E4;
   text-wrap: balance;
+  text-shadow: 0 2px 0 rgba(0,0,0,.5);
+  letter-spacing: -.01em;
 }
 #repertory .poster__title--long {
-  font-size: 1.48rem; line-height: 1.05;
-  max-width: 12ch;
+  font-size: 1.32rem; line-height: 1.02;
+  max-width: 13.5ch; margin-inline: auto;
+}
+#repertory .poster__subtitle {
+  display: block;
+  font: 700 .6rem/1.2 var(--sans);
+  letter-spacing: .06em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--tint) 80%, #fff);
+  margin-top: .15rem;
 }
 #repertory .poster__meta {
-  margin-top: auto; /* only the foot rides the leftover height */
-  padding-top: .85rem;
-  font-size: .72rem; letter-spacing: .04em; line-height: 1.35;
-  text-transform: uppercase; font-weight: 800; opacity: .9;
+  margin: 0;
+  padding: 0 .15rem;
+  font-size: .62rem; letter-spacing: .05em; line-height: 1.25;
+  text-transform: uppercase; font-weight: 800;
+  color: rgba(255,245,228,.76);
 }
 #repertory .poster__flip {
-  margin-top: .55rem;
+  margin: .35rem auto .55rem;
+  position: relative;
+  z-index: 3;
 }
 #repertory .poster__hint {
   margin-top: 0;
+  background: #FFF5E4;
+  color: #3B2626;
+  border-color: #3B2626;
+  font-size: 1.05rem;
 }
 #repertory .poster__card {
   box-shadow:
-    0 0 0 1px rgba(255,245,228,.12),
-    0 10px 0 rgba(0,0,0,.2),
-    12px 18px 28px rgba(0,0,0,.4);
+    0 0 0 1px rgba(255,245,228,.14),
+    0 12px 0 rgba(0,0,0,.28),
+    14px 22px 36px rgba(0,0,0,.45);
+}
+#repertory .poster__back {
+  padding: 1rem .95rem 1.05rem;
+  background: #FFF8EE;
+  color: var(--ink);
 }
 #repertory .poster__back .poster__top {
   font-size: .72rem; letter-spacing: .1em;
 }
 @media (max-width: 720px) {
-  #repertory .poster { flex: 0 0 200px; height: 360px; }
-  #repertory .poster__doodle { width: 92px; height: 92px; margin-top: 1.1rem; }
-  #repertory .poster__title { font-size: 1.7rem; }
-  #repertory .poster__title--long { font-size: 1.28rem; }
+  #repertory .poster { flex: 0 0 196px; height: 370px; }
+  #repertory .poster__symbol { width: 58px; height: 58px; }
+  #repertory .poster__doodle { width: 36px; height: 36px; }
+  #repertory .poster__bill { margin-top: -2.6rem; padding-top: 1.35rem; }
+  #repertory .poster__title { font-size: 1.55rem; }
+  #repertory .poster__title--long { font-size: 1.15rem; }
 }
+
