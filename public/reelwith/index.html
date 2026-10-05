@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ReelWith · Movies with the people you’re with</title>
+    <meta name="description" content="Rate movies like Beli. Snap BeReal-style watch moments with who you’re with. A warmer Letterboxd alternative." />
+    <meta name="theme-color" content="#0E0E14" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2314141c'/><circle cx='50' cy='50' r='28' fill='%23e8a23a'/><circle cx='50' cy='50' r='12' fill='%2314141c'/></svg>" />
+    <script type="module" crossorigin src="/reelwith/assets/index-DNYHjpJl.js"></script>
+    <link rel="stylesheet" crossorigin href="/reelwith/assets/index-BKGSNWnO.css">
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="app">
+      <section id="onboard" class="onboard" hidden>
+        <div class="ob-card">
+          <div class="ob-progress" id="ob-progress"></div>
+          <div id="ob-slides"></div>
+          <div class="ob-nav">
+            <button type="button" class="btn ghost" id="ob-skip">Skip</button>
+            <button type="button" class="btn primary" id="ob-next">Continue</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="shell" hidden>
+        <header class="top">
+          <div class="brand">
+            <div class="mark" aria-hidden="true"></div>
+            <div>
+              <div class="name">ReelWith</div>
+              <div class="tag">movies · people · moments</div>
+            </div>
+          </div>
+          <button class="btn ghost sm" id="prompt-moment" type="button">Drop moment</button>
+        </header>
+
+        <nav class="tabs" role="tablist">
+          <button class="tab on" data-view="feed" type="button">Feed</button>
+          <button class="tab" data-view="log" type="button">Rate</button>
+          <button class="tab" data-view="moment" type="button">Moment</button>
+          <button class="tab" data-view="diary" type="button">Diary</button>
+        </nav>
+
+        <main>
+          <section id="view-feed" class="view on">
+            <div class="hero card">
+              <div>
+                <div class="eyebrow">Not another cold ranking site</div>
+                <h1>Watch it.<br /><em>With them.</em></h1>
+                <p>Beli energy for movies: soft ratings that become your score, plus BeReal-style snaps of the couch, the theater, and who shared it.</p>
+                <div class="hero-actions">
+                  <button class="btn primary" data-go="moment" type="button">Watch moment</button>
+                  <button class="btn ghost" data-go="log" type="button">Rate a film</button>
+                </div>
+              </div>
+              <div class="poster-stack" id="poster-stack" aria-hidden="true"></div>
+            </div>
+
+            <div class="toolbar">
+              <div>
+                <div class="eyebrow">Tonight&rsquo;s reel</div>
+                <h2>Watch moments</h2>
+              </div>
+              <button class="btn ghost sm" id="seed-feed" type="button">Load sample friends</button>
+            </div>
+            <div class="feed" id="moment-feed"></div>
+          </section>
+
+          <section id="view-log" class="view" hidden>
+            <div class="toolbar">
+              <div>
+                <div class="eyebrow">Your taste map</div>
+                <h2>How was it?</h2>
+              </div>
+            </div>
+            <div class="card log-panel">
+              <label class="search-label">
+                <span>Find a title</span>
+                <input id="movie-search" type="search" placeholder="Search the catalog…" autocomplete="off" />
+              </label>
+              <div class="search-results" id="search-results"></div>
+              <form id="log-form" class="log-form" hidden>
+                <div class="picked" id="picked"></div>
+                <div>
+                  <div class="eyebrow" style="margin-bottom:8px">Your vibe (Beli-style)</div>
+                  <div class="vibe-row" id="vibe-row" role="radiogroup" aria-label="How was it">
+                    <button type="button" class="vibe" data-vibe="loved">Loved it</button>
+                    <button type="button" class="vibe" data-vibe="fine">It was fine</button>
+                    <button type="button" class="vibe" data-vibe="nah">Didn&rsquo;t like</button>
+                  </div>
+                  <div class="score-reveal" id="score-reveal" hidden></div>
+                </div>
+                <label>One-liner
+                  <input name="review" maxlength="140" placeholder="short, honest, a little spicy…" />
+                </label>
+                <label>Watched with
+                  <input name="with" placeholder="solo / Maya + Jordan / film club" />
+                </label>
+                <label class="check"><input type="checkbox" name="rewatch" /> Rewatch</label>
+                <button class="btn primary block" type="submit">Save to diary</button>
+              </form>
+            </div>
+            <div class="card want-card" id="want-card">
+              <div class="toolbar" style="margin:0 0 10px">
+                <div>
+                  <div class="eyebrow">Queue</div>
+                  <h3 style="margin:0;font-family:var(--display)">Want to watch</h3>
+                </div>
+              </div>
+              <div id="want-list"></div>
+            </div>
+          </section>
+
+          <section id="view-moment" class="view" hidden>
+            <div class="toolbar">
+              <div>
+                <div class="eyebrow">BeReal, but for screens</div>
+                <h2>Capture a watch moment</h2>
+              </div>
+            </div>
+            <div class="moment-grid">
+              <div class="card camera-card">
+                <div class="viewfinder" id="viewfinder">
+                  <video id="cam" playsinline muted hidden></video>
+                  <img id="snap-preview" alt="" hidden />
+                  <div class="pip" id="pip" hidden>with ♥</div>
+                  <div class="vf-placeholder" id="vf-ph">
+                    <div class="pulse"></div>
+                    <p>Snap the room or screen. Tag who&rsquo;s with you — authenticity over filters.</p>
+                  </div>
+                </div>
+                <div class="cam-actions">
+                  <button class="btn primary" id="start-cam" type="button">Open camera</button>
+                  <button class="btn ghost" id="take-snap" type="button" disabled>Snap</button>
+                  <label class="btn ghost file-btn">
+                    <input type="file" id="upload-snap" accept="image/*" capture="user" hidden />
+                    Upload
+                  </label>
+                </div>
+              </div>
+              <form class="card moment-form" id="moment-form">
+                <label>What are you watching?
+                  <input id="moment-movie" list="movie-list" placeholder="Start typing a title…" required />
+                  <datalist id="movie-list"></datalist>
+                </label>
+                <label>Who&rsquo;s with you?
+                  <input name="crew" placeholder="names, or ‘solo night’" required />
+                </label>
+                <label>Caption
+                  <input name="caption" maxlength="100" placeholder="intermission snacks hit different" />
+                </label>
+                <label>Vibe
+                  <select name="vibe">
+                    <option>cozy couch</option>
+                    <option>theater</option>
+                    <option>plane / train</option>
+                    <option>laptop in bed</option>
+                    <option>party background</option>
+                  </select>
+                </label>
+                <button class="btn primary block" type="submit">Post moment</button>
+                <p class="fine">Photos stay in your browser — nothing uploads to a server in this demo.</p>
+              </form>
+            </div>
+          </section>
+
+          <section id="view-diary" class="view" hidden>
+            <div class="toolbar">
+              <div>
+                <div class="eyebrow">Your shelf</div>
+                <h2>Diary &amp; ratings</h2>
+              </div>
+              <div class="stats" id="diary-stats"></div>
+            </div>
+            <div class="diary" id="diary-list"></div>
+          </section>
+        </main>
+
+        <footer class="foot">
+          <span>Built by <a href="https://github.com/sheinapribadi-star">Sheina Pribadi</a></span>
+          <span>ReelWith · a warmer way to log film</span>
+        </footer>
+      </div>
+    </div>
+    <div id="toast" class="toast" hidden role="status"></div>
+  </body>
+</html>

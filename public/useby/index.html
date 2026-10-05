@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>UseBy · Cook what expires first</title>
+    <meta name="description" content="Snap your fridge. UseBy estimates use-by dates and ranks recipes so the soonest-to-spoil food gets cooked first — a calmer way to waste less and learn to cook." />
+    <meta name="theme-color" content="#2F5D4A" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232f5d4a'/><text y='68' x='50' text-anchor='middle' font-size='42' fill='%23f4efe6'>U</text></svg>" />
+    <script type="module" crossorigin src="/useby/assets/index-CmtWTlDm.js"></script>
+    <link rel="stylesheet" crossorigin href="/useby/assets/index-C3NqRkjm.css">
+  </head>
+  <body>
+    <div id="app" class="app">
+      <!-- Onboarding -->
+      <section id="onboard" class="onboard" hidden>
+        <div class="ob-card">
+          <div class="ob-progress" id="ob-progress"></div>
+          <div id="ob-slides"></div>
+          <div class="ob-nav">
+            <button type="button" class="btn ghost" id="ob-skip">Skip</button>
+            <button type="button" class="btn primary" id="ob-next">Continue</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="shell" hidden>
+        <header class="top">
+          <div class="brand">
+            <span class="logo" aria-hidden="true">🥬</span>
+            <div>
+              <div class="name">UseBy</div>
+              <div class="tag" id="streak-tag">cook what expires first</div>
+            </div>
+          </div>
+          <div class="top-stats" id="top-stats" hidden></div>
+        </header>
+
+        <nav class="tabs" role="tablist" aria-label="Main">
+          <button class="tab on" data-view="fridge" type="button"><span>Fridge</span></button>
+          <button class="tab" data-view="cook" type="button"><span>Cook</span><em id="cook-badge" hidden></em></button>
+          <button class="tab" data-view="learn" type="button"><span>Learn</span></button>
+        </nav>
+
+        <main>
+          <section id="view-fridge" class="view on" aria-label="Fridge">
+            <div class="hero card" id="fridge-hero">
+              <div class="hero-copy">
+                <div class="eyebrow">Your kitchen radar</div>
+                <h1>Snap the fridge.<br /><em>Eat before it fades.</em></h1>
+                <p>We estimate use-by dates from typical shelf life, then push recipes that burn down what&rsquo;s closest to gone.</p>
+                <div class="hero-actions">
+                  <label class="btn primary file-btn">
+                    <input type="file" id="fridge-photo" accept="image/*" capture="environment" hidden />
+                    📷 Scan fridge photo
+                  </label>
+                  <button class="btn ghost" id="demo-scan" type="button">Try sample fridge</button>
+                </div>
+                <p class="fine" id="vision-note">Demo vision is mocked on-device. Architecture is ready for a real vision model.</p>
+              </div>
+              <div class="hero-visual" id="photo-preview">
+                <div class="fridge-door" aria-hidden="true">
+                  <div class="handle"></div>
+                  <div class="shelf"><span>🥛</span><span>🥚</span><span>🧈</span></div>
+                  <div class="shelf"><span>🥬</span><span>🥕</span><span>🫑</span></div>
+                  <div class="shelf"><span>🧀</span><span>🍓</span><span>🍋</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="toolbar">
+              <div>
+                <div class="eyebrow">Inventory</div>
+                <h2>What&rsquo;s in the fridge</h2>
+              </div>
+              <div class="toolbar-actions">
+                <button class="btn ghost sm" id="add-item" type="button">+ Add</button>
+                <button class="btn ghost sm" id="sort-toggle" type="button">Sort: urgency</button>
+                <button class="btn ghost sm" id="clear-fridge" type="button">Clear</button>
+              </div>
+            </div>
+
+            <div class="urgency-bar" id="urgency-bar" hidden></div>
+            <div class="grid items" id="item-grid"></div>
+          </section>
+
+          <section id="view-cook" class="view" hidden aria-label="Cook">
+            <div class="toolbar">
+              <div>
+                <div class="eyebrow">Tonight&rsquo;s plan</div>
+                <h2>Recipes ranked by urgency</h2>
+              </div>
+              <div class="filters">
+                <label class="filter">Max time
+                  <select id="max-time">
+                    <option value="999">Any</option>
+                    <option value="15">≤ 15 min</option>
+                    <option value="25">≤ 25 min</option>
+                    <option value="35" selected>≤ 35 min</option>
+                    <option value="60">≤ 60 min</option>
+                  </select>
+                </label>
+                <label class="check-inline"><input type="checkbox" id="beginner-only" /> Beginner</label>
+              </div>
+            </div>
+            <p class="lede-sm" id="cook-lede"></p>
+            <div class="grid recipes" id="recipe-grid"></div>
+          </section>
+
+          <section id="view-learn" class="view" hidden aria-label="Learn">
+            <div class="toolbar">
+              <div>
+                <div class="eyebrow">Kitchen school</div>
+                <h2>Learn while you cook</h2>
+              </div>
+            </div>
+            <div class="grid tips" id="tips-grid"></div>
+            <div class="card method">
+              <div class="eyebrow">How UseBy thinks</div>
+              <h3>Architecture (vision-ready)</h3>
+              <ol class="steps">
+                <li><strong>VisionProvider</strong> — mock today; swap Claude Vision / GPT-4o / custom CV tomorrow.</li>
+                <li><strong>ShelfLife</strong> — category + known-item day heuristics; every date is editable.</li>
+                <li><strong>RecipeEngine</strong> — scores by days-left of matched ingredients (sooner = higher).</li>
+                <li><strong>localStorage</strong> — your fridge stays on this device for the MVP.</li>
+              </ol>
+            </div>
+          </section>
+        </main>
+
+        <footer class="foot">
+          <span>Built by <a href="https://github.com/sheinapribadi-star">Sheina Pribadi</a></span>
+          <span>UseBy · waste less, cook more</span>
+        </footer>
+      </div>
+    </div>
+
+    <dialog id="item-dialog">
+      <form method="dialog" id="item-form" class="dialog-card">
+        <h3 id="dialog-title">Add item</h3>
+        <label>Name <input name="name" required placeholder="e.g. baby spinach" /></label>
+        <label>Category
+          <select name="category">
+            <option value="leafy">Leafy greens</option>
+            <option value="veg">Vegetables</option>
+            <option value="fruit">Fruit</option>
+            <option value="dairy">Dairy</option>
+            <option value="protein">Protein</option>
+            <option value="herb">Herbs</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <label>Use by <input name="expires" type="date" required /></label>
+        <label>Qty / note <input name="note" placeholder="1 bag, half used…" /></label>
+        <div class="dialog-actions">
+          <button type="submit" class="btn primary" value="save">Save</button>
+          <button type="button" class="btn ghost" id="dialog-cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="recipe-dialog">
+      <div class="dialog-card wide" id="recipe-detail"></div>
+    </dialog>
+
+    <dialog id="cook-dialog">
+      <div class="dialog-card cook-sheet" id="cook-sheet"></div>
+    </dialog>
+
+    <div id="toast" class="toast" hidden role="status"></div>
+
+  </body>
+</html>
