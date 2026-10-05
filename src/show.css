@@ -1069,25 +1069,23 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
 .clipboard { display: none; }
 
 
-/* feature tickets: admit-one vs behind-the-scenes = different colors */
-.feature .ticket, .tickets > .ticket {
+/* feature tickets: admit-one + behind-the-scenes = same sky blue */
+.feature .ticket, .tickets > .ticket,
+.feature .ticket--alt, .tickets > .ticket--alt {
   --n: 8px; display: inline-flex; width: auto; height: auto; perspective: none;
-  text-decoration: none; background: var(--cherry); color: #FFF5E4; border-radius: 8px; font-weight: 900; line-height: 1;
+  text-decoration: none; background: var(--sky); color: var(--ink); border-radius: 8px; font-weight: 900; line-height: 1;
   list-style: none; transform: none; border: 2px solid var(--ink);
   -webkit-mask: radial-gradient(circle var(--n) at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle var(--n) at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
           mask: radial-gradient(circle var(--n) at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle var(--n) at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
 }
-.feature .ticket:hover, .tickets > .ticket:hover { transform: translateY(-3px) rotate(-2deg); color: #FFF5E4; }
-.feature .ticket--alt, .tickets > .ticket--alt {
-  background: var(--butter); color: var(--ink);
-}
+.feature .ticket:hover, .tickets > .ticket:hover,
 .feature .ticket--alt:hover, .tickets > .ticket--alt:hover {
-  background: #ffc94a; color: var(--ink);
+  transform: translateY(-3px) rotate(-2deg); background: #a9d4f2; color: var(--ink);
 }
-.feature[data-tint="sky"] .ticket--alt { background: var(--sky); }
-.feature[data-tint="rose"] .ticket--alt { background: var(--mint); }
-.feature[data-tint="sky"] .ticket--alt:hover { background: #a9d4f2; }
-.feature[data-tint="rose"] .ticket--alt:hover { background: #b7dfbe; }
+.feature[data-tint="sky"] .ticket--alt,
+.feature[data-tint="rose"] .ticket--alt { background: var(--sky); }
+.feature[data-tint="sky"] .ticket--alt:hover,
+.feature[data-tint="rose"] .ticket--alt:hover { background: #a9d4f2; }
 
 /* film clapperboard schooling */
 .clapper {
