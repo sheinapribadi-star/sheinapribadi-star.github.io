@@ -1418,6 +1418,15 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
   background: var(--tint);
   transform: rotate(45deg);
 }
+
+.leadcard__stills--stack {
+  grid-template-columns: 1fr;
+  gap: .5rem;
+  padding: .65rem .65rem 0;
+}
+.leadcard__stills--stack .leadcard__still--portrait { aspect-ratio: 4 / 5; max-height: 280px; }
+.leadcard__stills--stack .leadcard__still:not(.leadcard__still--portrait) { aspect-ratio: 16 / 10; }
+.leadcard--flip .leadcard__body { padding-top: .85rem; }
 @media (max-width: 900px) {
   .lead__grid { grid-template-columns: 1fr; }
   .leadcard--wide {
