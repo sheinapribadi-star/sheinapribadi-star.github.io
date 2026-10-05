@@ -143,7 +143,7 @@ if (stats) {
 }
 
 /* ---------- casting sheet: bars fill + radar grows on scroll; tap a trait to read it ---------- */
-const cast = $('.cast');
+const cast = $('.actor') || $('.cast');
 if (cast) {
   const read = { n: $('.cast__readn', cast), v: $('.cast__readv span', cast), d: $('.cast__readd', cast), box: $('.cast__readv', cast) };
   const traits = $$('.trait', cast);

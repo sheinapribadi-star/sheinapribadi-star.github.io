@@ -116,3 +116,10 @@ responsive from 360px up.
 - **Casting sheet** (`#casting`): her Clarity 4D character profile staged as a casting file (archetype "A trusted and tactful trouble-shooter", a "Cast!" stamp) next to a `screen_test.log` terminal with a radar chart and four trait bars (96 / 61 / 54 / 50%) that fill on scroll. Tap a trait to spotlight it in the readout. Real numbers only.
 - Deloitte copy: M&A deals in Indonesia, no USD-size claims. Berkeleytime links to berkeleytime.com wherever it is named, and it has its own Filmography entry (Aug 2026 – now).
 - Perf: scanlines moved under the content (no full-screen overlay); grain layer shrunk and composited.
+
+## v4.3 ship: photos, tickets, laurels, one casting file
+- Theater seats show real project stills from Vizzy (WebP in public/img/projects/). Repertory reel stays logo/monogram.
+- Filmography redesigned as ticket stubs (one punchy line each).
+- Awards → short Laurels cards.
+- Behind the scenes + casting merged into one Casting sheet / actor file.
+- Cut: long experience bullets, proud-moment essay, Readwise card, schooling/reviews pair, duplicate casting block, verbose director note & ticker.

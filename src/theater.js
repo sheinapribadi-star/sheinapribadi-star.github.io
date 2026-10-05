@@ -24,6 +24,7 @@ function readProject(id) {
   if (!back) return null;
   const poster = back.closest('.poster');
   const top = $$('.poster__top span', back).map((s) => s.textContent);
+  const still = poster.dataset.still;
   return {
     kicker: top.join(' · '),
     badge: top[0],
@@ -32,9 +33,10 @@ function readProject(id) {
     desc: $('.poster__desc', back).textContent,
     href: $('.poster__backtitle a', back)?.href,
     doodle: $('.poster__front use', poster).getAttribute('href'),
+    img: still ? { src: still, srcset: poster.dataset.stillSrcset || '' } : null,
     tint: TINTS[poster.dataset.tint] || TINTS.sky,
     links: $$('.poster__links a', back).map((a) => ({ href: a.href, text: a.firstChild.textContent.trim() })),
-    more: '#repertory',
+    more: '#theater',
   };
 }
 
@@ -42,8 +44,9 @@ function render(p, seatNo) {
   const wrap = document.createElement('div');
   wrap.className = 'np';
   const still = p.img
-    ? `<img src="${p.img.src}" srcset="${p.img.srcset || ''}" sizes="(min-width: 760px) 360px, 90vw" alt="" decoding="async">`
+    ? `<img class="np__photo" src="${p.img.src}" srcset="${p.img.srcset || ''}" sizes="(min-width: 760px) 380px, 90vw" alt="" decoding="async">`
     : `<svg class="doodle" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="${p.doodle}"/></svg>`;
+  const moreLabel = p.more === '#theater' ? 'pick another seat' : 'details below';
   const reel = p.title.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 24);
   wrap.innerHTML = `
     <p class="np__term" aria-hidden="true"><span><b>&#9654; playing</b> &middot; seat ${seatNo} &middot; ${reel}.reel</span><span>${(p.kicker.match(/\d{4}(?:[–-]\d{2})?/) || [''])[0]}</span></p>
@@ -53,7 +56,7 @@ function render(p, seatNo) {
       <h3 class="np__title" tabindex="-1"></h3>${p.sub ? '<p class="np__sub"></p>' : ''}
       <p class="np__desc"></p>
       <p class="np__links"></p>
-      <p class="np__more"><a href="${p.more}">more in the quick read below</a></p>
+      <p class="np__more"><a href="${p.more}">${moreLabel}</a></p>
     </div>
     <button class="np__close" type="button" aria-label="Clear the screen">&times;</button>`;
   $('.np__kicker', wrap).textContent = p.kicker;

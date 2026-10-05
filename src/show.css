@@ -590,3 +590,107 @@ html.js .cast:not(.is-in) .cast__stamp { transform: rotate(-8deg) scale(2.2); }
 /* perf: scanlines live under the content (static bg) instead of a full-screen overlay */
 .opening__scan { display: none; }
 .opening__bg::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(rgba(255, 255, 255, .04) 0 1px, transparent 1px 3px); }
+
+/* ---- theater still photos ---- */
+.np__still:has(.np__photo) { background: #1a1212; padding: 0; overflow: hidden; }
+.np__photo { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 140px; max-height: 220px; }
+@media (min-width: 760px) { .np__photo { max-height: 260px; } }
+
+/* ---- ticket stubs (showtimes) ---- */
+.stubs {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem 1.1rem;
+}
+.mticket {
+  position: relative; display: grid; grid-template-columns: 2.6rem 1fr;
+  background: var(--paper); color: var(--ink); border: 2px solid var(--ink);
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--cherry) 35%, transparent);
+  transform: rotate(calc((var(--r, 0) - 1.5) * .4deg));
+}
+.mticket:nth-child(odd) { --r: 0; } .mticket:nth-child(3n) { --r: 3; } .mticket:nth-child(4n) { --r: 1; }
+.mticket--live { box-shadow: 4px 4px 0 var(--butter); }
+.mticket__admit {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  margin: 0; padding: .55rem .15rem; text-align: center;
+  font: 700 .68rem/1 var(--mono); letter-spacing: .16em; text-transform: uppercase;
+  background: var(--cherry); color: var(--cherry-ink);
+  border-right: 2px dashed color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.mticket__perf {
+  position: absolute; left: 2.45rem; top: -6px; bottom: -6px; width: 12px;
+  background: radial-gradient(circle at center, var(--cream) 3px, transparent 3.5px) 0 0 / 12px 12px;
+  pointer-events: none;
+}
+.mticket__body { padding: .75rem .9rem .8rem .7rem; min-width: 0; }
+.mticket__when { margin: 0 0 .25rem; font: 600 .72rem/1 var(--mono); letter-spacing: .04em; color: var(--muted); text-transform: uppercase; }
+.mticket__who { margin: 0 0 .15rem; font: 400 1.25rem/1.1 var(--display); }
+.mticket__who a { color: inherit; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .12em; }
+.mticket__role { margin: 0 0 .45rem; font: 700 .82rem/1.25 var(--body); color: var(--cherry); }
+.mticket__line { margin: 0; font-size: .92rem; line-height: 1.35; }
+
+/* ---- laurels (awards) ---- */
+.laurels {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .9rem;
+}
+.laurel {
+  position: relative; text-align: center;
+  background: #2A1C1D; color: #FBEFE0; border: 2px solid var(--ink);
+  border-radius: 16px; padding: 1.1rem .9rem 1rem;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.laurel[data-tint="butter"] { box-shadow: 5px 5px 0 var(--butter); }
+.laurel[data-tint="rose"] { box-shadow: 5px 5px 0 var(--rose); }
+.laurel[data-tint="sky"] { box-shadow: 5px 5px 0 var(--sky); }
+.laurel[data-tint="mint"] { box-shadow: 5px 5px 0 var(--mint); }
+:root[data-lights="down"] .laurel { background: #140E0F; }
+.laurel__icon { width: 42px; height: 42px; margin: 0 auto .35rem; display: block; color: var(--butter); opacity: .9; }
+.laurel__k { margin: 0; font: 700 .72rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--butter); }
+.laurel__n { margin: .35rem 0 .3rem; font: 400 1.15rem/1.15 var(--display); color: #FFF5E4; }
+.laurel__note { margin: 0; font-size: .82rem; color: #D9C6B8; line-height: 1.35; }
+.pressline { margin: 1.2rem 0 0; text-align: center; font: 600 1.15rem/1.35 var(--hand); color: var(--muted); }
+
+/* ---- merged actor / casting file ---- */
+.actor {
+  display: grid; grid-template-columns: minmax(140px, 200px) minmax(0, 1.1fr) minmax(0, 1.2fr);
+  gap: clamp(1rem, 2.5vw, 1.6rem); align-items: start;
+}
+.actor__photo { margin: 0; position: relative; }
+.actor__photo img { width: 100%; height: auto; display: block; border: 2px solid var(--ink); border-radius: 8px; box-shadow: 5px 5px 0 var(--rose); }
+.actor__photo figcaption { position: absolute; left: .5rem; bottom: .5rem; margin: 0; padding: .15rem .45rem; background: var(--ink); color: var(--cream); font: 700 .7rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; border-radius: 4px; }
+.actor__sheet { margin: 0; }
+.actor__test { margin: 0; }
+.specs--slim { margin-top: 1.2rem; padding-bottom: 1rem; }
+.specs--slim .specs__chips { margin: .7rem 0 0; }
+.cast { /* kept for is-in animation hooks via .actor */ }
+.actor.is-in .cast__stamp,
+.actor.is-in .radar__shape,
+.actor.is-in .trait__bar i { /* inherit from .cast.is-in rules by also toggling */ }
+html.js .actor:not(.is-in) .cast__stamp { opacity: 0; transform: rotate(-8deg) scale(2.2); }
+.actor.is-in .cast__stamp { transition: opacity .25s .9s, transform .45s .9s cubic-bezier(.3, 1.6, .5, 1); }
+html.js .actor:not(.is-in) .radar__shape { transform: scale(0) rotate(-45deg); opacity: 0; }
+.actor.is-in .radar__shape { transition: transform 1.1s .2s cubic-bezier(.2, 1.3, .4, 1), opacity .4s .2s; }
+html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
+.actor.is-in .trait__bar i { transition: transform 1.3s cubic-bezier(.2, .8, .2, 1); }
+.actor.is-in li:nth-child(2) .trait__bar i { transition-delay: .12s; }
+.actor.is-in li:nth-child(3) .trait__bar i { transition-delay: .24s; }
+.actor.is-in li:nth-child(4) .trait__bar i { transition-delay: .36s; }
+
+@media (max-width: 960px) {
+  .actor { grid-template-columns: 140px 1fr; }
+  .actor__test { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .actor { grid-template-columns: 1fr; }
+  .actor__photo { max-width: 200px; }
+  .stubs { grid-template-columns: 1fr; }
+}
+
+/* readability: bigger heads, airier notes */
+.note p { font-size: 1.05rem; line-height: 1.55; max-width: 38rem; }
+.note__hi { font-size: 1.35rem !important; }
+.feature__body > p { font-size: 1.02rem; line-height: 1.5; }
+.head__note { font-size: 1.05rem; }
