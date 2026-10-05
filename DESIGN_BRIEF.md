@@ -123,3 +123,10 @@ responsive from 360px up.
 - Awards → short Laurels cards.
 - Behind the scenes + casting merged into one Casting sheet / actor file.
 - Cut: long experience bullets, proud-moment essay, Readwise card, schooling/reviews pair, duplicate casting block, verbose director note & ticker.
+
+## v4.4
+- Seat stills fill the frame (object-fit cover, fixed aspect).
+- Showtimes = horizontal career film-roll with large years.
+- Repertory = flip ticket booth (colors + symbols kept).
+- New headshot + warmer casting dossier.
+- Awards restored to pre-Laurels design (proud card + wreath awards + schooling/reviews).

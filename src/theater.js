@@ -33,7 +33,7 @@ function readProject(id) {
     desc: $('.poster__desc', back).textContent,
     href: $('.poster__backtitle a', back)?.href,
     doodle: $('.poster__front use', poster).getAttribute('href'),
-    img: still ? { src: still, srcset: poster.dataset.stillSrcset || '' } : null,
+    img: still ? { src: still, srcset: poster.dataset.stillSrcset || '', pos: poster.dataset.stillPos || 'center' } : null,
     tint: TINTS[poster.dataset.tint] || TINTS.sky,
     links: $$('.poster__links a', back).map((a) => ({ href: a.href, text: a.firstChild.textContent.trim() })),
     more: '#theater',
@@ -44,7 +44,7 @@ function render(p, seatNo) {
   const wrap = document.createElement('div');
   wrap.className = 'np';
   const still = p.img
-    ? `<img class="np__photo" src="${p.img.src}" srcset="${p.img.srcset || ''}" sizes="(min-width: 760px) 380px, 90vw" alt="" decoding="async">`
+    ? `<img class="np__photo" src="${p.img.src}" srcset="${p.img.srcset || ''}" sizes="(min-width: 760px) 380px, 90vw" alt="" decoding="async" style="object-position:${p.img.pos || 'center'}">`
     : `<svg class="doodle" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="${p.doodle}"/></svg>`;
   const moreLabel = p.more === '#theater' ? 'pick another seat' : 'details below';
   const reel = p.title.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 24);

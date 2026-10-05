@@ -67,7 +67,7 @@
 /* now-playing layout inside the screen */
 .np { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(1rem, 2.4vw, 1.8rem); padding: clamp(1rem, 2.2vw, 1.6rem); height: 100%; overflow: auto; }
 .np__still { position: relative; border-radius: 10px; overflow: hidden; border: 3px solid #3B2626; background: var(--tint, #BFDDF2); display: grid; place-items: center; min-height: 140px; }
-.np__still img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.np__still img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .np__still svg.doodle { width: 46%; height: auto; aspect-ratio: 1; color: #3B2626; }
 .np__badge { position: absolute; left: .6rem; top: .6rem; background: #3B2626; color: #FFF6E8; font-weight: 900; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 999px; }
 .np__body { display: flex; flex-direction: column; gap: .45rem; min-width: 0; }
@@ -592,9 +592,22 @@ html.js .cast:not(.is-in) .cast__stamp { transform: rotate(-8deg) scale(2.2); }
 .opening__bg::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(rgba(255, 255, 255, .04) 0 1px, transparent 1px 3px); }
 
 /* ---- theater still photos ---- */
-.np__still:has(.np__photo) { background: #1a1212; padding: 0; overflow: hidden; }
-.np__photo { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 140px; max-height: 220px; }
-@media (min-width: 760px) { .np__photo { max-height: 260px; } }
+.np:has(.np__photo) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: start; }
+.np__still:has(.np__photo) {
+  position: relative; background: #1a1212; padding: 0; overflow: hidden;
+  width: 100%; aspect-ratio: 4 / 3; min-height: 0; height: auto;
+  place-items: stretch; align-self: start;
+}
+.np__photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: center center;
+  display: block; min-height: 0; max-height: none;
+}
+.np__still:has(.np__photo) .np__badge { z-index: 2; }
+@media (max-width: 760px) {
+  .np:has(.np__photo) { grid-template-columns: 1fr; }
+  .np__still:has(.np__photo) { aspect-ratio: 16 / 10; }
+}
 
 /* ---- ticket stubs (showtimes) ---- */
 .stubs {
@@ -694,3 +707,176 @@ html.js .actor:not(.is-in) .trait__bar i { transform: scaleX(0); }
 .note__hi { font-size: 1.35rem !important; }
 .feature__body > p { font-size: 1.02rem; line-height: 1.5; }
 .head__note { font-size: 1.05rem; }
+
+
+/* ============ career film-roll timeline ============ */
+.filmroll {
+  position: relative; margin-top: .6rem;
+  background: #241618; color: #FBEFE0; border-block: 3px solid var(--ink);
+  box-shadow: inset 0 0 0 1px rgba(255,214,110,.15);
+}
+.filmroll__controls {
+  position: absolute; z-index: 4; top: -72px; right: max(1.25rem, calc((100vw - var(--wide)) / 2));
+  display: flex; gap: .5rem;
+}
+.filmroll__btn {
+  width: 46px; height: 46px; border-radius: 50%; border: 2.5px solid var(--ink);
+  background: var(--butter); font-size: 1.3rem; font-weight: 900; cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink); transition: transform .2s ease;
+}
+.filmroll__btn:hover { transform: translateY(-2px) rotate(-6deg); }
+.filmroll__sprocket {
+  height: 18px; background:
+    radial-gradient(circle, #FFF5E4 4px, transparent 4.5px) 12px center / 28px 18px repeat-x,
+    #1a1011;
+  border-block: 1px solid rgba(255,245,228,.12);
+}
+.filmroll__track {
+  list-style: none; margin: 0; padding: 1rem max(1.25rem, calc((100vw - var(--wide)) / 2));
+  display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+  scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: var(--butter) transparent;
+}
+.filmroll__track:focus-visible { outline: 3px solid var(--butter); outline-offset: -6px; }
+.cell {
+  flex: 0 0 min(260px, 78vw); scroll-snap-align: start;
+  background: #2E2021; border: 2px solid rgba(255,245,228,.22); border-radius: 14px;
+  padding: 1rem 1rem 1.1rem; display: flex; flex-direction: column; gap: .35rem;
+  box-shadow: 4px 4px 0 rgba(0,0,0,.35);
+  background-image: linear-gradient(180deg, rgba(255,214,110,.06), transparent 40%);
+}
+.cell--live { border-color: var(--butter); box-shadow: 4px 4px 0 var(--butter); }
+.cell__date { margin: 0; display: flex; flex-direction: column; gap: .1rem; }
+.cell__year {
+  font: 400 clamp(2.4rem, 5vw, 3.2rem)/.9 var(--display); color: var(--butter);
+  text-shadow: 0 0 18px rgba(255,214,110,.35); letter-spacing: -.02em;
+}
+.cell__range {
+  font: 700 .78rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #F6C1C4;
+}
+.cell__who { margin: .25rem 0 0; font: 400 1.35rem/1.1 var(--display); color: #FFF5E4; }
+.cell__who a { color: inherit; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .12em; }
+.cell__role { margin: 0; font: 700 .88rem/1.25 var(--body); color: #FF8FA0; }
+.cell__line { margin: .15rem 0 0; font-size: .92rem; line-height: 1.4; color: #E9D9CC; }
+.filmroll__cue {
+  display: flex; align-items: center; justify-content: center; gap: .7rem;
+  margin: 0; padding: .45rem 1rem .7rem; font: 600 1.05rem/1 var(--hand); color: #F6C1C4;
+}
+.filmroll__cue-line { flex: 0 1 8rem; height: 2px; background: linear-gradient(90deg, transparent, #F6C1C4, transparent); }
+@media (max-width: 720px) {
+  .filmroll__controls { position: static; justify-content: center; margin: 0 0 .4rem; }
+}
+
+/* ============ ticket booth (repertory as flip tickets) ============ */
+.booth { margin-top: .4rem; }
+.booth__grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.1rem 1rem;
+}
+.ticket {
+  position: relative; width: 100%; height: 320px; perspective: 1200px;
+  list-style: none;
+}
+.ticket .poster__card {
+  border-radius: 12px;
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--ink) 70%, transparent);
+}
+.ticket .poster__face {
+  border: 2.5px solid var(--ink); border-radius: 12px;
+  padding: .85rem .85rem 1rem;
+  /* ticket stub edge */
+  background-image:
+    radial-gradient(circle at 0 50%, transparent 7px, var(--tint) 7.5px);
+  background-position: left center; background-size: 14px 100%; background-repeat: no-repeat;
+  padding-left: 1.15rem;
+}
+.ticket .poster__front {
+  background-color: var(--tint);
+  background-image:
+    radial-gradient(circle at 0 50%, var(--cream) 7px, transparent 7.5px),
+    linear-gradient(90deg, color-mix(in srgb, var(--ink) 12%, transparent) 0 10px, transparent 10px);
+}
+.ticket .poster__back {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 0 50%, var(--cream) 7px, transparent 7.5px),
+    linear-gradient(90deg, color-mix(in srgb, var(--ink) 10%, transparent) 0 10px, transparent 10px);
+}
+.ticket .poster__doodle { width: 78px; height: 78px; margin: .7rem auto .5rem; }
+.ticket .poster__title { font-size: 1.65rem; }
+.ticket .poster__title--long { font-size: 1.35rem; }
+
+.ticket .poster__face { position: relative; }
+.ticket:nth-child(odd) { transform: rotate(-.6deg); }
+.ticket:nth-child(even) { transform: rotate(.7deg); }
+.ticket:hover { transform: rotate(0) translateY(-3px); z-index: 2; }
+@media (max-width: 520px) {
+  .booth__grid { grid-template-columns: 1fr 1fr; gap: .7rem; }
+  .ticket { height: 280px; }
+  .ticket .poster__doodle { width: 58px; height: 58px; }
+  .ticket .poster__title { font-size: 1.25rem; }
+  .ticket .poster__title--long { font-size: 1.05rem; }
+}
+
+/* ============ warmer casting / actor dossier ============ */
+.actor {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2rem); align-items: start;
+}
+.actor__dossier {
+  position: relative; display: grid; grid-template-columns: minmax(150px, 240px) minmax(0, 1fr);
+  gap: 0; align-items: stretch;
+  background: var(--paper); border: 2px solid var(--ink); border-radius: 18px;
+  box-shadow: 8px 8px 0 var(--rose);
+  overflow: hidden;
+  background-image: repeating-linear-gradient(transparent 0 28px, rgba(184,41,63,.08) 28px 29px);
+  transform: rotate(-.4deg);
+}
+.actor__photo {
+  margin: 0; position: relative; align-self: stretch;
+  background: #1a1212;
+}
+.actor__photo img {
+  width: 100%; height: 100%; min-height: 280px; object-fit: cover; object-position: center 18%;
+  display: block; border: 0; border-radius: 0; box-shadow: none;
+}
+.actor__photo figcaption {
+  position: absolute; left: .6rem; bottom: .6rem; margin: 0;
+  padding: .2rem .55rem; background: rgba(59,38,38,.88); color: #FFF5E4;
+  font: 700 .68rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; border-radius: 999px;
+}
+.actor__sheet {
+  position: relative; margin: 0; padding: 1.1rem 1.2rem 1.2rem 1rem;
+  background: transparent; border: 0; box-shadow: none; transform: none;
+  background-image: none;
+}
+.actor__hello {
+  margin: 0 0 .2rem; font: 400 clamp(1.6rem, 3vw, 2rem)/1.05 var(--display); color: var(--ink);
+}
+.actor__hello span { display: inline-block; margin-left: .35rem; font: 700 .75rem/1 var(--mono); letter-spacing: .06em; color: var(--muted); vertical-align: middle; }
+.actor__from { margin: 0 0 .9rem; font-size: .95rem; color: var(--muted); line-height: 1.4; }
+.actor__chips {
+  list-style: none; margin: .8rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem;
+}
+.actor__chips li {
+  font: 700 .78rem/1.2 var(--body); padding: .35rem .65rem; border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--ink) 25%, transparent); background: var(--cream); color: var(--ink);
+}
+.actor__chips small { font-weight: 600; color: var(--cherry); margin-left: .2rem; }
+.actor__sheet .cast__stamp { top: auto; bottom: .8rem; right: .8rem; }
+.actor__sheet .cast__src { padding-right: 5rem; margin-top: .7rem; }
+.actor__test { margin: 0; }
+@media (max-width: 960px) {
+  .actor { grid-template-columns: 1fr; }
+  .actor__dossier { transform: none; }
+}
+@media (max-width: 560px) {
+  .actor__dossier { grid-template-columns: 1fr; }
+  .actor__photo img { min-height: 220px; max-height: 280px; }
+}
+
+.booth .poster { flex: none; width: 100%; height: 320px; scroll-snap-align: unset; }
+.booth .poster:hover .poster__card { transform: none; }
+.booth .poster.is-flipped .poster__card { transform: rotateY(180deg); }
+.booth .ticket:hover { z-index: 2; }

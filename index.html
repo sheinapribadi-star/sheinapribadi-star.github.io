@@ -63,9 +63,9 @@
     <ul>
       <li><a href="#box-office">Box office</a></li>
       <li><a href="#now-showing">Features</a></li>
-      <li><a href="#repertory">Reel</a></li>
-      <li><a href="#filmography">Showtimes</a></li>
-      <li><a href="#awards">Laurels</a></li>
+      <li><a href="#repertory">Tickets</a></li>
+      <li><a href="#filmography">Career</a></li>
+      <li><a href="#awards">Awards</a></li>
       <li><a href="#casting">Cast</a></li>
       <li><a href="#concessions">Contact</a></li>
     </ul>
@@ -426,26 +426,22 @@
   </section>
 
   <!-- ============ REPERTORY FILM STRIP ============ -->
-  <section id="repertory" class="section section--bleed" aria-labelledby="rep-title">
+  <section id="repertory" class="section" aria-labelledby="rep-title">
     <header class="head">
-      <p class="head__kicker">Screen two</p>
-      <h2 id="rep-title" class="title title--big">The repertory reel</h2>
-      <p class="head__note">logo posters &mdash; tap a seat above for the real stills</p>
+      <p class="head__kicker">Box office tickets</p>
+      <h2 id="rep-title" class="title title--big">The ticket booth</h2>
+      <p class="head__note">flip a stub for the short take &mdash; seats above play the stills</p>
     </header>
-    <div class="strip">
-      <div class="strip__controls">
-        <button class="strip__btn" type="button" data-dir="-1" aria-label="Scroll the reel back"><span aria-hidden="true">&larr;</span></button>
-        <button class="strip__btn" type="button" data-dir="1" aria-label="Scroll the reel forward"><span aria-hidden="true">&rarr;</span></button>
-      </div>
-      <ol class="strip__track" tabindex="0" aria-label="Repertory posters, scroll sideways">
-      <li class="poster" data-tint="sky" data-still="/img/projects/berkeleytime.webp" data-still-srcset="/img/projects/berkeleytime-640.webp 640w, /img/projects/berkeleytime.webp 1200w">
+    <div class="booth">
+      <ol class="booth__grid" aria-label="Project tickets, flip for details">
+      <li class="poster ticket" data-tint="sky" data-still="/img/projects/berkeleytime.webp" data-still-pos="top center" data-still-srcset="/img/projects/berkeleytime-640.webp 640w, /img/projects/berkeleytime.webp 1200w">
         <div class="poster__card">
           <div class="poster__face poster__front" id="p03-front">
             <p class="poster__top"><span>No. 03</span><span>2026</span></p>
             <svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-clock"/></svg>
             <h3 class="poster__title poster__title--long">Berkeleytime</h3>
             <p class="poster__meta">Berkeley &middot; product · data</p>
-            <button class="poster__flip" type="button" aria-controls="p03-back" aria-expanded="false"><span class="sr">Flip the Berkeleytime poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+            <button class="poster__flip" type="button" aria-controls="p03-back" aria-expanded="false"><span class="sr">Flip the Berkeleytime poster for details</span><span class="poster__hint" aria-hidden="true">flip stub</span></button>
           </div>
           <div class="poster__face poster__back" id="p03-back" inert>
             <p class="poster__top"><span>No. 03</span><span>Berkeley &middot; 2026</span></p>
@@ -456,14 +452,14 @@
           </div>
         </div>
       </li>
-      <li class="poster" data-tint="butter" data-still="/img/projects/matchup.webp" data-still-srcset="/img/projects/matchup-640.webp 640w, /img/projects/matchup.webp 1200w">
+      <li class="poster ticket" data-tint="butter" data-still="/img/projects/matchup.webp" data-still-pos="center 40%" data-still-srcset="/img/projects/matchup-640.webp 640w, /img/projects/matchup.webp 1200w">
         <div class="poster__card">
           <div class="poster__face poster__front" id="p04-front">
             <p class="poster__top"><span>No. 04</span><span>2025</span></p>
             <svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-racket"/></svg>
             <h3 class="poster__title">MatchUp</h3>
             <p class="poster__meta">Jakarta &middot; marketplace · built with AI · payments</p>
-            <button class="poster__flip" type="button" aria-controls="p04-back" aria-expanded="false"><span class="sr">Flip the MatchUp poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+            <button class="poster__flip" type="button" aria-controls="p04-back" aria-expanded="false"><span class="sr">Flip the MatchUp poster for details</span><span class="poster__hint" aria-hidden="true">flip stub</span></button>
           </div>
           <div class="poster__face poster__back" id="p04-back" inert>
             <p class="poster__top"><span>No. 04</span><span>Jakarta &middot; 2025</span></p>
@@ -474,14 +470,14 @@
           </div>
         </div>
       </li>
-      <li class="poster" data-tint="rose" data-still="/img/projects/neurowake.webp" data-still-srcset="/img/projects/neurowake-640.webp 640w, /img/projects/neurowake.webp 1200w">
+      <li class="poster ticket" data-tint="rose" data-still="/img/projects/neurowake.webp" data-still-pos="center" data-still-srcset="/img/projects/neurowake-640.webp 640w, /img/projects/neurowake.webp 1200w">
         <div class="poster__card">
           <div class="poster__face poster__front" id="p05-front">
             <p class="poster__top"><span>No. 05</span><span>2025</span></p>
             <svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-moon"/></svg>
             <h3 class="poster__title">NeuroWake</h3>
             <p class="poster__meta">Berkeley &middot; concept · health · EEG</p>
-            <button class="poster__flip" type="button" aria-controls="p05-back" aria-expanded="false"><span class="sr">Flip the NeuroWake poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+            <button class="poster__flip" type="button" aria-controls="p05-back" aria-expanded="false"><span class="sr">Flip the NeuroWake poster for details</span><span class="poster__hint" aria-hidden="true">flip stub</span></button>
           </div>
           <div class="poster__face poster__back" id="p05-back" inert>
             <p class="poster__top"><span>No. 05</span><span>Berkeley &middot; 2025</span></p>
@@ -492,14 +488,14 @@
           </div>
         </div>
       </li>
-      <li class="poster" data-tint="mint" data-still="/img/projects/forbes.webp" data-still-srcset="/img/projects/forbes-640.webp 640w, /img/projects/forbes.webp 1200w">
+      <li class="poster ticket" data-tint="mint" data-still="/img/projects/forbes.webp" data-still-pos="top center" data-still-srcset="/img/projects/forbes-640.webp 640w, /img/projects/forbes.webp 1200w">
         <div class="poster__card">
           <div class="poster__face poster__front" id="p06-front">
             <p class="poster__top"><span>No. 06</span><span>2025</span></p>
             <svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-paper"/></svg>
             <h3 class="poster__title poster__title--long">Forbes + Earth.org</h3>
             <p class="poster__meta">In print &middot; writing · policy · sustainability</p>
-            <button class="poster__flip" type="button" aria-controls="p06-back" aria-expanded="false"><span class="sr">Flip the Forbes + Earth.org poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+            <button class="poster__flip" type="button" aria-controls="p06-back" aria-expanded="false"><span class="sr">Flip the Forbes + Earth.org poster for details</span><span class="poster__hint" aria-hidden="true">flip stub</span></button>
           </div>
           <div class="poster__face poster__back" id="p06-back" inert>
             <p class="poster__top"><span>No. 06</span><span>In print &middot; 2025</span></p>
@@ -510,14 +506,14 @@
           </div>
         </div>
       </li>
-      <li class="poster" data-tint="sky" data-still="/img/projects/design-sprints.webp" data-still-srcset="/img/projects/design-sprints-640.webp 640w, /img/projects/design-sprints.webp 1200w">
+      <li class="poster ticket" data-tint="sky" data-still="/img/projects/design-sprints.webp" data-still-pos="center" data-still-srcset="/img/projects/design-sprints-640.webp 640w, /img/projects/design-sprints.webp 1200w">
         <div class="poster__card">
           <div class="poster__face poster__front" id="p07-front">
             <p class="poster__top"><span>No. 07</span><span>2024</span></p>
             <svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-pencil"/></svg>
             <h3 class="poster__title poster__title--long">Design Sprints</h3>
             <p class="poster__meta">Berkeley &middot; UX · prototyping · case comps</p>
-            <button class="poster__flip" type="button" aria-controls="p07-back" aria-expanded="false"><span class="sr">Flip the Design Sprints poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+            <button class="poster__flip" type="button" aria-controls="p07-back" aria-expanded="false"><span class="sr">Flip the Design Sprints poster for details</span><span class="poster__hint" aria-hidden="true">flip stub</span></button>
           </div>
           <div class="poster__face poster__back" id="p07-back" inert>
             <p class="poster__top"><span>No. 07</span><span>Berkeley &middot; 2024</span></p>
@@ -528,14 +524,14 @@
           </div>
         </div>
       </li>
-      <li class="poster" data-tint="butter" data-still="/img/projects/ace.webp" data-still-srcset="/img/projects/ace-640.webp 640w, /img/projects/ace.webp 1200w">
+      <li class="poster ticket" data-tint="butter" data-still="/img/projects/ace.webp" data-still-pos="center 30%" data-still-srcset="/img/projects/ace-640.webp 640w, /img/projects/ace.webp 1200w">
         <div class="poster__card">
           <div class="poster__face poster__front" id="p08-front">
             <p class="poster__top"><span>No. 08</span><span>2022</span></p>
             <svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-bricks"/></svg>
             <h3 class="poster__title">ACE<span class="poster__subtitle">Alternative Cement for the Environment</span></h3>
             <p class="poster__meta">Tangerang &middot; materials · climate · founder</p>
-            <button class="poster__flip" type="button" aria-controls="p08-back" aria-expanded="false"><span class="sr">Flip the ACE poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+            <button class="poster__flip" type="button" aria-controls="p08-back" aria-expanded="false"><span class="sr">Flip the ACE poster for details</span><span class="poster__hint" aria-hidden="true">flip stub</span></button>
           </div>
           <div class="poster__face poster__back" id="p08-back" inert>
             <p class="poster__top"><span>No. 08</span><span>Tangerang &middot; 2022</span></p>
@@ -546,14 +542,14 @@
           </div>
         </div>
       </li>
-      <li class="poster" data-tint="rose" data-still="/img/projects/yum.webp" data-still-srcset="/img/projects/yum-640.webp 640w, /img/projects/yum.webp 1200w">
+      <li class="poster ticket" data-tint="rose" data-still="/img/projects/yum.webp" data-still-pos="center 45%" data-still-srcset="/img/projects/yum-640.webp 640w, /img/projects/yum.webp 1200w">
         <div class="poster__card">
           <div class="poster__face poster__front" id="p09-front">
             <p class="poster__top"><span>No. 09</span><span>2021&ndash;25</span></p>
             <svg class="doodle poster__doodle" aria-hidden="true" focusable="false"><use href="#d-sprout"/></svg>
             <h3 class="poster__title poster__title--long">YUM Farm Project</h3>
             <p class="poster__meta">Indonesia &middot; service · food systems · operations</p>
-            <button class="poster__flip" type="button" aria-controls="p09-back" aria-expanded="false"><span class="sr">Flip the YUM Farm Project poster for details</span><span class="poster__hint" aria-hidden="true">flip me</span></button>
+            <button class="poster__flip" type="button" aria-controls="p09-back" aria-expanded="false"><span class="sr">Flip the YUM Farm Project poster for details</span><span class="poster__hint" aria-hidden="true">flip stub</span></button>
           </div>
           <div class="poster__face poster__back" id="p09-back" inert>
             <p class="poster__top"><span>No. 09</span><span>Indonesia &middot; 2021&ndash;25</span></p>
@@ -568,171 +564,177 @@
     </div>
   </section>
 
-  <!-- ============ FILMOGRAPHY / TICKET STUBS ============ -->
-  <section id="filmography" class="section" aria-labelledby="film-title">
+  <!-- ============ CAREER REEL (film-roll timeline) ============ -->
+  <section id="filmography" class="section section--bleed" aria-labelledby="film-title">
     <header class="head">
       <p class="head__kicker">The showtimes</p>
-      <h2 id="film-title" class="title title--big">Ticket stubs</h2>
-      <p class="head__note">collected stubs from every set Ia stack of where I&rsquo;ve worked &mdash; tear one open for the short versionrsquo;ve been on</p>
+      <h2 id="film-title" class="title title--big">Career reel</h2>
+      <p class="head__note">scroll the film &mdash; dates big, roles short</p>
     </header>
-    <ol class="stubs">
-      <li class="mticket mticket--live">
-        <div class="mticket__perf" aria-hidden="true"></div>
-        <p class="mticket__admit">admit one</p>
-        <div class="mticket__body">
-          <p class="mticket__when">Aug 2026 &ndash; now</p>
-          <h3 class="mticket__who"><a href="https://berkeleytime.com/">Berkeleytime</a></h3>
-          <p class="mticket__role">Product Manager &amp; Data Analyst</p>
-          <p class="mticket__line">20K+ users. I started as one.</p>
-        </div>
-      </li>
-      <li class="mticket">
-        <div class="mticket__perf" aria-hidden="true"></div>
-        <p class="mticket__admit">admit one</p>
-        <div class="mticket__body">
-          <p class="mticket__when">Jun &ndash; Aug 2026</p>
-          <h3 class="mticket__who">Cloudflare</h3>
-          <p class="mticket__role">AI &amp; Data Center Ops Intern</p>
-          <p class="mticket__line">Agentic procurement: weeks &rarr; 15 min.</p>
-        </div>
-      </li>
-      <li class="mticket">
-        <div class="mticket__perf" aria-hidden="true"></div>
-        <p class="mticket__admit">admit one</p>
-        <div class="mticket__body">
-          <p class="mticket__when">Jan 2026 &ndash; now</p>
-          <h3 class="mticket__who">WorkWhile</h3>
-          <p class="mticket__role">Project Manager</p>
-          <p class="mticket__line">AI lead-sourcing + Frontline Worker Report (3,000+ responses).</p>
-        </div>
-      </li>
-      <li class="mticket">
-        <div class="mticket__perf" aria-hidden="true"></div>
-        <p class="mticket__admit">admit one</p>
-        <div class="mticket__body">
-          <p class="mticket__when">Aug 2025 &ndash; May 2026</p>
-          <h3 class="mticket__who">Energy Institute at Haas</h3>
-          <p class="mticket__role">Research Associate</p>
-          <p class="mticket__line">PM2.5 modeling in R, Python &amp; ML.</p>
-        </div>
-      </li>
-      <li class="mticket">
-        <div class="mticket__perf" aria-hidden="true"></div>
-        <p class="mticket__admit">admit one</p>
-        <div class="mticket__body">
-          <p class="mticket__when">Aug &ndash; Dec 2025</p>
-          <h3 class="mticket__who">Perplexity</h3>
-          <p class="mticket__role">Campus Strategist</p>
-          <p class="mticket__line">2,000+ new users in a day.</p>
-        </div>
-      </li>
-      <li class="mticket">
-        <div class="mticket__perf" aria-hidden="true"></div>
-        <p class="mticket__admit">admit one</p>
-        <div class="mticket__body">
-          <p class="mticket__when">Jun &ndash; Aug 2025</p>
-          <h3 class="mticket__who">Deloitte</h3>
-          <p class="mticket__role">M&amp;A Intern &middot; Indonesia</p>
-          <p class="mticket__line">Market sizing, diligence, financial models.</p>
-        </div>
-      </li>
-      <li class="mticket">
-        <div class="mticket__perf" aria-hidden="true"></div>
-        <p class="mticket__admit">admit one</p>
-        <div class="mticket__body">
-          <p class="mticket__when">Earlier</p>
-          <h3 class="mticket__who">Venture Strategy Solutions</h3>
-          <p class="mticket__role">Project Manager</p>
-          <p class="mticket__line">AI product consulting, Series B&ndash;F.</p>
-        </div>
-      </li>
-      <li class="mticket">
-        <div class="mticket__perf" aria-hidden="true"></div>
-        <p class="mticket__admit">admit one</p>
-        <div class="mticket__body">
-          <p class="mticket__when">Aug 2024 &ndash; May 2025</p>
-          <h3 class="mticket__who">URAP</h3>
-          <p class="mticket__role">Researcher &middot; nanotech sensing</p>
-          <p class="mticket__line">Carbon sensors with NASA Ames, LBNL, Stanford, UCSF partners.</p>
-        </div>
-      </li>
-    </ol>
+    <div class="filmroll">
+      <div class="filmroll__controls">
+        <button class="filmroll__btn" type="button" data-dir="-1" aria-label="Scroll the career reel back"><span aria-hidden="true">&larr;</span></button>
+        <button class="filmroll__btn" type="button" data-dir="1" aria-label="Scroll the career reel forward"><span aria-hidden="true">&rarr;</span></button>
+      </div>
+      <div class="filmroll__sprocket filmroll__sprocket--top" aria-hidden="true"></div>
+      <ol class="filmroll__track" tabindex="0" aria-label="Career timeline, scroll sideways">
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">earlier</span><span class="cell__range">before Berkeley</span></p>
+          <h3 class="cell__who">Venture Strategy</h3>
+          <p class="cell__role">Project Manager</p>
+          <p class="cell__line">AI product consulting, Series B&ndash;F.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2024</span><span class="cell__range">Aug &ndash; May &rsquo;25</span></p>
+          <h3 class="cell__who">URAP</h3>
+          <p class="cell__role">Researcher</p>
+          <p class="cell__line">Nanotech sensing with NASA Ames, LBNL, Stanford, UCSF partners.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2025</span><span class="cell__range">Jun &ndash; Aug</span></p>
+          <h3 class="cell__who">Deloitte</h3>
+          <p class="cell__role">M&amp;A Intern &middot; Indonesia</p>
+          <p class="cell__line">Market sizing, diligence, financial models.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2025</span><span class="cell__range">Aug &ndash; Dec</span></p>
+          <h3 class="cell__who">Perplexity</h3>
+          <p class="cell__role">Campus Strategist</p>
+          <p class="cell__line">2,000+ new users in a day.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2025</span><span class="cell__range">Aug &ndash; May &rsquo;26</span></p>
+          <h3 class="cell__who">Energy Institute</h3>
+          <p class="cell__role">Research Associate</p>
+          <p class="cell__line">PM2.5 modeling in R, Python &amp; ML.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2026</span><span class="cell__range">Jan &ndash; now</span></p>
+          <h3 class="cell__who">WorkWhile</h3>
+          <p class="cell__role">Project Manager</p>
+          <p class="cell__line">AI lead-sourcing + Frontline Worker Report.</p>
+        </li>
+
+        <li class="cell">
+          <p class="cell__date"><span class="cell__year">2026</span><span class="cell__range">Jun &ndash; Aug</span></p>
+          <h3 class="cell__who">Cloudflare</h3>
+          <p class="cell__role">AI &amp; Data Center Ops Intern</p>
+          <p class="cell__line">Agentic procurement: weeks &rarr; 15 min.</p>
+        </li>
+
+        <li class="cell cell--live">
+          <p class="cell__date"><span class="cell__year">2026</span><span class="cell__range">Aug &ndash; now</span></p>
+          <h3 class="cell__who"><a href="https://berkeleytime.com/">Berkeleytime</a></h3>
+          <p class="cell__role">PM &amp; Data Analyst</p>
+          <p class="cell__line">20K+ users. I started as one.</p>
+        </li>
+      </ol>
+      <div class="filmroll__sprocket filmroll__sprocket--bot" aria-hidden="true"></div>
+      <p class="filmroll__cue" aria-hidden="true"><span>then</span><span class="filmroll__cue-line"></span><span>now</span></p>
+    </div>
   </section>
 
-  <!-- ============ AWARDS / LAURELS ============ -->
+  <!-- ============ AWARDS ============ -->
   <section id="awards" class="section" aria-labelledby="awards-title">
     <header class="head">
-      <p class="head__kicker">Festival circuit</p>
-      <h2 id="awards-title" class="title title--big">Laurels</h2>
-      <p class="head__note">short list</p>
+      <p class="head__kicker">On the mantelpiece</p>
+      <h2 id="awards-title" class="title title--big">Awards season</h2>
+      <p class="head__note">honors, schooling &amp; reviews</p>
     </header>
-    <ul class="laurels">
-      <li class="laurel" data-tint="butter">
-        <svg class="laurel__icon" aria-hidden="true"><use href="#laurel"/></svg>
-        <p class="laurel__k">Top 3</p>
-        <h3 class="laurel__n">BU $50K Sustainability</h3>
-        <p class="laurel__note">Represented UC Berkeley &middot; 500+ applicants</p>
+    <article class="proud" aria-labelledby="proud-title">
+      <p class="proud__k"><span>Proudest moment</span><span class="proud__mono">top 3 / 25 finalists / 500+ applicants</span></p>
+      <h3 id="proud-title" class="proud__title">Top 3 in the $50K BU Crypto Sustainability Competition</h3>
+      <p>I was especially proud to be named a Top 3 finalist in Boston University&rsquo;s $50K Sustainability Competition, where we were selected as the representative team for UC Berkeley. The prompt focused on crypto-based solutions, which was unexpected, and our team was competing against PhD and MBA students from around the world. Despite this, we advanced to the final round and placed in the top three out of more than 500 applicants and 25 finalist teams. The experience was incredibly intense; we learned and built rapidly within 24 hours, and it was one of the most rewarding learning experiences I&rsquo;ve had.</p>
+    </article>
+    <ul class="awards">
+      <li class="award" data-tint="butter">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Top 3</span><span class="award__n">BU Crypto Sustainability Competition</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">Boston University&rsquo;s $50K competition. Represented UC Berkeley, 500+ applicants.</p>
       </li>
-      <li class="laurel" data-tint="rose">
-        <svg class="laurel__icon" aria-hidden="true"><use href="#laurel"/></svg>
-        <p class="laurel__k">1st place</p>
-        <h3 class="laurel__n">EGAL Case Competition</h3>
-        <p class="laurel__note">50+ Berkeley teams</p>
+      <li class="award" data-tint="rose">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">1st place</span><span class="award__n">EGAL Business Case Competition</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">Out of 50+ UC Berkeley teams.</p>
       </li>
-      <li class="laurel" data-tint="sky">
-        <svg class="laurel__icon" aria-hidden="true"><use href="#laurel"/></svg>
-        <p class="laurel__k">Winner</p>
-        <h3 class="laurel__n">Global RISE 2023</h3>
-        <p class="laurel__note">Top 100 of 14,000</p>
+      <li class="award" data-tint="sky">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Winner &middot; 2023</span><span class="award__n">Global RISE</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">Top 100 of 14,000.</p>
       </li>
-      <li class="laurel" data-tint="mint">
-        <svg class="laurel__icon" aria-hidden="true"><use href="#laurel"/></svg>
-        <p class="laurel__k">Seed Prize</p>
-        <h3 class="laurel__n">Iris Project</h3>
-        <p class="laurel__note">$1,500 for ACE</p>
+      <li class="award" data-tint="mint">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Seed Prize</span><span class="award__n">Iris Project</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">$1,500 for ACE.</p>
       </li>
-      <li class="laurel" data-tint="butter">
-        <svg class="laurel__icon" aria-hidden="true"><use href="#laurel"/></svg>
-        <p class="laurel__k">Youngest finalist</p>
-        <h3 class="laurel__n">Habitat for Humanity</h3>
-        <p class="laurel__note">Youth Micro-grant 2023</p>
+      <li class="award" data-tint="butter">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Youngest finalist</span><span class="award__n">Habitat for Humanity</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">Youth Micro-grant Solutions 2023.</p>
       </li>
-      <li class="laurel" data-tint="rose">
-        <svg class="laurel__icon" aria-hidden="true"><use href="#laurel"/></svg>
-        <p class="laurel__k">Leader</p>
-        <h3 class="laurel__n">One Young World</h3>
-        <p class="laurel__note">Gates Foundation partner</p>
+      <li class="award" data-tint="rose">
+        <div class="award__wreath"><svg class="award__l" aria-hidden="true"><use href="#laurel"/></svg><p><span class="award__k">Leader</span><span class="award__n">One Young World</span></p><svg class="award__r" aria-hidden="true"><use href="#laurel"/></svg></div>
+        <p class="award__note">One Young World Leader.</p>
       </li>
     </ul>
-    <p class="pressline">As covered by CNN Indonesia, Kompas, Detik, Gutzy Asia, Indonesia Expat.</p>
+    <div class="pair">
+      <div class="card pair__card" data-tint="sky">
+        <h3 class="pair__title">Schooling</h3>
+        <ul class="school">
+          <li><strong>UC Berkeley, Haas School of Business</strong><span>B.S. Business Administration &middot; 2024&ndash;2028</span></li>
+          <li><strong>UC Berkeley, College of Computing, Data Science, and Society</strong><span>B.A. Data Science &middot; 2024&ndash;2028</span></li>
+        </ul>
+      </div>
+      <div class="card pair__card" data-tint="butter">
+        <h3 class="pair__title">Reviews</h3>
+        <p class="reviews__lead">as covered by</p>
+        <ul class="reviews">
+          <li><a href="https://www.cnnindonesia.com/ekonomi/20231015121439-625-1011485/siswi-jis-buat-batu-bata-ramah-lingkungan-kurangi-emisi-karbon">CNN Indonesia</a></li>
+          <li>Kompas</li>
+          <li>Detik.com</li>
+          <li><a href="https://gutzy.asia/2023/10/12/indonesian-high-school-student-innovates-eco-friendly-bricks-to-combat-air-pollution/">Gutzy Asia</a></li>
+          <li><a href="https://indonesiaexpat.id/education/saving-the-earth-one-meal-at-a-time-with-jakarta-intercultural-schools-yum-farm-project/">Indonesia Expat</a></li>
+        </ul>
+        <p class="reviews__lead">articles I helped write</p>
+        <ul class="reviews">
+          <li><a href="https://www.forbes.com/sites/monicasanders/2025/04/03/global-development-after-usaid-closure-whats-next/">Forbes</a></li>
+          <li><a href="https://earth.org/international-aid-is-not-the-most-effective-way-to-address-food-security/">Earth.org</a></li>
+          <li><a href="https://thelensjournal.com/wp-content/uploads/2023/09/The-Lens-Sheina-Pribadi.pdf">The Lens (ACE paper)</a></li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section id="casting" class="section" aria-labelledby="cast-title">
     <header class="head">
       <p class="head__kicker">Actor file</p>
       <h2 id="cast-title" class="title title--big">Casting sheet</h2>
-      <p class="head__note">one file on the lead</p>
+      <p class="head__note">one warm file on the lead</p>
     </header>
     <div class="actor">
-      <figure class="actor__photo">
-        <img src="/img/sheina-480.webp" srcset="/img/sheina-480.webp 480w, /img/sheina-800.webp 800w" sizes="(min-width: 900px) 220px, 40vw" width="480" height="640" alt="Sheina smiling in a dim hallway, wearing a black coat" loading="lazy" decoding="async" />
-        <figcaption>headshot</figcaption>
-      </figure>
-      <article class="cast__sheet actor__sheet" aria-labelledby="cast-arch-k">
-        <p class="cast__stamp" aria-hidden="true">Cast!</p>
-        <p class="cast__file" aria-hidden="true"><span>file no. 001</span><span>take 1</span></p>
-        <dl class="cast__meta">
-          <div><dt>name</dt><dd>Sheina Pribadi</dd></div>
-          <div><dt>from</dt><dd>Jakarta &rarr; Berkeley</dd></div>
-          <div><dt>pronouns</dt><dd>she / her</dd></div>
-          <div><dt>studying</dt><dd>Data Science + Haas, class of 2028</dd></div>
-          <div><dt>speaks</dt><dd>English, Indonesian &middot; Mandarin (basic)</dd></div>
-          <div><dt>off-set</dt><dd>bouldering, too many movies, Readwise</dd></div>
-        </dl>
-        <p id="cast-arch-k" class="cast__k">archetype</p>
-        <blockquote class="cast__arch"><p>&ldquo;A trusted and tactful trouble-shooter.&rdquo;</p></blockquote>
-        <p class="cast__desc">Warm, value-driven, and at her best on work that meets a deep ideal. Clarity&nbsp;4D.</p>
-      </article>
+      <div class="actor__dossier">
+        <figure class="actor__photo">
+          <img src="/img/sheina-480.webp" srcset="/img/sheina-480.webp 480w, /img/sheina-800.webp 800w, /img/sheina-1200.webp 1200w" sizes="(min-width: 900px) 260px, 55vw" width="480" height="640" alt="Sheina smiling in a black blazer over a white collared shirt" loading="lazy" decoding="async" />
+          <figcaption>headshot</figcaption>
+        </figure>
+        <article class="actor__sheet" aria-labelledby="cast-arch-k">
+          <p class="cast__stamp" aria-hidden="true">Cast!</p>
+          <p class="actor__hello">Sheina Pribadi <span>she / her</span></p>
+          <p class="actor__from">Jakarta &rarr; Berkeley &middot; Data Science + Haas, class of 2028</p>
+          <p id="cast-arch-k" class="cast__k">archetype</p>
+          <blockquote class="cast__arch"><p>&ldquo;A trusted and tactful trouble-shooter.&rdquo;</p></blockquote>
+          <p class="cast__desc">Warm, value-driven, and at her best on work that meets a deep ideal.</p>
+          <ul class="actor__chips" aria-label="Quick facts">
+            <li>English &amp; Indonesian <small>native</small></li>
+            <li>Mandarin <small>basic</small></li>
+            <li>bouldering</li>
+            <li>too many movies</li>
+            <li>Readwise</li>
+          </ul>
+          <p class="cast__src">Clarity&nbsp;4D casting notes</p>
+        </article>
+      </div>
       <div class="cast__test actor__test" role="group" aria-labelledby="cast-test-title">
         <p class="specs__bar" aria-hidden="true"><i></i><i></i><i></i><span>screen_test.log</span></p>
         <h3 id="cast-test-title" class="cast__title">Screen test</h3>
